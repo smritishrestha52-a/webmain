@@ -1,31 +1,144 @@
-const input = document.querySelector('#todo-input');
-const addBtn = document.querySelector('#add-btn');
-const list = document.querySelector('#todo-list');
-const emptyMsg = document.querySelector('#empty-msg');
 
-function updateEmpty() {
-  emptyMsg.style.display = list.children.length === 0 ? 'block' : 'none';
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 - Task 4</title>
 
-function addTask() {
-  const text = input.value.trim();
-  if (!text) return;
-  const li = document.createElement('li');
-  li.className = 'todo-item';
-  li.innerHTML = `<span>${text}</span><button class="del-btn">✕</button>`;
-  list.appendChild(li);
-  input.value = '';
-  updateEmpty();
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f5ff;
+            text-align: center;
+            padding: 30px;
+        }
 
-addBtn.addEventListener('click', addTask);
-input.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') addTask();
-});
-list.addEventListener('click', (e) => {
-  if (e.target.classList.contains('del-btn')) {
-    e.target.closest('li').remove();
-    updateEmpty();
-  }
-});
-updateEmpty();
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px #d5deef;
+        }
+
+        h1 {
+            color: #496a9c;
+        }
+
+        input {
+            padding: 12px;
+            width: 60%;
+            border: 1px solid #b9cbe5;
+            border-radius: 7px;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        #add-btn {
+            background: #b9d8ff;
+        }
+
+        #todo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            background: #edf5ff;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        .del-btn {
+            background: #ffdce8;
+            flex-shrink: 0;
+        }
+
+        #empty-msg {
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My To-Do List 📝</h1>
+
+        <input id="todo-input" type="text" placeholder="Enter a task">
+        <button id="add-btn" type="button">Add Task</button>
+
+        <p id="empty-msg">No tasks yet. Add one!</p>
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+        const input = document.querySelector('#todo-input');
+        const addBtn = document.querySelector('#add-btn');
+        const list = document.querySelector('#todo-list');
+        const emptyMsg = document.querySelector('#empty-msg');
+
+        function updateEmpty() {
+            emptyMsg.style.display =
+                list.children.length === 0 ? 'block' : 'none';
+        }
+
+        function addTask() {
+            const text = input.value.trim();
+
+            if (text === '') {
+                input.focus();
+                return;
+            }
+
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+
+            const taskText = document.createElement('span');
+            taskText.textContent = text;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete ✕';
+            deleteBtn.className = 'del-btn';
+            deleteBtn.type = 'button';
+
+            li.appendChild(taskText);
+            li.appendChild(deleteBtn);
+            list.appendChild(li);
+
+            input.value = '';
+            input.focus();
+            updateEmpty();
+        }
+
+        addBtn.addEventListener('click', addTask);
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+
+        list.addEventListener('click', function(event) {
+            if (event.target.classList.contains('del-btn')) {
+                event.target.closest('.todo-item').remove();
+                updateEmpty();
+            }
+        });
+
+        updateEmpty();
+    </script>
+</body>
+</html>
