@@ -2,163 +2,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Programming Activities</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Web Programming Tasks</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      padding: 30px 18px;
+      font-family: 'Nunito', sans-serif;
+      background: #f3f8ff;
+      color: #40516b;
+    }
 
-        body {
-            font-family: 'Nunito', sans-serif;
-            background: #f3f8ff;
-            color: #38445c;
-            line-height: 1.6;
-        }
+    header {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      padding: 35px 20px;
+      text-align: center;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #d9eaff, #f8dff0);
+    }
 
-        header {
-            background: linear-gradient(135deg, #dceeff, #ffe3ef);
-            text-align: center;
-            padding: 55px 20px;
-            border-radius: 0 0 35px 35px;
-        }
+    header h1 {
+      margin: 0 0 10px;
+      color: #526b91;
+      font-size: 32px;
+    }
 
-        header h1 {
-            font-size: 2.4rem;
-            color: #354b75;
-            margin-bottom: 12px;
-        }
+    header p {
+      margin: 0;
+      color: #6d7890;
+    }
 
-        header p {
-            font-size: 1.05rem;
-            color: #596780;
-        }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 1000px;
+      margin: 0 auto 30px;
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            padding: 22px 15px;
-        }
+    nav a {
+      padding: 9px 16px;
+      border-radius: 20px;
+      background: #e2edff;
+      color: #536d91;
+      text-decoration: none;
+      font-weight: 700;
+    }
 
-        nav a {
-            text-decoration: none;
-            color: #405779;
-            background: white;
-            padding: 10px 18px;
-            border-radius: 25px;
-            font-weight: 800;
-            box-shadow: 0 3px 10px #dbe5f1;
-        }
+    nav a:hover {
+      background: #f5ddec;
+    }
 
-        nav a:hover { background: #dceeff; }
+    main {
+      max-width: 1000px;
+      margin: auto;
+    }
 
-        .intro {
-            text-align: center;
-            padding: 15px 20px 30px;
-        }
+    .week {
+      margin-bottom: 24px;
+      padding: 25px;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 5px 18px rgba(100, 130, 170, 0.08);
+      scroll-margin-top: 20px;
+    }
 
-        .intro h2 {
-            color: #526d9b;
-            margin-bottom: 8px;
-        }
+    .week h2 {
+      margin-top: 0;
+      color: #627fa8;
+    }
 
-        .intro p { color: #69758a; }
+    .tasks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
 
-        main {
-            max-width: 1050px;
-            margin: auto;
-            padding: 10px 20px 45px;
-        }
+    .tasks a {
+      display: block;
+      padding: 14px;
+      border-radius: 13px;
+      background: #edf4ff;
+      color: #536d91;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s;
+    }
 
-        .week-section {
-            background: white;
-            border-radius: 22px;
-            padding: 25px;
-            margin-bottom: 28px;
-            box-shadow: 0 5px 20px rgba(92, 120, 160, 0.09);
-            scroll-margin-top: 20px;
-        }
+    .tasks a:hover {
+      background: #f8e5f1;
+      transform: translateY(-2px);
+    }
 
-        .week-section h2 {
-            color: #526d9b;
-            margin-bottom: 5px;
-        }
-
-        .week-section .description {
-            color: #8490a5;
-            margin-bottom: 20px;
-        }
-
-        .task-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-            gap: 14px;
-        }
-
-        .task-card {
-            display: block;
-            text-align: center;
-            padding: 17px 12px;
-            background: #edf5ff;
-            color: #435b83;
-            text-decoration: none;
-            font-weight: 800;
-            border-radius: 15px;
-            border: 2px solid transparent;
-            transition: 0.2s;
-        }
-
-        .task-card:hover {
-            background: #ffeaf2;
-            border-color: #f6cadc;
-            transform: translateY(-3px);
-        }
-
-        .week-section:nth-of-type(even) .task-card {
-            background: #fff0f5;
-        }
-
-        .week-section:nth-of-type(even) .task-card:hover {
-            background: #e6f2ff;
-            border-color: #c8e0ff;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 15px;
-            background: #e3efff;
-            color: #63728c;
-            border-radius: 30px 30px 0 0;
-        }
-
-        footer p + p { margin-top: 5px; }
-
-        @media (max-width: 500px) {
-            header h1 { font-size: 1.8rem; }
-            .week-section { padding: 18px; }
-        }
-    </style>
+    footer {
+      padding: 25px 10px;
+      text-align: center;
+      color: #8795aa;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <h1>🌷 My Web Programming Portfolio</h1>
-    <p>Welcome to my collection of web programming activities!</p>
-    <p>Learning, practicing, and growing one task at a time 💙</p>
-</header>
+  <header>
+    <h1>My Web Programming Portfolio</h1>
+    <p>My weekly tasks and projects</p>
+  </header>
 
-<nav>
+  <nav>
     <a href="#week2">Week 2</a>
     <a href="#week3">Week 3</a>
     <a href="#week3-2">Week 3-2</a>
@@ -167,138 +129,118 @@
     <a href="#week6">Week 6</a>
     <a href="#week7">Week 7</a>
     <a href="#week8">Week 8</a>
-</nav>
+  </nav>
 
-<div class="intro">
-    <h2>Hello and welcome! ✨</h2>
-    <p>Choose a week below and click a task to open the activity.</p>
-</div>
+  <main>
 
-<main>
-
-    <!-- WEEK 2 -->
-    <section class="week-section" id="week2">
-        <h2>📘 Week 2 — HTML Fundamentals</h2>
-        <p class="description">My HTML practice activities.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week2/t1.html">Task 1</a>
-            <a class="task-card" href="week2/t2.html">Task 2</a>
-            <a class="task-card" href="week2/t3.html">Task 3</a>
-            <a class="task-card" href="week2/t4.html">Task 4</a>
-            <a class="task-card" href="week2/t5.html">Task 5</a>
-            <a class="task-card" href="week2/t6.html">Task 6</a>
-            <a class="task-card" href="week2/t7.html">Task 7</a>
-            <a class="task-card" href="week2/t8.html">Task 8</a>
-        </div>
+    <section class="week" id="week2">
+      <h2>Week 2</h2>
+      <div class="tasks">
+        <a href="week2/t1.html">Task 1</a>
+        <a href="week2/t2.html">Task 2</a>
+        <a href="week2/t3.html">Task 3</a>
+        <a href="week2/t4.html">Task 4</a>
+        <a href="week2/t5.html">Task 5</a>
+        <a href="week2/t6.html">Task 6</a>
+        <a href="week2/t7.html">Task 7</a>
+        <a href="week2/t8.html">Task 8</a>
+      </div>
     </section>
 
-    <!-- WEEK 3 -->
-    <section class="week-section" id="week3">
-        <h2>🌸 Week 3 — HTML and CSS</h2>
-        <p class="description">More practice with web page structure and styling.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week3/t1.html">Task 1</a>
-            <a class="task-card" href="week3/t2.html">Task 2</a>
-            <a class="task-card" href="week3/t3.html">Task 3</a>
-            <a class="task-card" href="week3/t4.html">Task 4</a>
-            <a class="task-card" href="week3/t5.html">Task 5</a>
-            <a class="task-card" href="week3/t6.html">Task 6</a>
-            <a class="task-card" href="week3/t7.html">Task 7</a>
-            <a class="task-card" href="week3/t8.html">Task 8</a>
-        </div>
+    <section class="week" id="week3">
+      <h2>Week 3</h2>
+      <div class="tasks">
+        <a href="week3/t1.html">Task 1</a>
+        <a href="week3/t2.html">Task 2</a>
+        <a href="week3/t3.html">Task 3</a>
+        <a href="week3/t4.html">Task 4</a>
+        <a href="week3/t5.html">Task 5</a>
+        <a href="week3/t6.html">Task 6</a>
+        <a href="week3/t7.html">Task 7</a>
+        <a href="week3/t8.html">Task 8</a>
+      </div>
     </section>
 
-    <!-- WEEK 3-2 -->
-    <section class="week-section" id="week3-2">
-        <h2>🩵 Week 3-2 — Practice Tasks</h2>
-        <p class="description">My Week 3-2 activities.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week3-2/task1.html">Task 1</a>
-            <a class="task-card" href="week3-2/task%202.html">Task 2</a>
-            <a class="task-card" href="week3-2/task%203.html">Task 3</a>
-            <a class="task-card" href="week3-2/task%204%20.html">Task 4</a>
-            <a class="task-card" href="week3-2/task%205.html">Task 5</a>
-            <a class="task-card" href="week3-2/task%206%20.html">Task 6</a>
-            <a class="task-card" href="week3-2/task%207.html">Task 7</a>
-        </div>
+    <section class="week" id="week3-2">
+      <h2>Week 3-2</h2>
+      <div class="tasks">
+        <a href="week3-2/t1.html">Task 1</a>
+        <a href="week3-2/t2.html">Task 2</a>
+        <a href="week3-2/t3.html">Task 3</a>
+        <a href="week3-2/t4.html">Task 4</a>
+        <a href="week3-2/t5.html">Task 5</a>
+        <a href="week3-2/t6.html">Task 6</a>
+        <a href="week3-2/t7.html">Task 7</a>
+        <a href="week3-2/t8.html">Task 8</a>
+      </div>
     </section>
 
-    <!-- WEEK 4 -->
-    <section class="week-section" id="week4">
-        <h2>💗 Week 4 — JavaScript Activities</h2>
-        <p class="description">Interactive web programming tasks.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week4/task1.html">Task 1</a>
-            <a class="task-card" href="week4/task2.html">Task 2</a>
-            <a class="task-card" href="week4/task3.html">Task 3</a>
-            <a class="task-card" href="week4/task4.html">Task 4</a>
-        </div>
+    <section class="week" id="week4">
+      <h2>Week 4</h2>
+      <div class="tasks">
+        <a href="week4/task1.html">Task 1</a>
+        <a href="week4/task2.html">Task 2</a>
+        <a href="week4/task3.html">Task 3</a>
+        <a href="week4/task4.html">Task 4</a>
+      </div>
     </section>
 
-    <!-- WEEK 5 -->
-    <section class="week-section" id="week5">
-        <h2>⭐ Week 5 — JavaScript Activities</h2>
-        <p class="description">My Week 5 programming tasks.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week5%20index.html/task1">Task 1 — Grade Checker</a>
-            <a class="task-card" href="week5%20index.html/task2.html">Task 2 — Multiplication Table</a>
-            <a class="task-card" href="week5%20index.html/task3.html">Task 3 — Counter</a>
-        </div>
+    <section class="week" id="week5">
+      <h2>Week 5</h2>
+      <div class="tasks">
+        <a href="week5%20index.html/task1">Task 1</a>
+        <a href="week5%20index.html/task2">Task 2</a>
+        <a href="week5%20index.html/task3">Task 3</a>
+        <a href="week5%20index.html/task4">Task 4</a>
+      </div>
     </section>
 
-    <!-- WEEK 6 -->
-    <section class="week-section" id="week6">
-        <h2>🌐 Week 6 — API Activities</h2>
-        <p class="description">Working with APIs and fetching data.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week6/task1.html">Task 1 — Random Joke</a>
-            <a class="task-card" href="week6/task2.html">Task 2 — JSON Posts</a>
-            <a class="task-card" href="week6/task3.html">Task 3 — Seoul Weather</a>
-            <a class="task-card" href="week6/task4.html">Task 4 — Random User</a>
-            <a class="task-card" href="week6/task5.html">Task 5 — Pokédex</a>
-            <a class="task-card" href="week6/task6.html">Task 6 — Country Table</a>
-        </div>
+    <section class="week" id="week6">
+      <h2>Week 6</h2>
+      <div class="tasks">
+        <a href="week6/task1.html">Task 1 - Random Joke Fetcher</a>
+        <a href="week6/task2.html">Task 2 - Posts</a>
+        <a href="week6/task3.html">Task 3 - Seoul Weather</a>
+        <a href="week6/task4.html">Task 4 - Random User</a>
+        <a href="week6/task5.html">Task 5 - Pokédex</a>
+        <a href="week6/task6.html">Task 6 - Country Table</a>
+      </div>
     </section>
 
-    <!-- WEEK 7 -->
-    <section class="week-section" id="week7">
-        <h2>📚 Week 7 — Book Search Activities</h2>
-        <p class="description">Searching books and working with the Open Library API.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week7/t1.html">Task 1</a>
-            <a class="task-card" href="week7/t2.html">Task 2</a>
-            <a class="task-card" href="week7/t3.html">Task 3</a>
-            <a class="task-card" href="week7/t4.html">Task 4</a>
-            <a class="task-card" href="week7/t5.html">Task 5</a>
-            <a class="task-card" href="week7/t6.html">Task 6</a>
-        </div>
+    <section class="week" id="week7">
+      <h2>Week 7</h2>
+      <div class="tasks">
+        <a href="week7/t1.html">Task 1</a>
+        <a href="week7/t2.html">Task 2</a>
+        <a href="week7/t3.html">Task 3</a>
+        <a href="week7/t4.html">Task 4</a>
+        <a href="week7/t5.html">Task 5</a>
+        <a href="week7/t6.html">Task 6</a>
+      </div>
     </section>
 
-    <!-- WEEK 8 -->
-    <section class="week-section" id="week8">
-        <h2>📝 Week 8 — HTML Forms</h2>
-        <p class="description">Form elements, input types, and form validation.</p>
-        <div class="task-grid">
-            <a class="task-card" href="week8/task1.html">Task 1</a>
-            <a class="task-card" href="week8/task2.html">Task 2</a>
-            <a class="task-card" href="week8/task3.html">Task 3</a>
-            <a class="task-card" href="week8/task4.html">Task 4</a>
-            <a class="task-card" href="week8/task5.html">Task 5</a>
-            <a class="task-card" href="week8/task6.html">Task 6</a>
-            <a class="task-card" href="week8/task7.html">Task 7</a>
-            <a class="task-card" href="week8/task8.html">Task 8</a>
-            <a class="task-card" href="week8/task9.html">Task 9</a>
-            <a class="task-card" href="week8/task10.html">Task 10</a>
-            <a class="task-card" href="week8/task11.html">Task 11</a>
-        </div>
+    <section class="week" id="week8">
+      <h2>Week 8</h2>
+      <div class="tasks">
+        <a href="week8/task1.html">Task 1</a>
+        <a href="week8/task2.html">Task 2</a>
+        <a href="week8/task3.html">Task 3</a>
+        <a href="week8/task4.html">Task 4</a>
+        <a href="week8/task5.html">Task 5</a>
+        <a href="week8/task6.html">Task 6</a>
+        <a href="week8/task7.html">Task 7</a>
+        <a href="week8/task8.html">Task 8</a>
+        <a href="week8/task9.html">Task 9</a>
+        <a href="week8/task10.html">Task 10</a>
+        <a href="week8/task11.html">Task 11</a>
+      </div>
     </section>
 
-</main>
+  </main>
 
-<footer>
-    <p>Made with 💗 by Smriti</p>
-    <p>Web Programming Activities · Learning step by step ✨</p>
-</footer>
+  <footer>
+    <p>My Web Programming Portfolio © 2026</p>
+  </footer>
 
 </body>
 </html>
