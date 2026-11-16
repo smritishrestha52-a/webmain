@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework 1: Lighthouse Accessibility Audit — Week 9_1</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #eef2ff; color: #1e293b; margin: 0; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 48px; }
+  h1 { color: #1d4ed8; font-size: 28px; margin: 0 0 8px; }
+  .sub { color: #64748b; margin: 0 0 24px; }
+  .card { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); }
+  .card h2 { color: #1d4ed8; font-size: 20px; margin: 0 0 12px; }
+  .card p, .card li { line-height: 1.7; color: #334155; }
+  .todo { background: #fef9c3; border: 1px solid #facc15; }
+  .todo h2 { color: #854d0e; }
+  .todo ol { margin: 8px 0 0; padding-left: 20px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat { background: #fff; border: 1px solid #c7d2fe; border-radius: 10px;
+    padding: 16px 12px; text-align: center; }
+  .stat b { display: block; font-size: 26px; color: #1d4ed8; }
+  .stat span { font-size: 13px; color: #64748b; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; }
+  th { background: #eef2ff; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .shot { background: #f1f5f9; border: 2px dashed #cbd5e1; border-radius: 8px;
+    padding: 12px; text-align: center; color: #64748b; font-size: 14px; }
+  .shot img { width: 100%; border-radius: 6px; display: block; margin-bottom: 8px; }
+  pre { background: #f1f5f9; border-radius: 8px; padding: 14px; overflow-x: auto;
+    font-size: 13px; line-height: 1.6; }
+  code { font-family: Consolas, "Courier New", monospace; }
+  .example { color: #94a3b8; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Homework 1 · Lighthouse Accessibility Audit — Week 9_1</h1>
+  <p class="sub">Audited page: exercise_03_lighthouse_and_fix.html (Sign Up demo) in
+     week 9-part 1/ on https://github.com/smritishrestha52-a/webmain/ · Lighthouse, Accessibility, desktop</p>
+
+  <!-- TO FINISH THIS REPORT (this note is invisible on the page — only in the code):
+    1. Upload your Week 9 pages to GitHub Pages.
+    2. In Chrome, open a page → F12 → Lighthouse → Categories: Accessibility,
+       Device: Desktop → Analyze page load.
+    3. Fix every failing audit, re-publish, and run Lighthouse again.
+    4. Replace the "—" numbers below with your real before → after scores, and save your
+       before/after screenshots as lighthouse-before.png and lighthouse-after.png in this folder.
+  -->
+
+  <div class="stats">
+    <div class="stat"><b>98 → 100</b><span>Lowest page score</span></div>
+    <div class="stat"><b>1 → 0</b><span>Pages with failing audits</span></div>
+    <div class="stat"><b>1 / 1</b><span>Pages at 100 after</span></div>
+    <div class="stat"><b>1</b><span>Fixes</span></div>
+  </div>
+
+  <div class="card">
+    <h2>Step 1 &amp; 4 · Before and after</h2>
+    <p>Lighthouse (Accessibility, desktop) was run on the live Sign Up demo page.
+       It scored 98. The page was fixed, re-published, and Lighthouse was re-run
+       on the live page — score 100.</p>
+    <div class="shots">
+      <div class="shot"><img src="lighthouse-before.png" alt="Lighthouse accessibility report before fixes"><br>Before — score: 98</div>
+      <div class="shot"><img src="lighthouse-after.png" alt="Lighthouse accessibility report after fixes"><br>After — score: 100</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Every page that failed</h2>
+    <table>
+      <tr><th>Page</th><th>Issue</th><th>Before</th><th>After</th></tr>
+      <tr><td>exercise_03_lighthouse_and_fix.html</td><td>Document does not have a main landmark</td><td>98</td><td>100</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Step 2 &amp; 3 · What I changed</h2>
+    <p>The audit found one failing check. This is the fix that was applied:</p>
+    <ol>
+      <li><b>Main landmark.</b> The page had no <code>&lt;main&gt;</code> element, so Lighthouse
+          reported "Document does not have a main landmark". The page content was wrapped
+          in <code>&lt;main class="wrap"&gt; ... &lt;/main&gt;</code> — nothing visible changed,
+          and the score went from 98 to 100.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Takeaways</h2>
+    <ul>
+      <li>Contrast must be measured, not judged by eye.</li>
+      <li><code>display:none</code> hides content from screen readers too.</li>
+      <li>Lighthouse checks only part of WCAG — keyboard use, focus order and alt-text
+          quality still need manual testing.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
