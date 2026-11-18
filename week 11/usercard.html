@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 11 - User Cards</title>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #eaf4ff;
+    padding: 40px;
+    text-align: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    width: 220px;
+    box-shadow: 0 4px 12px #cbd9e8;
+}
+.avatar {
+    background: #3478b9;
+    color: white;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-size: 22px;
+}
+.role {
+    color: #64748b;
+}
+</style>
+</head>
+
+<body>
+<h1>React User Cards</h1>
+<div id="root"></div>
+
+<script type="text/babel">
+
+function UserCard({ name, role }) {
+    const initials = name.split(' ').map(w => w[0]).join('');
+
+    return (
+        <div className="card">
+            <div className="avatar">{initials}</div>
+            <h2>{name}</h2>
+            <p className="role">{role}</p>
+            <p>Joined: {new Date().getFullYear()}</p>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div className="container">
+            <UserCard name="Kim Minho" role="Frontend Developer" />
+            <UserCard name="Park Jisoo" role="Web Designer" />
+            <UserCard name="Lee Jungwoo" role="Software Engineer" />
+        </div>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+</script>
+</body>
+</html>
