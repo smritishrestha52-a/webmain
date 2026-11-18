@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Component - Week 11</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eaf5ff;
+      color: #26384a;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #2563a6;
+    }
+
+    .card {
+      background: white;
+      max-width: 400px;
+      padding: 22px;
+      margin: 20px 0;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(50, 100, 150, 0.15);
+    }
+
+    .card-title {
+      color: #2563a6;
+      border-bottom: 2px solid #d7eaff;
+      padding-bottom: 10px;
+    }
+
+    button {
+      background: #4a90d9;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Week 11 - Card Component</h1>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function Card({ title, children }) {
+      return (
+        <div className="card">
+          <h2 className="card-title">{title}</h2>
+          <div className="card-body">
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <Card title="Student Information">
+            <p><strong>Name:</strong> Smriti Shrestha</p>
+            <p><strong>Major:</strong> Computer Engineering</p>
+            <p><strong>Student ID:</strong> 202637513</p>
+            <button>Edit Profile</button>
+          </Card>
+
+          <Card title="Course Information">
+            <p><strong>Course:</strong> Web Programming</p>
+            <p><strong>Topic:</strong> React Components and Props</p>
+            <p><strong>University:</strong> Gachon University</p>
+          </Card>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+</html>
