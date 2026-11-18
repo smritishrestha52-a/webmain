@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditional Rendering - Week 11</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eaf5ff;
+      padding: 30px;
+      color: #26384a;
+    }
+
+    h1 {
+      color: #2563a6;
+    }
+
+    .profile {
+      background: white;
+      padding: 25px;
+      margin-top: 20px;
+      max-width: 400px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(50, 100, 150, 0.15);
+    }
+
+    button {
+      background: #4a90d9;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .status {
+      color: #2563a6;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Week 11 - Conditional Rendering</h1>
+  <p>Created by: Smriti Shrestha | Student ID: 202637513</p>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function StudentProfile({ isLoggedIn }) {
+      if (isLoggedIn) {
+        return (
+          <div className="profile">
+            <h2>Welcome, Smriti Shrestha!</h2>
+            <p>Major: Computer Engineering</p>
+            <p className="status">You are logged in.</p>
+          </div>
+        );
+      }
+
+      return (
+        <div className="profile">
+          <h2>Welcome, Guest!</h2>
+          <p>Please log in to see your student profile.</p>
+        </div>
+      );
+    }
+
+    function App() {
+      const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+
+      return (
+        <div>
+          <StudentProfile isLoggedIn={isLoggedIn} />
+
+          <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+            {isLoggedIn ? "Log Out" : "Log In"}
+          </button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+</html>
