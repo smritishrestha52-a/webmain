@@ -1,1 +1,139 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework 2: Lighthouse Performance Audit — Week 9_2</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f7ff;
+  color: #243247;
+  margin: 0;
+  padding: 30px 15px;
+  line-height: 1.6;
+}
+.container {
+  max-width: 850px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(30, 64, 120, 0.1);
+}
+h1, h2 { color: #245b9e; }
+h1 { font-size: 27px; }
+.score {
+  background: #e5f5eb;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  margin: 20px 0;
+}
+.score strong {
+  font-size: 48px;
+  color: #16834a;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+}
+th, td {
+  border: 1px solid #d8e3f0;
+  padding: 11px;
+  text-align: left;
+}
+th { background: #eaf3ff; }
+.note {
+  background: #fff8e6;
+  padding: 14px;
+  border-left: 4px solid #e4ad35;
+  border-radius: 6px;
+}
+footer {
+  margin-top: 30px;
+  color: #66758a;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Homework 2: Lighthouse Performance Audit</h1>
+<p><strong>Course:</strong> Web Programming</p>
+<p><strong>Week:</strong> 9 Part 2</p>
+<p><strong>Audit date:</strong> November 18, 2026</p>
+<p><strong>Website tested:</strong>
+<a href="https://smritishrestha52-a.github.io/webmain/" target="_blank">
+My Web Programming Portfolio
+</a></p>
+
+<h2>1. Audit Settings</h2>
+<ul>
+<li>Tool: Google Chrome Lighthouse</li>
+<li>Mode: Navigation</li>
+<li>Device: Desktop</li>
+<li>Category: Performance</li>
+</ul>
+
+<h2>2. Lighthouse Results</h2>
+<div class="score">
+<p>Performance Score</p>
+<strong>99/100</strong>
+<p>Excellent performance result</p>
+</div>
+
+<p>The Lighthouse overview showed these category scores:</p>
+<table>
+<tr><th>Category</th><th>Score</th></tr>
+<tr><td>Performance</td><td>99</td></tr>
+<tr><td>Accessibility</td><td>90</td></tr>
+<tr><td>Best Practices</td><td>96</td></tr>
+<tr><td>SEO</td><td>90</td></tr>
+</table>
+
+<h2>3. Performance Metrics</h2>
+<table>
+<tr><th>Metric</th><th>Result</th></tr>
+<tr><td>First Contentful Paint (FCP)</td><td>0.8 seconds</td></tr>
+<tr><td>Largest Contentful Paint (LCP)</td><td>0.8 seconds</td></tr>
+<tr><td>Total Blocking Time (TBT)</td><td>0 ms</td></tr>
+<tr><td>Cumulative Layout Shift (CLS)</td><td>0</td></tr>
+<tr><td>Speed Index</td><td>0.8 seconds</td></tr>
+</table>
+
+<h2>4. Lighthouse Opportunity</h2>
+<div class="note">
+<strong>Render-blocking requests:</strong>
+Lighthouse estimated a possible saving of approximately 340 ms.
+This is an opportunity to improve loading performance further.
+</div>
+
+<p>I also reviewed the network dependency tree and DOM size audits to identify areas that could be improved.</p>
+
+<h2>5. Possible Improvements</h2>
+<ul>
+<li>Use defer for JavaScript files that are not needed immediately.</li>
+<li>Review CSS and JavaScript files to reduce unnecessary loading.</li>
+<li>Check network dependencies and avoid unnecessary requests.</li>
+<li>Keep the HTML structure simple and organized.</li>
+<li>Run Lighthouse again after making changes to compare results.</li>
+</ul>
+
+<h2>6. Conclusion</h2>
+<p>My portfolio received a Performance score of 99/100. The loading metrics were very good, with an LCP of 0.8 seconds, TBT of 0 ms, and CLS of 0. I learned how to use Chrome Lighthouse to measure website performance and identify opportunities for further optimization.</p>
+
+<p>This report records my actual Lighthouse audit results. I have not claimed a before-and-after improvement because I have not completed a comparable second audit.</p>
+
+<footer>
+Web Programming — Week 9 Part 2<br>
+Lighthouse Performance Audit
+</footer>
+
+</div>
+</body>
+</html>
+
