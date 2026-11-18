@@ -22,6 +22,11 @@
       color: #2563a6;
     }
 
+    .author {
+      color: #52718e;
+      margin-bottom: 25px;
+    }
+
     .student {
       background: white;
       padding: 15px 20px;
@@ -40,15 +45,37 @@
 
 <body>
   <h1>Week 11 - Student List</h1>
+  <p className="author">Created by: Smriti Shrestha | Student ID: 202637513</p>
+
   <div id="root"></div>
 
   <script type="text/babel">
 
     const students = [
-      { id: 1, name: "Smriti Shrestha", major: "Computer Engineering", year: "1st Year" },
-      { id: 2, name: "Alex Kim", major: "Computer Science", year: "2nd Year" },
-      { id: 3, name: "Mina Park", major: "Software Engineering", year: "3rd Year" },
-      { id: 4, name: "David Lee", major: "Information Technology", year: "1st Year" }
+      {
+        id: 1,
+        name: "Smriti Shrestha",
+        major: "Computer Engineering",
+        year: "1st Year"
+      },
+      {
+        id: 2,
+        name: "Alex Kim",
+        major: "Computer Science",
+        year: "2nd Year"
+      },
+      {
+        id: 3,
+        name: "Mina Park",
+        major: "Software Engineering",
+        year: "3rd Year"
+      },
+      {
+        id: 4,
+        name: "David Lee",
+        major: "Information Technology",
+        year: "1st Year"
+      }
     ];
 
     function StudentList() {
@@ -66,11 +93,7 @@
     }
 
     function App() {
-      return (
-        <div>
-          <StudentList />
-        </div>
-      );
+      return <StudentList />;
     }
 
     ReactDOM.createRoot(document.getElementById("root")).render(<App />);
