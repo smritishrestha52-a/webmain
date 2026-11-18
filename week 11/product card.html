@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Card - Week 11</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eaf5ff;
+      padding: 30px;
+      color: #26384a;
+    }
+
+    h1 {
+      color: #2563a6;
+    }
+
+    .product {
+      background: white;
+      max-width: 350px;
+      padding: 22px;
+      margin: 20px 0;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(50, 100, 150, 0.15);
+    }
+
+    .product h2 {
+      color: #2563a6;
+    }
+
+    .available {
+      color: green;
+      font-weight: bold;
+    }
+
+    .unavailable {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Week 11 - Product Card</h1>
+  <p>Created by: Smriti Shrestha | Student ID: 202637513</p>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function ProductCard({ name, price, rating, inStock }) {
+      return (
+        <div className="product">
+          <h2>{name}</h2>
+          <p>Price: ₩{price.toLocaleString()}</p>
+          <p>Rating: {rating}/5 ⭐</p>
+
+          {inStock ? (
+            <p className="available">In Stock</p>
+          ) : (
+            <p className="unavailable">Out of Stock</p>
+          )}
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <ProductCard
+            name="Wireless Headphones"
+            price={45000}
+            rating={4.5}
+            inStock={true}
+          />
+
+          <ProductCard
+            name="Smart Watch"
+            price={65000}
+            rating={4.2}
+            inStock={false}
+          />
+
+          <ProductCard
+            name="Laptop Backpack"
+            price={32000}
+            rating={4.8}
+            inStock={true}
+          />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+</html>
