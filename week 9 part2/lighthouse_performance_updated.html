@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework 2: Lighthouse Performance Audit — Week 9_2</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; background: #eef6ff; color: #1e293b; margin: 0; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px 48px; }
+  h1 { color: #174a7e; font-size: 28px; margin: 0 0 8px; }
+  .sub { color: #64748b; margin: 0 0 24px; line-height: 1.6; }
+  .card { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(30, 64, 100, .07); }
+  .card h2 { color: #174a7e; font-size: 20px; margin: 0 0 12px; }
+  .card p, .card li { line-height: 1.7; color: #334155; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .stat { background: #f8fbff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 16px 12px; text-align: center; }
+  .stat b { display: block; font-size: 26px; color: #1762a3; }
+  .stat span { font-size: 13px; color: #64748b; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { border: 1px solid #dbe5ef; padding: 9px 10px; text-align: left; }
+  th { background: #eaf3ff; color: #174a7e; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .shot { background: #f8fafc; border: 1px solid #dbe5ef; border-radius: 8px; padding: 12px; color: #64748b; font-size: 13px; }
+  .shot img { width: 100%; height: auto; border-radius: 6px; display: block; margin-bottom: 8px; }
+  .note { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px 14px; border-radius: 6px; }
+  code { font-family: Consolas, "Courier New", monospace; background: #f1f5f9; padding: 2px 4px; border-radius: 4px; }
+  @media (max-width: 650px) { .stats, .shots { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Homework 2 · Lighthouse Performance Audit — Week 9_2</h1>
+  <p class="sub">
+    Audited page: <a href="https://smritishrestha52-a.github.io/webmain/">Smriti Shrestha's Web Programming Portfolio</a><br>
+    Tool: Google Chrome Lighthouse · Mode: Navigation · Device: Desktop · Category: Performance<br>
+    Audit date: November 18, 2026
+  </p>
+
+  <div class="stats">
+    <div class="stat"><b>99/100</b><span>Performance score</span></div>
+    <div class="stat"><b>0.8 s</b><span>Largest Contentful Paint</span></div>
+    <div class="stat"><b>0 ms</b><span>Total Blocking Time</span></div>
+  </div>
+
+  <div class="card">
+    <h2>Step 1 · Lighthouse audit result</h2>
+    <p>The published portfolio received a Lighthouse Performance score of <b>99 out of 100</b> in a Desktop Navigation audit. This is a strong result in Lighthouse's green performance range.</p>
+    <div class="shots">
+      <div class="shot">
+        <img src="portfolio-performance-overview.png" alt="Actual Lighthouse overview showing a Performance score of 99">
+        Figure 1. Actual Lighthouse overview for the published portfolio.
+      </div>
+      <div class="shot">
+        <img src="portfolio-performance-metrics.png" alt="Actual Lighthouse performance metrics and opportunities">
+        Figure 2. Actual Lighthouse metrics and opportunities.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Step 2 · Measured performance metrics</h2>
+    <table>
+      <tr><th>Metric</th><th>Actual result</th><th>What it indicates</th></tr>
+      <tr><td>Performance score</td><td><b>99/100</b></td><td>Excellent overall performance in this run.</td></tr>
+      <tr><td>First Contentful Paint (FCP)</td><td>0.8 s</td><td>First visible content appeared quickly.</td></tr>
+      <tr><td>Largest Contentful Paint (LCP)</td><td>0.8 s</td><td>Main visible content appeared quickly.</td></tr>
+      <tr><td>Total Blocking Time (TBT)</td><td>0 ms</td><td>No blocking time was measured in this run.</td></tr>
+      <tr><td>Cumulative Layout Shift (CLS)</td><td>0</td><td>No unexpected layout shift was measured.</td></tr>
+      <tr><td>Speed Index</td><td>0.8 s</td><td>Visible page content was rendered quickly.</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Step 3 · Opportunity identified by Lighthouse</h2>
+    <p><b>Render-blocking requests:</b> Lighthouse showed an estimated potential saving of approximately <b>340 ms</b>. This is an opportunity to review CSS and JavaScript resources that may delay the initial page render.</p>
+    <p>The audit also displayed the Network Dependency Tree and DOM-size audits as items to inspect. The screenshot does not establish that these items are failing or that fixes have already been applied, so they are recorded here as review opportunities only.</p>
+  </div>
+
+  <div class="card">
+    <h2>Step 4 · Recommended optimization actions</h2>
+    <ol>
+      <li>Review CSS and JavaScript resources that block the first render.</li>
+      <li>Defer non-critical JavaScript when it is safe to do so.</li>
+      <li>Remove unused CSS or JavaScript where appropriate.</li>
+      <li>Review the Network Dependency Tree and reduce unnecessary resource-loading chains.</li>
+      <li>Keep the HTML structure efficient and avoid unnecessary DOM elements.</li>
+      <li>Run Lighthouse again after making changes to compare the results.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Step 5 · Reflection</h2>
+    <p>The portfolio achieved a Performance score of 99/100. The measured FCP and LCP were both 0.8 seconds, TBT was 0 ms, CLS was 0, and Speed Index was 0.8 seconds. These results show that the page loaded quickly in this desktop test. Lighthouse still identified render-blocking requests with an estimated 340 ms saving, so reviewing resource loading is a useful next optimization step.</p>
+    <p class="note"><b>Audit note:</b> This report records the actual audit of my own published portfolio on November 18, 2026. It does not claim a before-and-after score because a separate baseline run and a post-fix run for this same page have not been provided.</p>
+  </div>
+</div>
+</body>
+</html>
