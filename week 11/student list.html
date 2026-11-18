@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student List - Week 11</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eaf5ff;
+      padding: 30px;
+      color: #26384a;
+    }
+
+    h1 {
+      color: #2563a6;
+    }
+
+    .student {
+      background: white;
+      padding: 15px 20px;
+      margin: 12px 0;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(50, 100, 150, 0.12);
+    }
+
+    .student h3 {
+      color: #2563a6;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Week 11 - Student List</h1>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const students = [
+      { id: 1, name: "Smriti Shrestha", major: "Computer Engineering", year: "1st Year" },
+      { id: 2, name: "Alex Kim", major: "Computer Science", year: "2nd Year" },
+      { id: 3, name: "Mina Park", major: "Software Engineering", year: "3rd Year" },
+      { id: 4, name: "David Lee", major: "Information Technology", year: "1st Year" }
+    ];
+
+    function StudentList() {
+      return (
+        <div>
+          {students.map((student) => (
+            <div className="student" key={student.id}>
+              <h3>{student.name}</h3>
+              <p>Major: {student.major}</p>
+              <p>Year: {student.year}</p>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <StudentList />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+</html>
