@@ -1,22 +1,371 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 6 | Fetch API</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Week 6 | Web Programming Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    padding: 35px 18px;
+    color: #34445f;
+    background: linear-gradient(135deg, #eaf4ff, #f3efff, #fff0f6);
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    padding: 35px 15px 30px;
+}
+
+.eyebrow {
+    display: inline-block;
+    padding: 8px 17px;
+    background: #e3edff;
+    color: #6484c3;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+h1 {
+    margin-top: 17px;
+    font-size: clamp(36px, 7vw, 55px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #405e96;
+}
+
+h1 span {
+    color: #a58bdc;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #8290a7;
+    font-size: 15px;
+}
+
+.student {
+    margin-top: 19px;
+    color: #7585a2;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.student strong {
+    color: #8d78c4;
+}
+
+.intro {
+    padding: 22px 25px;
+    margin: 15px 0 28px;
+    background: rgba(255,255,255,.8);
+    border: 1px solid #e4eafa;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(70,95,145,.05);
+}
+
+.intro h2 {
+    font-size: 19px;
+    color: #496493;
+    margin-bottom: 6px;
+}
+
+.intro p {
+    color: #8490a5;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 17px;
+}
+
+.section-heading h2 {
+    font-size: 21px;
+    color: #40577f;
+}
+
+.total {
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #f0eaff;
+    color: #886cbd;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.task-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 23px;
+    min-height: 205px;
+    border: 1px solid #e4eafa;
+    border-radius: 19px;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 7px 22px rgba(70,95,145,.05);
+    transition: .25s;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    border-color: #c7d6f5;
+    box-shadow: 0 13px 28px rgba(70,95,145,.10);
+}
+
+.task-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: #eaf1ff;
+    color: #6382c0;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.task-card:nth-child(even) .task-number {
+    background: #f4eaff;
+    color: #997bc8;
+}
+
+.task-card:nth-child(3n) .task-number {
+    background: #fff0f6;
+    color: #bd82a0;
+}
+
+.task-card h3 {
+    margin-top: 16px;
+    color: #405578;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.task-card p {
+    margin-top: 7px;
+    color: #8995a9;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.open-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 17px;
+    color: #6987c2;
+    font-size: 13px;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.open-link:hover {
+    color: #a17fcf;
+}
+
+.note {
+    margin-top: 28px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: linear-gradient(110deg, #eaf2ff, #fff0f7);
+    border: 1px solid #e5e8f7;
+    color: #7585a0;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 20px 10px;
+    border-top: 1px solid #e1e7f2;
+    text-align: center;
+    color: #929db0;
+    font-size: 12px;
+}
+
+footer strong {
+    color: #7188bd;
+}
+
+@media(max-width: 650px) {
+    body {
+        padding: 18px 11px;
+    }
+
+    .task-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .task-card {
+        min-height: 185px;
+    }
+
+    .intro {
+        padding: 19px;
+    }
+}
+</style>
 </head>
+
 <body>
-<div class="crumbbar"><div><a href="../index.html">Web Programming</a> &nbsp; / &nbsp; Week 6</div><a class="back" href="../index.html">Back</a></div>
-<header class="hero"><h1>Week 6</h1><p>Fetch API: loading real data from the internet into the DOM.</p></header>
-<main><p class="section-label">Tasks</p><div class="task-list">
-<a class="task" href="task1.html"><span class="number">1</span><span class="task-title">Random Joke Fetcher</span><span class="open">Open</span></a>
-<a class="task" href="task2.html"><span class="number">2</span><span class="task-title">JSONPlaceholder Posts</span><span class="open">Open</span></a>
-<a class="task" href="task3.html"><span class="number">3</span><span class="task-title">Seoul Weather (Open-Meteo)</span><span class="open">Open</span></a>
-<a class="task" href="task4.html"><span class="number">4</span><span class="task-title">Random User Profiles</span><span class="open">Open</span></a>
-<a class="task" href="task5.html"><span class="number">5</span><span class="task-title">Pokédex (PokéAPI)</span><span class="open">Open</span></a>
-<a class="task" href="task6.html"><span class="number">6</span><span class="task-title">Country Table</span><span class="open">Open</span></a>
-</div></main>
-<footer>Created by Shrestha Smriti | Student ID: 202637513</footer>
-</body></html>
+
+<div class="container">
+
+<header>
+    <div class="eyebrow">✦ GACHON UNIVERSITY · WEB PROGRAMMING</div>
+
+    <h1>Week <span>06</span></h1>
+
+    <p class="subtitle">
+        Interactive JavaScript Projects & Practical Exercises
+    </p>
+
+    <p class="student">
+        Student: <strong>Shrestha Smriti</strong>
+    </p>
+</header>
+
+<section class="intro">
+    <h2>🌷 Welcome to Week 6!</h2>
+    <p>
+        Explore my Week 6 Web Programming assignments.
+        Each task is organized on a separate page.
+        Click on any project below to open and view the exercise.
+    </p>
+</section>
+
+<div class="section-heading">
+    <h2>My Weekly Tasks</h2>
+    <span class="total">7 TASKS</span>
+</div>
+
+<main class="task-grid">
+
+    <article class="task-card">
+        <div class="task-number">01</div>
+        <h3>Joke Corner</h3>
+        <p>
+            A random joke generator using JavaScript and API requests.
+        </p>
+        <a class="open-link" href="task1.html">
+            Open Task 1 <span>→</span>
+        </a>
+    </article>
+
+    <article class="task-card">
+        <div class="task-number">02</div>
+        <h3>CryptoPulse</h3>
+        <p>
+            Explore cryptocurrency prices and market changes.
+        </p>
+        <a class="open-link" href="task2.html">
+            Open Task 2 <span>→</span>
+        </a>
+    </article>
+
+    <article class="task-card">
+        <div class="task-number">03</div>
+        <h3>Country Data Explorer</h3>
+        <p>
+            Practice displaying and exploring country information.
+        </p>
+        <a class="open-link" href="task3.html">
+            Open Task 3 <span>→</span>
+        </a>
+    </article>
+
+    <article class="task-card">
+        <div class="task-number">04</div>
+        <h3>Task 4</h3>
+        <p>
+            Open my fourth Week 6 practical assignment.
+        </p>
+        <a class="open-link" href="task4.html">
+            Open Task 4 <span>→</span>
+        </a>
+    </article>
+
+    <article class="task-card">
+        <div class="task-number">05</div>
+        <h3>Task 5</h3>
+        <p>
+            Open my fifth Week 6 practical assignment.
+        </p>
+        <a class="open-link" href="task5.html">
+            Open Task 5 <span>→</span>
+        </a>
+    </article>
+
+    <article class="task-card">
+        <div class="task-number">06</div>
+        <h3>Task 6</h3>
+        <p>
+            Open my sixth Week 6 practical assignment.
+        </p>
+        <a class="open-link" href="task6.html">
+            Open Task 6 <span>→</span>
+        </a>
+    </article>
+
+    <article class="task-card">
+        <div class="task-number">07</div>
+        <h3>Cryptocurrency Market Display</h3>
+        <p>
+            My additional cryptocurrency market project with live price information.
+        </p>
+        <a class="open-link" href="task7.html">
+            Open Task 7 <span>→</span>
+        </a>
+    </article>
+
+</main>
+
+<div class="note">
+    ✨ <strong>My Learning Journey:</strong>
+    These projects help me practice HTML, CSS, JavaScript,
+    API integration, dynamic content and interactive web development.
+</div>
+
+<footer>
+    Made with 💙 by <strong>Shrestha Smriti</strong>
+    <br>
+    Gachon University · Web Programming · Week 6
+</footer>
+
+</div>
+
+</body>
+</html>
