@@ -1,520 +1,141 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joke Corner | Shrestha Smriti</title>
+const loadBtn = document.getElementById("loadBtn");
+const saveBtn = document.getElementById("saveBtn");
+const loading = document.getElementById("loading");
+const errorMsg = document.getElementById("errorMsg");
+const jokeSetup = document.getElementById("jokeSetup");
+const jokePunch = document.getElementById("jokePunch");
+const favouritesList = document.getElementById("favouritesList");
+const favCount = document.getElementById("favCount");
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+let currentJoke = null;
+
+const backupJokes = [
+    { setup: "Why did the computer go to the doctor?", punchline: "Because it caught a virus!" },
+    { setup: "Why was the math book sad?", punchline: "Because it had too many problems." },
+    { setup: "Why don't eggs tell jokes?", punchline: "They might crack each other up." },
+    { setup: "What do you call a bear with no teeth?", punchline: "A gummy bear!" },
+    { setup: "Why did the student eat his homework?", punchline: "Because the teacher said it was a piece of cake!" },
+    { setup: "Why did the smartphone need glasses?", punchline: "It lost all its contacts!" },
+    { setup: "What is a computer's favourite snack?", punchline: "Microchips!" }
+];
+
+loadBtn.addEventListener("click", loadJoke);
+saveBtn.addEventListener("click", saveFavourite);
+
+async function loadJoke() {
+    loading.style.display = "block";
+    errorMsg.style.display = "none";
+    loadBtn.disabled = true;
+    saveBtn.style.display = "none";
+
+    jokeSetup.textContent = "Finding a joke...";
+    jokePunch.textContent = "";
+    currentJoke = null;
+
+    try {
+        const response = await fetch(
+            "https://v2.jokeapi.dev/joke/Any?type=twopart&safe-mode",
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            throw new Error("Joke service unavailable");
         }
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #edf6ff, #f4efff, #fff1f7);
-            color: #30264a;
-            min-height: 100vh;
-            padding: 30px 16px;
+        const data = await response.json();
+
+        if (data.error || !data.setup || !data.delivery) {
+            throw new Error("Invalid joke response");
         }
 
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-        }
+        currentJoke = {
+            id: "api-" + Date.now(),
+            setup: data.setup,
+            punchline: data.delivery
+        };
 
-        header {
-            text-align: center;
-            margin-bottom: 28px;
-        }
+    } catch (error) {
+        console.warn("Online joke service unavailable. Using a backup joke.", error);
 
-        .logo {
-            display: inline-block;
-            background: #e7edff;
-            color: #596fc0;
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: clamp(30px, 5vw, 40px);
-            color: #536da9;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: #817694;
-            font-size: 15px;
-        }
-
-        .joke-card {
-            background: rgba(255,255,255,0.95);
-            border: 1px solid #e3e9fa;
-            border-radius: 24px;
-            padding: 32px 24px;
-            text-align: center;
-            box-shadow: 0 12px 35px rgba(91, 100, 182, 0.09);
-        }
-
-        .emoji {
-            font-size: 52px;
-            margin-bottom: 12px;
-        }
-
-        .label {
-            color: #8b76c5;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        #jokeSetup {
-            font-size: 21px;
-            font-weight: 600;
-            line-height: 1.6;
-            margin: 18px 0;
-        }
-
-        #jokePunch {
-            color: #8b69bc;
-            font-size: 19px;
-            font-weight: bold;
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        button {
-            border: none;
-            border-radius: 12px;
-            padding: 13px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-        }
-
-        button:disabled {
-            opacity: 0.6;
-            cursor: wait;
-            transform: none;
-        }
-
-        #loadBtn {
-            background: #718bd0;
-            color: white;
-        }
-
-        #loadBtn:hover {
-            background: #5c75b8;
-        }
-
-        #saveBtn {
-            display: none;
-            background: #fce8f1;
-            color: #a45e82;
-        }
-
-        #loading {
-            display: none;
-            margin-top: 22px;
-            color: #817694;
-            font-size: 14px;
-        }
-
-        .spinner {
-            width: 30px;
-            height: 30px;
-            border: 4px solid #e9eaff;
-            border-top-color: #718bd0;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 10px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        #errorMsg {
-            display: none;
-            margin-top: 18px;
-            padding: 12px;
-            border-radius: 10px;
-            background: #fff1f2;
-            color: #be123c;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        #sourceMsg {
-            margin-top: 16px;
-            color: #9290a8;
-            font-size: 12px;
-        }
-
-        .favourites {
-            margin-top: 25px;
-            padding: 24px;
-            background: white;
-            border: 1px solid #e3e9fa;
-            border-radius: 20px;
-        }
-
-        .favourites-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding-bottom: 14px;
-            border-bottom: 1px solid #eee8f8;
-        }
-
-        h2 {
-            color: #53658d;
-            font-size: 19px;
-        }
-
-        #favCount {
-            background: #e9edff;
-            color: #6478b8;
-            padding: 5px 11px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        #favouritesList {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        #favouritesList li {
-            background: #f8f8ff;
-            padding: 13px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            color: #55466d;
-            font-size: 14px;
-            line-height: 1.6;
-            overflow-wrap: anywhere;
-        }
-
-        .empty {
-            color: #9589a9 !important;
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            color: #9589a9;
-            font-size: 12px;
-            margin-top: 22px;
-            padding-bottom: 10px;
-        }
-
-        footer strong {
-            color: #7189bd;
-        }
-
-        @media (max-width: 450px) {
-            .joke-card {
-                padding: 25px 17px;
-            }
-
-            .buttons button {
-                width: 100%;
-            }
-
-            .favourites {
-                padding: 18px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <main class="container">
-
-        <header>
-            <div class="logo">✨ YOUR DAILY DOSE OF FUN</div>
-            <h1>Welcome to Joke Corner!</h1>
-            <p>Take a break and brighten your day with a random joke.</p>
-        </header>
-
-        <section class="joke-card">
-            <div class="emoji">😂</div>
-            <div class="label">Ready for a laugh?</div>
-
-            <div id="jokeSetup" aria-live="polite">
-                Click "Load Joke" to discover something funny!
-            </div>
-
-            <div id="jokePunch"></div>
-
-            <div class="buttons">
-                <button id="loadBtn">🎲 Load Joke</button>
-                <button id="saveBtn">⭐ Save Favourite</button>
-            </div>
-
-            <div id="loading" role="status">
-                <div class="spinner"></div>
-                Loading a joke...
-            </div>
-
-            <div id="errorMsg" role="alert"></div>
-            <div id="sourceMsg"></div>
-        </section>
-
-        <section class="favourites">
-            <div class="favourites-header">
-                <h2>💜 My Favourite Jokes</h2>
-                <span id="favCount">0 saved</span>
-            </div>
-
-            <ul id="favouritesList">
-                <li class="empty">No favourites saved yet.</li>
-            </ul>
-        </section>
-
-        <footer>
-            Made with 💜 by <strong>Shrestha Smriti</strong> |
-            Week 6 - Task 1
-        </footer>
-
-    </main>
-
-    <script>
-        const loadBtn = document.getElementById("loadBtn");
-        const saveBtn = document.getElementById("saveBtn");
-        const loading = document.getElementById("loading");
-        const errorMsg = document.getElementById("errorMsg");
-        const sourceMsg = document.getElementById("sourceMsg");
-        const jokeSetup = document.getElementById("jokeSetup");
-        const jokePunch = document.getElementById("jokePunch");
-        const favouritesList = document.getElementById("favouritesList");
-        const favCount = document.getElementById("favCount");
-
-        let currentJoke = null;
-
-        // Backup jokes in case the API is unavailable
-        const backupJokes = [
-            {
-                setup: "Why did the computer go to the doctor?",
-                punchline: "Because it had a virus!"
-            },
-            {
-                setup: "Why was the math book sad?",
-                punchline: "Because it had too many problems."
-            },
-            {
-                setup: "Why don't scientists trust atoms?",
-                punchline: "Because they make up everything!"
-            },
-            {
-                setup: "What do you call a sleeping dinosaur?",
-                punchline: "A dino-snore!"
-            },
-            {
-                setup: "Why did the student eat his homework?",
-                punchline: "Because the teacher said it was a piece of cake!"
-            },
-            {
-                setup: "What is a computer's favourite snack?",
-                punchline: "Microchips!"
-            },
-            {
-                setup: "Why did the bicycle fall over?",
-                punchline: "Because it was two-tired!"
-            },
-            {
-                setup: "What do you call cheese that isn't yours?",
-                punchline: "Nacho cheese!"
-            }
+        const joke = backupJokes[
+            Math.floor(Math.random() * backupJokes.length)
         ];
 
-        loadBtn.addEventListener("click", loadJoke);
-        saveBtn.addEventListener("click", saveFavourite);
+        currentJoke = {
+            id: "backup-" + Date.now(),
+            setup: joke.setup,
+            punchline: joke.punchline
+        };
+    }
 
-        // Get a random joke from the API
-        async function loadJoke() {
-            errorMsg.style.display = "none";
-            sourceMsg.textContent = "";
-            saveBtn.style.display = "none";
+    jokeSetup.textContent = currentJoke.setup;
+    jokePunch.textContent = currentJoke.punchline;
 
-            jokeSetup.textContent = "";
-            jokePunch.textContent = "";
-            currentJoke = null;
+    saveBtn.style.display = "inline-block";
+    loading.style.display = "none";
+    loadBtn.disabled = false;
+}
 
-            loading.style.display = "block";
-            loadBtn.disabled = true;
+function getFavourites() {
+    try {
+        const saved = JSON.parse(
+            localStorage.getItem("favouriteJokes") || "[]"
+        );
+        return Array.isArray(saved) ? saved : [];
+    } catch (error) {
+        return [];
+    }
+}
 
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 8000);
+function saveFavourite() {
+    if (!currentJoke) return;
 
-                let response;
+    const favourites = getFavourites();
 
-                try {
-                    response = await fetch(
-                        "https://v2.jokeapi.dev/joke/Any?type=twopart&safe-mode",
-                        {
-                            signal: controller.signal,
-                            headers: {
-                                "Accept": "application/json"
-                            }
-                        }
-                    );
-                } finally {
-                    clearTimeout(timeoutId);
-                }
+    const exists = favourites.some(
+        joke => joke.setup === currentJoke.setup &&
+                joke.punchline === currentJoke.punchline
+    );
 
-                if (!response.ok) {
-                    throw new Error("Joke API request failed.");
-                }
+    if (exists) {
+        alert("This joke is already saved!");
+        return;
+    }
 
-                const data = await response.json();
+    favourites.push(currentJoke);
 
-                if (
-                    data.error ||
-                    data.type !== "twopart" ||
-                    !data.setup ||
-                    !data.delivery
-                ) {
-                    throw new Error("The API returned invalid joke data.");
-                }
-
-                currentJoke = {
-                    id: "api-" + Date.now() + "-" +
-                        Math.random().toString(36).slice(2),
-                    setup: data.setup,
-                    punchline: data.delivery
-                };
-
-                sourceMsg.textContent = "🌐 Joke loaded from the online API.";
-
-            } catch (error) {
-                console.warn("Online joke API unavailable:", error);
-
-                const randomIndex = Math.floor(
-                    Math.random() * backupJokes.length
-                );
-
-                const backup = backupJokes[randomIndex];
-
-                currentJoke = {
-                    id: "backup-" + Date.now() + "-" + randomIndex,
-                    setup: backup.setup,
-                    punchline: backup.punchline
-                };
-
-                sourceMsg.textContent =
-                    "✨ Showing a backup joke because the online API is unavailable.";
-            } finally {
-                loading.style.display = "none";
-                loadBtn.disabled = false;
-            }
-
-            // Display the joke
-            jokeSetup.textContent = currentJoke.setup;
-            jokePunch.textContent = currentJoke.punchline;
-            saveBtn.style.display = "inline-block";
-        }
-
-        // Save the current joke
-        function saveFavourite() {
-            if (!currentJoke) return;
-
-            const favourites = getFavourites();
-
-            const alreadySaved = favourites.some(
-                joke =>
-                    joke.setup === currentJoke.setup &&
-                    joke.punchline === currentJoke.punchline
-            );
-
-            if (alreadySaved) {
-                alert("This joke is already in your favourites!");
-                return;
-            }
-
-            favourites.push(currentJoke);
-
-            try {
-                localStorage.setItem(
-                    "favouriteJokes",
-                    JSON.stringify(favourites)
-                );
-
-                displayFavourites();
-                alert("Joke saved to your favourites! 💜");
-
-            } catch (error) {
-                alert("Sorry, we couldn't save this favourite.");
-            }
-        }
-
-        // Read saved favourites
-        function getFavourites() {
-            try {
-                const saved = JSON.parse(
-                    localStorage.getItem("favouriteJokes") || "[]"
-                );
-
-                return Array.isArray(saved) ? saved : [];
-
-            } catch (error) {
-                return [];
-            }
-        }
-
-        // Display all saved favourites
-        function displayFavourites() {
-            const favourites = getFavourites();
-
-            favouritesList.replaceChildren();
-            favCount.textContent = favourites.length + " saved";
-
-            if (favourites.length === 0) {
-                const item = document.createElement("li");
-                item.className = "empty";
-                item.textContent = "No favourites saved yet.";
-                favouritesList.appendChild(item);
-                return;
-            }
-
-            favourites.forEach(joke => {
-                const item = document.createElement("li");
-
-                item.textContent =
-                    "😂 " + joke.setup + " — " + joke.punchline;
-
-                favouritesList.appendChild(item);
-            });
-        }
-
-        // Restore favourites when the page opens
+    try {
+        localStorage.setItem(
+            "favouriteJokes",
+            JSON.stringify(favourites)
+        );
         displayFavourites();
-    </script>
-</body>
-</html>
+        alert("Joke saved to your favourites!");
+    } catch (error) {
+        alert("Could not save the joke. Please check your browser storage.");
+    }
+}
+
+function displayFavourites() {
+    const favourites = getFavourites();
+
+    favouritesList.replaceChildren();
+    favCount.textContent = favourites.length + " saved";
+
+    if (favourites.length === 0) {
+        const item = document.createElement("li");
+        item.className = "empty";
+        item.textContent = "No favourites saved yet.";
+        favouritesList.appendChild(item);
+        return;
+    }
+
+    favourites.forEach(joke => {
+        const item = document.createElement("li");
+        item.textContent = "😂 " + joke.setup + " — " + joke.punchline;
+        favouritesList.appendChild(item);
+    });
+}
+
+displayFavourites();
