@@ -1,39 +1,307 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Week 6 Task 1 | Random Joke Fetcher</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Week 6 Task 1 | Random Joke Fetcher</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: linear-gradient(135deg, #eaf5ff, #fdf0f7);
+            color: #263b59;
+        }
+
+        .crumbbar {
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: rgba(255,255,255,0.85);
+            border-bottom: 1px solid #dceafa;
+        }
+
+        a {
+            color: #527da9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            color: #d47ca5;
+        }
+
+        .back {
+            background: #e4f0ff;
+            padding: 9px 18px;
+            border-radius: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 65px);
+            margin: 0 0 12px;
+            color: #31577e;
+            font-weight: 800;
+        }
+
+        .hero p {
+            color: #71849d;
+            font-size: 17px;
+        }
+
+        main {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-label {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #d17fa4;
+            text-align: center;
+        }
+
+        .panel {
+            background: rgba(255,255,255,0.93);
+            padding: 40px 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(74,111,151,0.12);
+            border: 1px solid #e1edfa;
+        }
+
+        .panel h2 {
+            color: #31577e;
+        }
+
+        .panel p {
+            color: #71849d;
+            line-height: 1.7;
+        }
+
+        button {
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #83b9ed, #e8a6c6);
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+            margin: 15px 0;
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 18px rgba(116,151,190,0.25);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 25px;
+            min-height: 110px;
+            background: #f0f7ff;
+            border: 1px solid #e0edfa;
+            border-radius: 18px;
+            line-height: 1.8;
+            color: #405b78;
+            overflow-wrap: anywhere;
+        }
+
+        .result strong {
+            display: block;
+            margin-top: 12px;
+            color: #c16f99;
+            font-size: 18px;
+        }
+
+        .result .joke-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #91a7c0;
+            font-weight: 700;
+        }
+
+        .error {
+            color: #b34d65;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 15px;
+            color: #8495aa;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .crumbbar {
+                padding: 15px 5%;
+            }
+
+            .panel {
+                padding: 28px 18px;
+            }
+
+            .hero {
+                padding-top: 45px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="crumbbar"><div><a href="../index.html">Web Programming</a> &nbsp; / &nbsp; <a href="index.html">Week 6</a> &nbsp; / &nbsp; Task 1</div><a class="back" href="index.html">Back</a></div>
-<header class="hero"><h1>Task 1</h1><p>Random Joke Fetcher: Fetch and display one random joke.</p></header>
-<main><p class="section-label">Random Joke Fetcher</p><div class="panel">
-<p>Click the button to get a new joke from a public API.</p>
-<button id="load">Get a joke</button>
-<div id="result" class="result">Your joke will appear here.</div>
-</div></main>
-<footer>Created by Shrestha Smriti| Student ID: 202637513</footer>
-<script>
-async function fetchJson(url) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Request failed (HTTP " + response.status + ")");
-  return response.json();
-}
-function showError(id, error) { document.getElementById(id).textContent = "Could not load data. Check your internet connection and try again. " + error.message; }
 
-document.getElementById("load").addEventListener("click", async () => {
-  const out = document.getElementById("result"); out.textContent = "Loading joke…";
-  try { const joke = await fetchJson("https://official-joke-api.appspot.com/random_joke");
-    out.replaceChildren();
-    const setup = document.createElement("p"); setup.textContent = joke.setup;
-    const punchline = document.createElement("strong"); punchline.textContent = joke.punchline;
-    out.append(setup, punchline);
-  } catch (e) { showError("result", e); }
-});
+    <div class="crumbbar">
+        <div>
+            <a href="../index.html">Web Programming</a>
+            &nbsp; / &nbsp;
+            <a href="index.html">Week 6</a>
+            &nbsp; / &nbsp;
+            Task 1
+        </div>
 
-</script>
-</body></html>
+        <a class="back" href="index.html">Back</a>
+    </div>
+
+    <header class="hero">
+        <h1>Task 1</h1>
+        <p>Random Joke Fetcher: Fetch and display one random joke.</p>
+    </header>
+
+    <main>
+        <p class="section-label">Random Joke Fetcher</p>
+
+        <div class="panel">
+            <h2>✨ Need a Little Laugh?</h2>
+
+            <p>
+                Click the button below to discover a random joke
+                using a public API.
+            </p>
+
+            <button id="load" type="button">
+                Get a Joke ✨
+            </button>
+
+            <div id="result" class="result" aria-live="polite">
+                Your joke will appear here. Click the button to start!
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        Created by Smriti Shrestha | Gachon University
+    </footer>
+
+    <script>
+        "use strict";
+
+        const loadButton = document.getElementById("load");
+        const result = document.getElementById("result");
+
+        async function fetchJson(url) {
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error("HTTP Error: " + response.status);
+            }
+
+            return await response.json();
+        }
+
+        function showError(message) {
+            result.classList.add("error");
+            result.textContent = message;
+        }
+
+        loadButton.addEventListener("click", async function () {
+
+            loadButton.disabled = true;
+            result.classList.remove("error");
+            result.textContent = "Finding a funny joke... ✨";
+
+            try {
+                const data = await fetchJson(
+                    "https://v2.jokeapi.dev/joke/Any?safe-mode"
+                );
+
+                if (data.error) {
+                    throw new Error(data.message || "API error");
+                }
+
+                result.replaceChildren();
+
+                const label = document.createElement("div");
+                label.className = "joke-label";
+                label.textContent = "Your Random Joke";
+
+                result.appendChild(label);
+
+                if (data.type === "single") {
+
+                    const joke = document.createElement("p");
+                    joke.textContent = data.joke;
+
+                    result.appendChild(joke);
+
+                } else if (data.type === "twopart") {
+
+                    const setup = document.createElement("p");
+                    setup.textContent = data.setup;
+
+                    const punchline = document.createElement("strong");
+                    punchline.textContent = data.delivery;
+
+                    result.append(setup, punchline);
+
+                } else {
+                    throw new Error("Unexpected joke format.");
+                }
+
+            } catch (error) {
+
+                console.error("Joke API Error:", error);
+
+                showError(
+                    "Sorry! The joke could not be loaded. Please check your internet connection and try again."
+                );
+
+            } finally {
+                loadButton.disabled = false;
+            }
+
+        });
+    </script>
+
+</body>
+</html>
