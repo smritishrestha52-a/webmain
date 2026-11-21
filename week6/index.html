@@ -4,23 +4,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Week 6 | Web Programming Portfolio</title>
-
+<title>Week 6 | Shrestha Smriti</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
     min-height: 100vh;
-    padding: 35px 18px;
-    color: #34445f;
+    padding: 30px 16px;
+    font-family: 'Nunito', sans-serif;
+    color: #52617b;
     background: linear-gradient(135deg, #eaf4ff, #f3efff, #fff0f6);
 }
 
@@ -30,8 +28,8 @@ body {
 }
 
 header {
-    text-align: center;
     padding: 35px 15px 30px;
+    text-align: center;
 }
 
 .eyebrow {
@@ -47,10 +45,10 @@ header {
 
 h1 {
     margin-top: 17px;
+    color: #405e96;
     font-size: clamp(36px, 7vw, 55px);
     font-weight: 900;
     letter-spacing: -2px;
-    color: #405e96;
 }
 
 h1 span {
@@ -64,7 +62,7 @@ h1 span {
 }
 
 .student {
-    margin-top: 19px;
+    margin-top: 18px;
     color: #7585a2;
     font-size: 13px;
     font-weight: 800;
@@ -74,19 +72,36 @@ h1 span {
     color: #8d78c4;
 }
 
+.back {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 9px 15px;
+    background: white;
+    border: 1px solid #e2eafa;
+    border-radius: 12px;
+    color: #6685b7;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.back:hover {
+    background: #fff0f6;
+}
+
 .intro {
-    padding: 22px 25px;
     margin: 15px 0 28px;
-    background: rgba(255,255,255,.8);
+    padding: 22px 25px;
+    background: rgba(255,255,255,.85);
     border: 1px solid #e4eafa;
     border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(70,95,145,.05);
+    box-shadow: 0 8px 25px #465f910d;
 }
 
 .intro h2 {
-    font-size: 19px;
     color: #496493;
-    margin-bottom: 6px;
+    font-size: 19px;
+    margin-bottom: 7px;
 }
 
 .intro p {
@@ -104,8 +119,8 @@ h1 span {
 }
 
 .section-heading h2 {
-    font-size: 21px;
     color: #40577f;
+    font-size: 21px;
 }
 
 .total {
@@ -124,28 +139,26 @@ h1 span {
 }
 
 .task-card {
-    position: relative;
     display: flex;
     flex-direction: column;
-    padding: 23px;
     min-height: 205px;
+    padding: 23px;
+    background: rgba(255,255,255,.94);
     border: 1px solid #e4eafa;
     border-radius: 19px;
-    background: rgba(255,255,255,.92);
-    box-shadow: 0 7px 22px rgba(70,95,145,.05);
+    box-shadow: 0 7px 22px #465f910d;
     transition: .25s;
 }
 
 .task-card:hover {
     transform: translateY(-5px);
     border-color: #c7d6f5;
-    box-shadow: 0 13px 28px rgba(70,95,145,.10);
+    box-shadow: 0 13px 28px #465f911a;
 }
 
 .task-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     width: 43px;
     height: 43px;
     border-radius: 13px;
@@ -214,6 +227,7 @@ footer {
     text-align: center;
     color: #929db0;
     font-size: 12px;
+    line-height: 1.8;
 }
 
 footer strong {
@@ -256,14 +270,20 @@ footer strong {
     <p class="student">
         Student: <strong>Shrestha Smriti</strong>
     </p>
+
+    <a class="back" href="../index.html">
+        ← Back to Main Portfolio
+    </a>
 </header>
 
 <section class="intro">
     <h2>🌷 Welcome to Week 6!</h2>
+
     <p>
-        Explore my Week 6 Web Programming assignments.
-        Each task is organized on a separate page.
-        Click on any project below to open and view the exercise.
+        Explore my seven Week 6 Web Programming assignments.
+        These projects cover JavaScript, API requests, dynamic content,
+        data exploration, and interactive web applications.
+        Select a project below to open it.
     </p>
 </section>
 
@@ -277,91 +297,62 @@ footer strong {
     <article class="task-card">
         <div class="task-number">01</div>
         <h3>Joke Corner</h3>
-        <p>
-            A random joke generator using JavaScript and API requests.
-        </p>
-        <a class="open-link" href="task1.html">
-            Open Task 1 <span>→</span>
-        </a>
+        <p>A fun random joke generator with a save-to-favourites feature.</p>
+        <a class="open-link" href="task1.html">Open Task 1 →</a>
     </article>
 
     <article class="task-card">
         <div class="task-number">02</div>
-        <h3>CryptoPulse</h3>
-        <p>
-            Explore cryptocurrency prices and market changes.
-        </p>
-        <a class="open-link" href="task2.html">
-            Open Task 2 <span>→</span>
-        </a>
+        <h3>JSONPlaceholder Posts</h3>
+        <p>Fetching and displaying sample posts using JavaScript and an API.</p>
+        <a class="open-link" href="task2.html">Open Task 2 →</a>
     </article>
 
     <article class="task-card">
         <div class="task-number">03</div>
-        <h3>Country Data Explorer</h3>
-        <p>
-            Practice displaying and exploring country information.
-        </p>
-        <a class="open-link" href="task3.html">
-            Open Task 3 <span>→</span>
-        </a>
+        <h3>Seoul Weather</h3>
+        <p>Displaying Seoul weather information using the Open-Meteo API.</p>
+        <a class="open-link" href="task3.html">Open Task 3 →</a>
     </article>
 
     <article class="task-card">
         <div class="task-number">04</div>
-        <h3>Task 4</h3>
-        <p>
-            Open my fourth Week 6 practical assignment.
-        </p>
-        <a class="open-link" href="task4.html">
-            Open Task 4 <span>→</span>
-        </a>
+        <h3>Random User Profiles</h3>
+        <p>Generating random user profiles with personal information and portraits.</p>
+        <a class="open-link" href="task4.html">Open Task 4 →</a>
     </article>
 
     <article class="task-card">
         <div class="task-number">05</div>
-        <h3>Task 5</h3>
-        <p>
-            Open my fifth Week 6 practical assignment.
-        </p>
-        <a class="open-link" href="task5.html">
-            Open Task 5 <span>→</span>
-        </a>
+        <h3>Pokédex</h3>
+        <p>Searching Pokémon and displaying information from the PokéAPI.</p>
+        <a class="open-link" href="task5.html">Open Task 5 →</a>
     </article>
 
     <article class="task-card">
         <div class="task-number">06</div>
-        <h3>Task 6</h3>
-        <p>
-            Open my sixth Week 6 practical assignment.
-        </p>
-        <a class="open-link" href="task6.html">
-            Open Task 6 <span>→</span>
-        </a>
+        <h3>GlobePulse</h3>
+        <p>Exploring country information, population statistics, and country data.</p>
+        <a class="open-link" href="task6.html">Open Task 6 →</a>
     </article>
 
     <article class="task-card">
         <div class="task-number">07</div>
-        <h3>Cryptocurrency Market Display</h3>
-        <p>
-            My additional cryptocurrency market project with live price information.
-        </p>
-        <a class="open-link" href="task7.html">
-            Open Task 7 <span>→</span>
-        </a>
+        <h3>CryptoPulse</h3>
+        <p>Exploring cryptocurrency prices and market changes in an interactive display.</p>
+        <a class="open-link" href="task7.html">Open Task 7 →</a>
     </article>
 
 </main>
 
 <div class="note">
     ✨ <strong>My Learning Journey:</strong>
-    These projects help me practice HTML, CSS, JavaScript,
-    API integration, dynamic content and interactive web development.
+    These assignments help me practice HTML, CSS, JavaScript,
+    API integration, dynamic content, and interactive web development.
 </div>
 
 <footer>
-    Made with 💙 by <strong>Shrestha Smriti</strong>
-    <br>
+    Made with 💙 by <strong>Shrestha Smriti</strong><br>
     Gachon University · Web Programming · Week 6
 </footer>
 
