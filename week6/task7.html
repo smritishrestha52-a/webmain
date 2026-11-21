@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CryptoPulse | Shrestha Smriti</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --blue: #6688d1;
+    --blue-dark: #405f9d;
+    --lavender: #a58bdc;
+    --pink: #e9b5d0;
+    --background: #f1f6ff;
+    --text: #34435e;
+    --muted: #8995aa;
+    --border: #e3eaf7;
+    --green: #21865a;
+    --red: #d64d69;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 35px 15px;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    background: linear-gradient(135deg, #eaf4ff, #f5efff, #fff0f6);
+}
+
+.container {
+    width: 100%;
+    max-width: 760px;
+    margin: auto;
+    padding: 30px;
+    background: rgba(255,255,255,.94);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(67,94,145,.10);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.logo {
+    display: grid;
+    place-items: center;
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 17px;
+    color: white;
+    font-size: 27px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--blue), var(--lavender));
+}
+
+.tagline {
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(25px, 5vw, 34px);
+    font-weight: 900;
+    color: var(--blue-dark);
+}
+
+h1 span {
+    color: var(--lavender);
+}
+
+.subtitle {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.refresh-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 17px;
+    background: linear-gradient(135deg, var(--blue), var(--lavender));
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.refresh-btn:hover {
+    transform: translateY(-2px);
+}
+
+.refresh-btn:disabled {
+    opacity: .6;
+    cursor: wait;
+    transform: none;
+}
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 17px;
+    margin-bottom: 25px;
+    border: 1px solid #e6def8;
+    border-radius: 15px;
+    background: linear-gradient(110deg, #edf3ff, #fff0f7);
+}
+
+.banner strong {
+    font-size: 14px;
+}
+
+.banner p {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.api-label {
+    padding: 7px 10px;
+    background: white;
+    border-radius: 20px;
+    color: var(--blue-dark);
+    font-size: 10px;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.heading h2 {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.count {
+    padding: 6px 11px;
+    border-radius: 20px;
+    background: #edf2ff;
+    color: var(--blue-dark);
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.crypto-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.crypto-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: white;
+    transition: .2s;
+}
+
+.crypto-item:hover {
+    transform: translateY(-2px);
+    border-color: #c6d5f5;
+    box-shadow: 0 7px 18px rgba(74,100,150,.08);
+}
+
+.coin-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.coin-icon {
+    display: grid;
+    place-items: center;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: #edf3ff;
+    color: var(--blue-dark);
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.coin-name {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.coin-symbol {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.price-info {
+    text-align: right;
+}
+
+.coin-price {
+    color: var(--blue-dark);
+    font-size: 17px;
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+.change {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 9px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.up {
+    color: var(--green);
+    background: #e8f8ef;
+}
+
+.down {
+    color: var(--red);
+    background: #fff0f2;
+}
+
+.status {
+    padding: 30px 15px;
+    border: 1px dashed #cbd7ef;
+    border-radius: 15px;
+    background: #f9fbff;
+    text-align: center;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.status-icon {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 30px;
+}
+
+.retry-btn {
+    margin-top: 13px;
+    padding: 10px 17px;
+    border: none;
+    border-radius: 10px;
+    background: var(--blue);
+    color: white;
+    font-family: inherit;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.updated {
+    margin-top: 17px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+footer {
+    margin-top: 22px;
+    padding-top: 17px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    text-align: center;
+    font-size: 12px;
+}
+
+footer strong {
+    color: var(--blue-dark);
+}
+
+@media(max-width: 520px) {
+    body {
+        padding: 15px 9px;
+    }
+
+    .container {
+        padding: 20px 13px;
+    }
+
+    header {
+        align-items: flex-start;
+    }
+
+    .logo {
+        width: 43px;
+        height: 43px;
+        font-size: 22px;
+    }
+
+    .refresh-btn {
+        padding: 10px;
+        font-size: 11px;
+    }
+
+    .crypto-item {
+        padding: 13px 10px;
+    }
+
+    .coin-info {
+        gap: 8px;
+    }
+
+    .coin-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+    }
+
+    .coin-name {
+        font-size: 13px;
+    }
+
+    .coin-price {
+        font-size: 14px;
+    }
+
+    .api-label {
+        font-size: 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+    <header>
+        <div class="brand">
+            <div class="logo">₿</div>
+            <div>
+                <div class="tagline">Real-Time Market Ticker</div>
+                <h1>Crypto<span>Pulse</span></h1>
+                <p class="subtitle">Live cryptocurrency prices in USD.</p>
+            </div>
+        </div>
+
+        <button class="refresh-btn" id="refreshBtn" type="button">
+            ↻ Refresh
+        </button>
+    </header>
+
+    <section class="banner">
+        <div>
+            <strong>💜 Your Crypto Snapshot</strong>
+            <p>Prices and 24-hour market changes</p>
+        </div>
+        <span class="api-label">LIVE MARKET DATA</span>
+    </section>
+
+    <div class="heading">
+        <h2>Top 5 Cryptocurrencies</h2>
+        <span class="count" id="coinCount">5 COINS</span>
+    </div>
+
+    <section
+        class="crypto-list"
+        id="cryptoContainer"
+        aria-live="polite"
+        aria-label="Cryptocurrency prices"
+    >
+        <div class="status">
+            <span class="status-icon">💜</span>
+            Loading cryptocurrency prices...
+        </div>
+    </section>
+
+    <p class="updated" id="lastUpdated">
+        Waiting for market data...
+    </p>
+
+    <footer>
+        Created by <strong>Shrestha Smriti</strong> |
+        Week 6 - Friday Task 2
+    </footer>
+
+</main>
+
+<script>
+const coins = [
+    { id: "bitcoin", symbol: "BTC", name: "Bitcoin", icon: "₿" },
+    { id: "ethereum", symbol: "ETH", name: "Ethereum", icon: "◆" },
+    { id: "solana", symbol: "SOL", name: "Solana", icon: "◎" },
+    { id: "ripple", symbol: "XRP", name: "XRP", icon: "✕" },
+    { id: "cardano", symbol: "ADA", name: "Cardano", icon: "🔵" }
+];
+
+const container = document.getElementById("cryptoContainer");
+const refreshBtn = document.getElementById("refreshBtn");
+const lastUpdated = document.getElementById("lastUpdated");
+const coinCount = document.getElementById("coinCount");
+
+function formatPrice(price) {
+    return Number(price).toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: price < 1 ? 6 : 2
+    });
+}
+
+function showLoading() {
+    container.innerHTML = `
+        <div class="status">
+            <span class="status-icon">💜</span>
+            Loading live cryptocurrency prices...
+        </div>
+    `;
+}
+
+function showError(message) {
+    container.innerHTML = "";
+
+    const box = document.createElement("div");
+    box.className = "status";
+
+    const icon = document.createElement("span");
+    icon.className = "status-icon";
+    icon.textContent = "⚠️";
+
+    const text = document.createElement("p");
+    text.textContent = message;
+
+    const retry = document.createElement("button");
+    retry.className = "retry-btn";
+    retry.textContent = "Try Again";
+    retry.type = "button";
+    retry.addEventListener("click", fetchPrices);
+
+    box.append(icon, text, retry);
+    container.appendChild(box);
+}
+
+async function fetchFromBinance() {
+    const symbols = coins.map(coin => `"${coin.symbol}USDT"`).join(",");
+    const url = "https://api.binance.com/api/v3/ticker/24hr?symbols=" +
+        encodeURIComponent("[" + symbols + "]");
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error("Binance request failed: " + response.status);
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data) || data.length === 0) {
+        throw new Error("No Binance price data received.");
+    }
+
+    return coins.map(coin => {
+        const result = data.find(item =>
+            item.symbol === coin.symbol + "USDT"
+        );
+
+        if (!result) return null;
+
+        return {
+            ...coin,
+            price: Number(result.lastPrice),
+            change: Number(result.priceChangePercent)
+        };
+    }).filter(coin =>
+        coin && Number.isFinite(coin.price)
+    );
+}
+
+async function fetchFromCoinCap() {
+    const ids = coins.map(coin => coin.id).join(",");
+    const url = "https://api.coincap.io/v2/assets?ids=" +
+        encodeURIComponent(ids);
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error("CoinCap request failed: " + response.status);
+    }
+
+    const result = await response.json();
+
+    if (!result.data || result.data.length === 0) {
+        throw new Error("No CoinCap price data received.");
+    }
+
+    return coins.map(coin => {
+        const item = result.data.find(data =>
+            data.id === coin.id
+        );
+
+        if (!item) return null;
+
+        return {
+            ...coin,
+            price: Number(item.priceUsd),
+            change: Number(item.changePercent24Hr)
+        };
+    }).filter(coin =>
+        coin && Number.isFinite(coin.price)
+    );
+}
+
+function displayCoins(data) {
+    container.innerHTML = "";
+
+    data.forEach(coin => {
+        const isUp = coin.change >= 0;
+
+        const item = document.createElement("article");
+        item.className = "crypto-item";
+
+        const info = document.createElement("div");
+        info.className = "coin-info";
+
+        const icon = document.createElement("div");
+        icon.className = "coin-icon";
+        icon.textContent = coin.icon;
+
+        const details = document.createElement("div");
+
+        const name = document.createElement("div");
+        name.className = "coin-name";
+        name.textContent = coin.name;
+
+        const symbol = document.createElement("div");
+        symbol.className = "coin-symbol";
+        symbol.textContent = coin.symbol + " · USD";
+
+        details.append(name, symbol);
+        info.append(icon, details);
+
+        const priceInfo = document.createElement("div");
+        priceInfo.className = "price-info";
+
+        const price = document.createElement("div");
+        price.className = "coin-price";
+        price.textContent = formatPrice(coin.price);
+
+        const change = document.createElement("span");
+        change.className = "change " + (isUp ? "up" : "down");
+
+        change.textContent =
+            (isUp ? "▲ " : "▼ ") +
+            Math.abs(coin.change).toFixed(2) + "%";
+
+        priceInfo.append(price, change);
+        item.append(info, priceInfo);
+        container.appendChild(item);
+    });
+
+    coinCount.textContent = data.length + " COINS";
+
+    lastUpdated.textContent =
+        "✓ Last updated: " + new Date().toLocaleTimeString();
+}
+
+async function fetchPrices() {
+    refreshBtn.disabled = true;
+    refreshBtn.textContent = "↻ Updating...";
+
+    showLoading();
+
+    try {
+        let data;
+
+        try {
+            data = await fetchFromBinance();
+        } catch (binanceError) {
+            console.warn("Binance unavailable. Trying CoinCap...", binanceError);
+            data = await fetchFromCoinCap();
+        }
+
+        if (!data || data.length === 0) {
+            throw new Error("No cryptocurrency prices are currently available.");
+        }
+
+        displayCoins(data);
+
+    } catch (error) {
+        console.error("Price loading error:", error);
+
+        showError(
+            "We couldn't connect to the price services. " +
+            "Please check your internet connection and try again."
+        );
+
+        lastUpdated.textContent = "Market data could not be refreshed.";
+
+    } finally {
+        refreshBtn.disabled = false;
+        refreshBtn.textContent = "↻ Refresh";
+    }
+}
+
+refreshBtn.addEventListener("click", fetchPrices);
+
+// Load prices when the page opens.
+fetchPrices();
+</script>
+
+</body>
+</html>
