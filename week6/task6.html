@@ -2,763 +2,529 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlobePulse | Country Intelligence</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlobePulse | Shrestha Smriti</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #f8f5ff;
-      --surface: #ffffff;
-      --surface-soft: #f2edff;
-      --purple: #7950c8;
-      --purple-dark: #56339b;
-      --lavender: #a78bfa;
-      --pink: #e9b8ed;
-      --text: #302449;
-      --muted: #81768f;
-      --border: #e8dff7;
-      --shadow: 0 18px 45px rgba(91, 58, 145, 0.10);
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #edf6ff, #f5f0ff, #fff1f7);
+    color: #263650;
+    min-height: 100vh;
+    padding: 35px 18px;
+}
 
+.container {
+    max-width: 1050px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.eyebrow {
+    display: inline-block;
+    background: #e4edff;
+    color: #5879c5;
+    padding: 7px 16px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+}
+
+h1 {
+    font-size: clamp(38px, 7vw, 58px);
+    font-weight: 900;
+    color: #344e83;
+    letter-spacing: -2px;
+}
+
+h1 span {
+    color: #a58bdc;
+}
+
+.subtitle {
+    color: #78869d;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.explorer {
+    background: rgba(255,255,255,0.8);
+    border: 1px solid #e5eafa;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 12px 40px rgba(76, 99, 145, 0.08);
+}
+
+.section-label {
+    font-size: 12px;
+    color: #8995ad;
+    font-weight: 900;
+    letter-spacing: 1.8px;
+    margin-bottom: 13px;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category-btn {
+    border: 1px solid #e0e7f5;
+    background: #f7f9ff;
+    color: #61718d;
+    padding: 11px 17px;
+    border-radius: 13px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category-btn:hover {
+    transform: translateY(-2px);
+    background: #edf1ff;
+}
+
+.category-btn.active {
+    background: #dce8ff;
+    color: #405f9c;
+    border-color: #b9ccf4;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#searchInput {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 16px;
+    border: 1px solid #dfe6f3;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    background: #fbfcff;
+}
+
+#searchInput:focus {
+    border-color: #9bb4ee;
+    box-shadow: 0 0 0 3px #eaf0ff;
+}
+
+.clear-btn {
+    border: none;
+    background: #fceaf1;
+    color: #b46f91;
+    border-radius: 12px;
+    padding: 12px 19px;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background: #f8dce8;
+}
+
+.results-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.results-heading h2 {
+    font-size: 21px;
+    color: #3e5279;
+}
+
+.count {
+    color: #8b96aa;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.country-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.country-card {
+    background: #fff;
+    border: 1px solid #e8edf7;
+    border-radius: 18px;
+    padding: 20px;
+    transition: 0.2s;
+    box-shadow: 0 5px 16px rgba(66, 85, 125, 0.04);
+}
+
+.country-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(66, 85, 125, 0.10);
+    border-color: #cbd9f6;
+}
+
+.country-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 7px;
+}
+
+.flag {
+    font-size: 30px;
+}
+
+.country-card h3 {
+    font-size: 19px;
+    color: #34496f;
+    font-weight: 900;
+}
+
+.location {
+    color: #8994a8;
+    font-size: 13px;
+    margin-left: 43px;
+    margin-bottom: 18px;
+}
+
+.population {
+    font-size: 23px;
+    font-weight: 900;
+    color: #718fd0;
+    margin-bottom: 12px;
+}
+
+.population small {
+    font-size: 13px;
+    color: #9aa5b8;
+    font-weight: 800;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.stat {
+    background: #f0f4ff;
+    color: #687da9;
+    padding: 7px 10px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.stat:nth-child(2) {
+    background: #fff0f5;
+    color: #b77d98;
+}
+
+.stat:nth-child(3) {
+    background: #f0edff;
+    color: #8b7bb7;
+}
+
+.empty {
+    text-align: center;
+    padding: 40px 10px;
+    color: #8994a8;
+    grid-column: 1 / -1;
+}
+
+footer {
+    text-align: center;
+    color: #929db0;
+    font-size: 13px;
+    margin-top: 28px;
+    padding-bottom: 10px;
+}
+
+footer strong {
+    color: #7189bd;
+}
+
+@media (max-width: 650px) {
     body {
-      min-height: 100vh;
-      padding: 40px 18px;
-      background:
-        radial-gradient(circle at top left, #eee5ff 0, transparent 36%),
-        radial-gradient(circle at bottom right, #fbeafa 0, transparent 32%),
-        var(--bg);
-      color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+        padding: 22px 12px;
     }
 
-    .container {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 34px;
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      box-shadow: var(--shadow);
+    .explorer {
+        padding: 17px;
     }
 
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 26px;
+    .country-grid {
+        grid-template-columns: 1fr;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .category-btn {
+        flex: 1 1 45%;
+        padding: 10px 8px;
     }
 
-    .brand-icon {
-      display: grid;
-      place-items: center;
-      width: 54px;
-      height: 54px;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, var(--purple), var(--lavender));
-      border-radius: 17px;
-      color: white;
-      font-size: 27px;
-      box-shadow: 0 8px 20px #7950c833;
+    .controls {
+        flex-wrap: wrap;
     }
 
-    .tagline {
-      margin-bottom: 5px;
-      color: var(--purple);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
+    #searchInput {
+        flex-basis: 100%;
     }
-
-    h1 {
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      line-height: 1.1;
-    }
-
-    .subtitle {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .live-badge {
-      padding: 9px 12px;
-      background: #f0eaff;
-      border: 1px solid #e1d4ff;
-      border-radius: 999px;
-      color: var(--purple-dark);
-      font-size: 0.72rem;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .section-label {
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .tabs-nav {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      padding: 7px;
-      margin-bottom: 22px;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-    }
-
-    .tab-btn {
-      padding: 12px 8px;
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 11px;
-      color: var(--muted);
-      font: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .tab-btn:hover {
-      background: white;
-      color: var(--purple);
-    }
-
-    .tab-btn.active {
-      background: white;
-      border-color: #dfd0ff;
-      color: var(--purple-dark);
-      box-shadow: 0 3px 10px #7950c812;
-    }
-
-    .search-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .search-wrap {
-      position: relative;
-      flex: 1;
-    }
-
-    .search-icon {
-      position: absolute;
-      top: 50%;
-      left: 15px;
-      transform: translateY(-50%);
-      font-size: 1rem;
-      pointer-events: none;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 14px 15px 14px 43px;
-      background: #fcfaff;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      color: var(--text);
-      font: inherit;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .search-input:focus {
-      border-color: var(--lavender);
-      box-shadow: 0 0 0 4px #a78bfa20;
-    }
-
-    .clear-btn {
-      padding: 0 16px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      color: var(--purple-dark);
-      font: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .clear-btn:hover {
-      background: var(--surface-soft);
-    }
-
-    .list-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin: 18px 0 12px;
-    }
-
-    .list-heading h2 {
-      font-size: 1rem;
-      font-weight: 800;
-    }
-
-    .result-count {
-      padding: 6px 10px;
-      background: #f0eaff;
-      border-radius: 999px;
-      color: var(--purple-dark);
-      font-size: 0.75rem;
-      font-weight: 800;
-    }
-
-    .country-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-height: 500px;
-      overflow-y: auto;
-      padding: 2px 5px 2px 2px;
-    }
-
-    .country-list::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .country-list::-webkit-scrollbar-thumb {
-      background: #d7c5f5;
-      border-radius: 8px;
-    }
-
-    .country-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      padding: 18px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .country-card:hover {
-      transform: translateY(-2px);
-      border-color: #c8b1f3;
-      box-shadow: 0 8px 20px #7950c810;
-    }
-
-    .country-header {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      min-width: 0;
-    }
-
-    .country-flag {
-      display: grid;
-      place-items: center;
-      width: 52px;
-      height: 52px;
-      flex-shrink: 0;
-      background: #f5f0ff;
-      border-radius: 15px;
-      font-size: 1.9rem;
-    }
-
-    .country-name {
-      font-size: 0.98rem;
-      font-weight: 800;
-      overflow-wrap: anywhere;
-    }
-
-    .country-meta {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 0.75rem;
-      line-height: 1.5;
-    }
-
-    .domain-stats {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 9px;
-      text-align: right;
-    }
-
-    .primary-metric {
-      color: var(--purple-dark);
-      font-size: 1.05rem;
-      font-weight: 800;
-      overflow-wrap: anywhere;
-    }
-
-    .badges-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 6px;
-    }
-
-    .metric-badge {
-      padding: 6px 8px;
-      border-radius: 7px;
-      font-size: 0.68rem;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .badge-lavender {
-      background: #f0eaff;
-      color: #6844b2;
-    }
-
-    .badge-pink {
-      background: #fbeafa;
-      color: #a34e9e;
-    }
-
-    .badge-blue {
-      background: #e9f3ff;
-      color: #3567a8;
-    }
-
-    .badge-green {
-      background: #e6f7ed;
-      color: #26784b;
-    }
-
-    .status-box {
-      padding: 40px 15px;
-      background: #fcfaff;
-      border: 1px dashed #d9c8f5;
-      border-radius: 16px;
-      color: var(--muted);
-      text-align: center;
-      line-height: 1.8;
-    }
-
-    .status-icon {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 2rem;
-    }
-
-    .footer {
-      margin-top: 24px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.75rem;
-      text-align: center;
-    }
-
-    .footer strong {
-      color: var(--purple);
-    }
-
-    @media (max-width: 650px) {
-      body {
-        padding: 18px 10px;
-      }
-
-      .container {
-        padding: 22px 15px;
-        border-radius: 20px;
-      }
-
-      .top-bar {
-        align-items: flex-start;
-      }
-
-      .brand-icon {
-        width: 46px;
-        height: 46px;
-        font-size: 23px;
-      }
-
-      .live-badge {
-        font-size: 0.65rem;
-        padding: 7px 9px;
-      }
-
-      .tabs-nav {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .tab-btn {
-        font-size: 0.78rem;
-      }
-
-      .country-card {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .domain-stats {
-        align-items: flex-start;
-        width: 100%;
-        text-align: left;
-      }
-
-      .badges-row {
-        justify-content: flex-start;
-      }
-
-      .primary-metric {
-        font-size: 1rem;
-      }
-
-      .search-row {
-        align-items: stretch;
-      }
-
-      .clear-btn {
-        padding: 0 12px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .live-badge {
-        display: none;
-      }
-
-      .search-input {
-        font-size: 0.8rem;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
-    <header class="top-bar">
-      <div class="brand">
-        <div class="brand-icon" aria-hidden="true">🌎</div>
-        <div>
-          <div class="tagline">Global Data & Indicators</div>
-          <h1>GlobePulse</h1>
-          <p class="subtitle">Explore country statistics across four global domains.</p>
-        </div>
-      </div>
-      <div class="live-badge">✦ DATA EXPLORER</div>
-    </header>
+
+<div class="container">
+
+<header>
+    <div class="eyebrow">✦ GLOBAL DATA & INDICATORS</div>
+    <h1>Globe<span>Pulse</span></h1>
+    <p class="subtitle">Explore country statistics across four global domains.</p>
+</header>
+
+<main class="explorer">
+
+    <div class="section-label">✦ DATA EXPLORER</div>
 
     <p class="section-label">Choose a data category</p>
 
-    <nav class="tabs-nav" role="tablist" aria-label="Country data categories">
-      <button class="tab-btn active" type="button" role="tab"
-        aria-selected="true" onclick="switchCategory('demographics', this)">
-        👥 Demographics
-      </button>
-      <button class="tab-btn" type="button" role="tab"
-        aria-selected="false" onclick="switchCategory('economics', this)">
-        📈 Economics
-      </button>
-      <button class="tab-btn" type="button" role="tab"
-        aria-selected="false" onclick="switchCategory('tech', this)">
-        ⚡ Tech & Web
-      </button>
-      <button class="tab-btn" type="button" role="tab"
-        aria-selected="false" onclick="switchCategory('energy', this)">
-        🌱 Eco & Energy
-      </button>
-    </nav>
+    <div class="category-buttons">
+        <button class="category-btn active" data-category="demographics">👥 Demographics</button>
+        <button class="category-btn" data-category="economics">📈 Economics</button>
+        <button class="category-btn" data-category="technology">⚡ Tech & Web</button>
+        <button class="category-btn" data-category="environment">🌱 Eco & Energy</button>
+    </div>
 
-    <div class="search-row">
-      <div class="search-wrap">
-        <span class="search-icon" aria-hidden="true">🔎</span>
+    <div class="controls">
         <input
-          type="search"
-          id="searchInput"
-          class="search-input"
-          placeholder="Search country, capital, region, or currency..."
-          aria-label="Search countries"
-          oninput="handleSearch()"
+            type="text"
+            id="searchInput"
+            placeholder="Search for a country..."
+            aria-label="Search countries"
         >
-      </div>
-      <button class="clear-btn" type="button" onclick="clearSearch()">Clear</button>
+        <button class="clear-btn" id="clearBtn">Clear</button>
     </div>
 
-    <div class="list-heading">
-      <h2 id="categoryHeading">👥 Demographics</h2>
-      <span class="result-count" id="resultCount" aria-live="polite">8 countries</span>
+    <div class="results-heading">
+        <h2 id="categoryTitle">👥 Demographics</h2>
+        <span class="count" id="countryCount">8 countries</span>
     </div>
 
-    <section
-      id="countriesContainer"
-      class="country-list"
-      aria-label="Country results"
-      aria-live="polite"
-    ></section>
+    <div class="country-grid" id="countryGrid"></div>
 
-    <footer class="footer">
-      Created by <strong>Prashna Rai</strong> | Week 6 - Friday Task 1
-    </footer>
-  </main>
+</main>
 
-  <script>
-    // Country data across four domains
-    const globalCountries = [
-      {
-        name: "United States", code: "USA", flag: "🇺🇸",
-        capital: "Washington, D.C.", region: "Americas",
-        demographics: { population: 334914895, density: 36, medianAge: 38.5, urbanPct: "83%" },
-        economics: { gdp: "$27.36 T", perCapita: "$81,695", currency: "USD ($)" },
-        tech: { internetPenetration: "93.4%", mobilePer100: "110", rAndDShare: "3.4% GDP" },
-        energy: { co2PerCap: "14.4 t", renewableShare: "22.5%" }
-      },
-      {
-        name: "South Korea", code: "KOR", flag: "🇰🇷",
-        capital: "Seoul", region: "East Asia",
-        demographics: { population: 51741963, density: 516, medianAge: 44.8, urbanPct: "81%" },
-        economics: { gdp: "$1.71 T", perCapita: "$33,147", currency: "KRW (₩)" },
-        tech: { internetPenetration: "97.6%", mobilePer100: "142", rAndDShare: "4.9% GDP" },
-        energy: { co2PerCap: "11.6 t", renewableShare: "9.2%" }
-      },
-      {
-        name: "India", code: "IND", flag: "🇮🇳",
-        capital: "New Delhi", region: "South Asia",
-        demographics: { population: 1428627663, density: 435, medianAge: 28.7, urbanPct: "36%" },
-        economics: { gdp: "$3.73 T", perCapita: "$2,612", currency: "INR (₹)" },
-        tech: { internetPenetration: "52.4%", mobilePer100: "84", rAndDShare: "0.7% GDP" },
-        energy: { co2PerCap: "2.0 t", renewableShare: "21.4%" }
-      },
-      {
-        name: "Germany", code: "DEU", flag: "🇩🇪",
-        capital: "Berlin", region: "Europe",
-        demographics: { population: 84482267, density: 236, medianAge: 45.7, urbanPct: "77%" },
-        economics: { gdp: "$4.46 T", perCapita: "$52,824", currency: "EUR (€)" },
-        tech: { internetPenetration: "94.0%", mobilePer100: "128", rAndDShare: "3.1% GDP" },
-        energy: { co2PerCap: "7.7 t", renewableShare: "51.8%" }
-      },
-      {
-        name: "Japan", code: "JPN", flag: "🇯🇵",
-        capital: "Tokyo", region: "East Asia",
-        demographics: { population: 124516650, density: 330, medianAge: 48.6, urbanPct: "92%" },
-        economics: { gdp: "$4.21 T", perCapita: "$33,806", currency: "JPY (¥)" },
-        tech: { internetPenetration: "93.3%", mobilePer100: "155", rAndDShare: "3.3% GDP" },
-        energy: { co2PerCap: "8.1 t", renewableShare: "22.7%" }
-      },
-      {
-        name: "Nepal", code: "NPL", flag: "🇳🇵",
-        capital: "Kathmandu", region: "South Asia",
-        demographics: { population: 30547580, density: 207, medianAge: 25.3, urbanPct: "22%" },
-        economics: { gdp: "$40.8 B", perCapita: "$1,336", currency: "NPR (₨)" },
-        tech: { internetPenetration: "49.6%", mobilePer100: "125", rAndDShare: "0.3% GDP" },
-        energy: { co2PerCap: "0.5 t", renewableShare: "94.2%" }
-      },
-      {
-        name: "Brazil", code: "BRA", flag: "🇧🇷",
-        capital: "Brasília", region: "Americas",
-        demographics: { population: 216422446, density: 25, medianAge: 33.5, urbanPct: "87%" },
-        economics: { gdp: "$2.17 T", perCapita: "$10,043", currency: "BRL (R$)" },
-        tech: { internetPenetration: "84.3%", mobilePer100: "105", rAndDShare: "1.2% GDP" },
-        energy: { co2PerCap: "2.1 t", renewableShare: "83.0%" }
-      },
-      {
-        name: "United Kingdom", code: "GBR", flag: "🇬🇧",
-        capital: "London", region: "Europe",
-        demographics: { population: 67736802, density: 279, medianAge: 40.6, urbanPct: "84%" },
-        economics: { gdp: "$3.33 T", perCapita: "$49,150", currency: "GBP (£)" },
-        tech: { internetPenetration: "97.0%", mobilePer100: "119", rAndDShare: "2.9% GDP" },
-        energy: { co2PerCap: "4.7 t", renewableShare: "44.0%" }
-      }
-    ];
+<footer>
+    Created by <strong>Shrestha Smriti</strong> | Week 6 - Friday Task 1
+</footer>
 
-    let activeCategory = "demographics";
+</div>
 
-    const categoryInfo = {
-      demographics: {
-        heading: "👥 Demographics",
-        description: "Population and social indicators"
-      },
-      economics: {
-        heading: "📈 Economics",
-        description: "GDP and financial indicators"
-      },
-      tech: {
-        heading: "⚡ Tech & Web",
-        description: "Internet and technology indicators"
-      },
-      energy: {
-        heading: "🌱 Eco & Energy",
-        description: "Renewable energy and emissions"
-      }
-    };
-
-    function switchCategory(category, button) {
-      activeCategory = category;
-
-      document.querySelectorAll(".tab-btn").forEach(btn => {
-        const selected = btn === button;
-        btn.classList.toggle("active", selected);
-        btn.setAttribute("aria-selected", String(selected));
-      });
-
-      document.getElementById("categoryHeading").textContent =
-        categoryInfo[category].heading;
-
-      renderList(getFilteredData());
+<script>
+const countries = [
+    {
+        name: "United States",
+        flag: "🇺🇸",
+        capital: "Washington, D.C.",
+        region: "Americas",
+        demographics: ["👥 334,914,895", "36/km²", "Age 38.5", "Urban 83%"],
+        economics: ["GDP $27.4T", "GDP/capita $81,695", "Inflation 4.1%"],
+        technology: ["Internet 92%", "Mobile 110%", "Tech Index High"],
+        environment: ["Renewables 21%", "CO₂ 4.9 tons/person", "Forest 33%"]
+    },
+    {
+        name: "South Korea",
+        flag: "🇰🇷",
+        capital: "Seoul",
+        region: "East Asia",
+        demographics: ["👥 51,741,963", "516/km²", "Age 44.8", "Urban 81%"],
+        economics: ["GDP $1.7T", "GDP/capita $33,121", "Inflation 3.6%"],
+        technology: ["Internet 97%", "Mobile 120%", "Tech Index High"],
+        environment: ["Renewables 9%", "CO₂ 11.5 tons/person", "Forest 63%"]
+    },
+    {
+        name: "India",
+        flag: "🇮🇳",
+        capital: "New Delhi",
+        region: "South Asia",
+        demographics: ["👥 1,428,627,663", "435/km²", "Age 28.7", "Urban 36%"],
+        economics: ["GDP $3.6T", "GDP/capita $2,485", "Inflation 5.7%"],
+        technology: ["Internet 52%", "Mobile 82%", "Tech Index Growing"],
+        environment: ["Renewables 22%", "CO₂ 1.9 tons/person", "Forest 24%"]
+    },
+    {
+        name: "Germany",
+        flag: "🇩🇪",
+        capital: "Berlin",
+        region: "Europe",
+        demographics: ["👥 84,482,267", "236/km²", "Age 45.7", "Urban 77%"],
+        economics: ["GDP $4.5T", "GDP/capita $54,291", "Inflation 6.0%"],
+        technology: ["Internet 93%", "Mobile 128%", "Tech Index High"],
+        environment: ["Renewables 52%", "CO₂ 7.2 tons/person", "Forest 32%"]
+    },
+    {
+        name: "Japan",
+        flag: "🇯🇵",
+        capital: "Tokyo",
+        region: "East Asia",
+        demographics: ["👥 124,516,650", "330/km²", "Age 48.6", "Urban 92%"],
+        economics: ["GDP $4.2T", "GDP/capita $33,950", "Inflation 3.3%"],
+        technology: ["Internet 94%", "Mobile 170%", "Tech Index High"],
+        environment: ["Renewables 22%", "CO₂ 8.5 tons/person", "Forest 68%"]
+    },
+    {
+        name: "Nepal",
+        flag: "🇳🇵",
+        capital: "Kathmandu",
+        region: "South Asia",
+        demographics: ["👥 30,547,580", "207/km²", "Age 25.3", "Urban 22%"],
+        economics: ["GDP $41B", "GDP/capita $1,337", "Inflation 7.7%"],
+        technology: ["Internet 50%", "Mobile 130%", "Tech Index Developing"],
+        environment: ["Renewables 98%", "CO₂ 0.5 tons/person", "Forest 45%"]
+    },
+    {
+        name: "Brazil",
+        flag: "🇧🇷",
+        capital: "Brasília",
+        region: "Americas",
+        demographics: ["👥 216,422,446", "25/km²", "Age 33.5", "Urban 87%"],
+        economics: ["GDP $2.2T", "GDP/capita $10,412", "Inflation 4.6%"],
+        technology: ["Internet 84%", "Mobile 100%", "Tech Index Growing"],
+        environment: ["Renewables 89%", "CO₂ 2.3 tons/person", "Forest 59%"]
+    },
+    {
+        name: "United Kingdom",
+        flag: "🇬🇧",
+        capital: "London",
+        region: "Europe",
+        demographics: ["👥 67,736,802", "279/km²", "Age 40.6", "Urban 84%"],
+        economics: ["GDP $3.3T", "GDP/capita $48,900", "Inflation 7.3%"],
+        technology: ["Internet 96%", "Mobile 120%", "Tech Index High"],
+        environment: ["Renewables 42%", "CO₂ 4.6 tons/person", "Forest 13%"]
     }
+];
 
-    function getFilteredData() {
-      const query = document.getElementById("searchInput").value
-        .toLowerCase()
-        .trim();
-
-      if (!query) return globalCountries;
-
-      return globalCountries.filter(country =>
-        country.name.toLowerCase().includes(query) ||
-        country.code.toLowerCase().includes(query) ||
-        country.capital.toLowerCase().includes(query) ||
-        country.region.toLowerCase().includes(query) ||
-        country.economics.currency.toLowerCase().includes(query)
-      );
+const categoryInfo = {
+    demographics: {
+        title: "👥 Demographics",
+        heading: "Population"
+    },
+    economics: {
+        title: "📈 Economics",
+        heading: "Economic indicators"
+    },
+    technology: {
+        title: "⚡ Tech & Web",
+        heading: "Technology indicators"
+    },
+    environment: {
+        title: "🌱 Eco & Energy",
+        heading: "Environmental indicators"
     }
+};
 
-    function handleSearch() {
-      renderList(getFilteredData());
-    }
+let currentCategory = "demographics";
 
-    function clearSearch() {
-      document.getElementById("searchInput").value = "";
-      renderList(globalCountries);
-      document.getElementById("searchInput").focus();
-    }
+const grid = document.getElementById("countryGrid");
+const searchInput = document.getElementById("searchInput");
+const count = document.getElementById("countryCount");
+const title = document.getElementById("categoryTitle");
 
-    function renderList(countries) {
-      const container = document.getElementById("countriesContainer");
-      const resultCount = document.getElementById("resultCount");
+function renderCountries() {
+    const searchText = searchInput.value.trim().toLowerCase();
 
-      container.replaceChildren();
-      resultCount.textContent =
-        `${countries.length} ${countries.length === 1 ? "country" : "countries"}`;
+    const filteredCountries = countries.filter(country =>
+        country.name.toLowerCase().includes(searchText)
+    );
 
-      if (countries.length === 0) {
-        const emptyState = document.createElement("div");
-        emptyState.className = "status-box";
-        emptyState.innerHTML = `
-          <span class="status-icon">🔎</span>
-          <strong>No countries found</strong>
-          <p>Try another country, capital, region, or currency.</p>
+    title.textContent = categoryInfo[currentCategory].title;
+    count.textContent = `${filteredCountries.length} countries`;
+
+    if (filteredCountries.length === 0) {
+        grid.innerHTML = `
+            <div class="empty">
+                <h3>No countries found 🌍</h3>
+                <p>Try searching with another country name.</p>
+            </div>
         `;
-        container.appendChild(emptyState);
         return;
-      }
-
-      countries.forEach(country => {
-        const card = document.createElement("article");
-        card.className = "country-card";
-
-        let statsHTML = "";
-
-        if (activeCategory === "demographics") {
-          statsHTML = `
-            <div class="primary-metric">
-              👥 ${country.demographics.population.toLocaleString()}
-            </div>
-            <div class="badges-row">
-              <span class="metric-badge badge-lavender">
-                ${country.demographics.density}/km²
-              </span>
-              <span class="metric-badge badge-blue">
-                Age ${country.demographics.medianAge}
-              </span>
-              <span class="metric-badge badge-green">
-                Urban ${country.demographics.urbanPct}
-              </span>
-            </div>
-          `;
-        } else if (activeCategory === "economics") {
-          statsHTML = `
-            <div class="primary-metric">💰 ${country.economics.gdp}</div>
-            <div class="badges-row">
-              <span class="metric-badge badge-green">
-                ${country.economics.perCapita} / cap
-              </span>
-              <span class="metric-badge badge-lavender">
-                ${country.economics.currency}
-              </span>
-            </div>
-          `;
-        } else if (activeCategory === "tech") {
-          statsHTML = `
-            <div class="primary-metric">
-              🌐 ${country.tech.internetPenetration} Online
-            </div>
-            <div class="badges-row">
-              <span class="metric-badge badge-blue">
-                ${country.tech.mobilePer100} Mob/100
-              </span>
-              <span class="metric-badge badge-pink">
-                ${country.tech.rAndDShare} R&D
-              </span>
-            </div>
-          `;
-        } else if (activeCategory === "energy") {
-          statsHTML = `
-            <div class="primary-metric">
-              ⚡ ${country.energy.renewableShare} Renewables
-            </div>
-            <div class="badges-row">
-              <span class="metric-badge badge-pink">
-                CO₂ ${country.energy.co2PerCap}
-              </span>
-              <span class="metric-badge badge-green">
-                Renewable share
-              </span>
-            </div>
-          `;
-        }
-
-        card.innerHTML = `
-          <div class="country-header">
-            <div class="country-flag" aria-hidden="true">${country.flag}</div>
-            <div>
-              <div class="country-name">${country.name}</div>
-              <div class="country-meta">
-                ${country.capital} · ${country.region}
-              </div>
-            </div>
-          </div>
-          <div class="domain-stats">
-            ${statsHTML}
-          </div>
-        `;
-
-        container.appendChild(card);
-      });
     }
 
-    // Display all countries when the page first loads
-    renderList(globalCountries);
-  </script>
+    grid.innerHTML = filteredCountries.map(country => {
+        const stats = country[currentCategory];
+
+        return `
+            <article class="country-card">
+                <div class="country-top">
+                    <span class="flag">${country.flag}</span>
+                    <h3>${country.name}</h3>
+                </div>
+
+                <p class="location">
+                    ${country.capital} · ${country.region}
+                </p>
+
+                <div class="population">
+                    ${stats[0]}
+                    <small>${currentCategory === "demographics" ? "people" : ""}</small>
+                </div>
+
+                <div class="stats">
+                    ${stats.slice(1).map(stat =>
+                        `<span class="stat">${stat}</span>`
+                    ).join("")}
+                </div>
+            </article>
+        `;
+    }).join("");
+}
+
+document.querySelectorAll(".category-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".category-btn").forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+        button.classList.add("active");
+        currentCategory = button.dataset.category;
+        renderCountries();
+    });
+});
+
+searchInput.addEventListener("input", renderCountries);
+
+document.getElementById("clearBtn").addEventListener("click", () => {
+    searchInput.value = "";
+    renderCountries();
+});
+
+renderCountries();
+</script>
+
 </body>
 </html>
