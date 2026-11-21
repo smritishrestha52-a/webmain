@@ -5,75 +5,249 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joke Corner | Shrestha Smriti</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
- font-family:"Segoe UI",Arial,sans-serif;
- background:linear-gradient(135deg,#edf6ff,#f4efff,#fff0f6);
- color:#30264a;min-height:100vh;padding:30px 16px
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-.container{max-width:650px;margin:auto}
-header{text-align:center;margin-bottom:28px}
-.logo{display:inline-block;background:#e6efff;color:#527eb4;padding:9px 17px;border-radius:30px;font-size:12px;font-weight:bold;margin-bottom:16px}
-h1{font-size:clamp(28px,5vw,39px);color:#527eb4;margin-bottom:10px}
-header p{color:#817694;line-height:1.6}
-.joke-card,.favourites{background:white;border:1px solid #e4eafa;border-radius:23px;padding:30px 23px;text-align:center;box-shadow:0 12px 35px #7189b51a}
-.emoji{font-size:52px;margin-bottom:12px}
-.label{color:#9272c5;font-size:12px;font-weight:bold;letter-spacing:2px}
-#jokeSetup{font-size:21px;font-weight:600;line-height:1.6;margin:18px 0}
-#jokePunch{color:#8060b8;font-size:19px;font-weight:bold;line-height:1.6;margin-bottom:24px}
-.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-button{border:0;border-radius:12px;padding:13px 20px;font-size:14px;font-weight:600;cursor:pointer}
-button:hover{transform:translateY(-2px)}
-#loadBtn{background:#6f91c9;color:white}
-#saveBtn{display:none;background:#fce7f3;color:#9d477b}
-#status{font-size:13px;color:#7e8ba0;margin-top:18px;min-height:20px}
-.favourites{margin-top:24px;text-align:left}
-.favourites-header{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee8f8;padding-bottom:14px}
-h2{font-size:19px;color:#536b91}
-#favCount{background:#e9efff;color:#527eb4;padding:5px 11px;border-radius:20px;font-size:12px;font-weight:bold}
-#favouritesList{list-style:none;margin-top:15px}
-#favouritesList li{background:#f8f8ff;padding:13px;border-radius:10px;margin-bottom:10px;font-size:14px;line-height:1.6;overflow-wrap:anywhere}
-.empty{color:#9589a9;text-align:center}
-footer{text-align:center;color:#9589a9;font-size:12px;margin-top:22px;line-height:1.8}
-@media(max-width:450px){.joke-card{padding:25px 17px}.buttons button{width:100%}.favourites{padding:19px}}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #edf6ff, #f4efff, #fff0f6);
+    color: #30264a;
+    min-height: 100vh;
+    padding: 30px 16px;
+}
+
+.container {
+    max-width: 650px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.logo {
+    display: inline-block;
+    background: #e6efff;
+    color: #527eb4;
+    padding: 9px 17px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: clamp(28px, 5vw, 39px);
+    color: #527eb4;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #817694;
+    line-height: 1.6;
+}
+
+.joke-card,
+.favourites {
+    background: white;
+    border: 1px solid #e4eafa;
+    border-radius: 23px;
+    padding: 30px 23px;
+    text-align: center;
+    box-shadow: 0 12px 35px #7189b51a;
+}
+
+.emoji {
+    font-size: 52px;
+    margin-bottom: 12px;
+}
+
+.label {
+    color: #9272c5;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#jokeSetup {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.6;
+    margin: 18px 0;
+}
+
+#jokePunch {
+    color: #8060b8;
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+button {
+    border: 0;
+    border-radius: 12px;
+    padding: 13px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:focus-visible {
+    outline: 3px solid #b9a1e8;
+    outline-offset: 3px;
+}
+
+#loadBtn {
+    background: #6f91c9;
+    color: white;
+}
+
+#saveBtn {
+    display: none;
+    background: #fce7f3;
+    color: #9d477b;
+}
+
+#status {
+    font-size: 13px;
+    color: #7e8ba0;
+    margin-top: 18px;
+    min-height: 20px;
+}
+
+.favourites {
+    margin-top: 24px;
+    text-align: left;
+}
+
+.favourites-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #eee8f8;
+    padding-bottom: 14px;
+}
+
+h2 {
+    font-size: 19px;
+    color: #536b91;
+}
+
+#favCount {
+    background: #e9efff;
+    color: #527eb4;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#favouritesList {
+    list-style: none;
+    margin-top: 15px;
+}
+
+#favouritesList li {
+    background: #f8f8ff;
+    padding: 13px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.empty {
+    color: #9589a9;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    color: #9589a9;
+    font-size: 12px;
+    margin-top: 22px;
+    line-height: 1.8;
+}
+
+@media (max-width: 450px) {
+    .joke-card {
+        padding: 25px 17px;
+    }
+
+    .buttons button {
+        width: 100%;
+    }
+
+    .favourites {
+        padding: 19px;
+    }
+}
 </style>
 </head>
+
 <body>
 <main class="container">
 
-<header>
-<div class="logo">✨ YOUR DAILY DOSE OF FUN</div>
-<h1>Welcome to Joke Corner!</h1>
-<p>Take a break and brighten your day with a random joke.</p>
-</header>
+    <header>
+        <div class="logo">✨ YOUR DAILY DOSE OF FUN</div>
+        <h1>Welcome to Joke Corner!</h1>
+        <p>Take a break and brighten your day with a random joke.</p>
+    </header>
 
-<section class="joke-card">
-<div class="emoji">😂</div>
-<div class="label">READY FOR A LAUGH?</div>
-<div id="jokeSetup">Click "Load Joke" to discover something funny!</div>
-<div id="jokePunch"></div>
-<div class="buttons">
-<button id="loadBtn" type="button">🎲 Load Joke</button>
-<button id="saveBtn" type="button">⭐ Save Favourite</button>
-</div>
-<div id="status" aria-live="polite"></div>
-</section>
+    <section class="joke-card">
+        <div class="emoji">😂</div>
+        <div class="label">READY FOR A LAUGH?</div>
 
-<section class="favourites">
-<div class="favourites-header">
-<h2>💜 My Favourite Jokes</h2>
-<span id="favCount">0 saved</span>
-</div>
-<ul id="favouritesList">
-<li class="empty">No favourites saved yet.</li>
-</ul>
-</section>
+        <div id="jokeSetup">
+            Click "Load Joke" to discover something funny!
+        </div>
 
-<footer>
-Made with 💜 and a little sense of humour.<br>
-Created by <strong>Shrestha Smriti</strong> | Week 6 - Task 1
-</footer>
+        <div id="jokePunch"></div>
+
+        <div class="buttons">
+            <button id="loadBtn" type="button">🎲 Load Joke</button>
+            <button id="saveBtn" type="button">⭐ Save Favourite</button>
+        </div>
+
+        <div id="status" aria-live="polite"></div>
+    </section>
+
+    <section class="favourites">
+        <div class="favourites-header">
+            <h2>💜 My Favourite Jokes</h2>
+            <span id="favCount">0 saved</span>
+        </div>
+
+        <ul id="favouritesList">
+            <li class="empty">No favourites saved yet.</li>
+        </ul>
+    </section>
+
+    <footer>
+        Made with 💜 and a little sense of humour.<br>
+        Created by <strong>Shrestha Smriti</strong> | Week 6 - Task 1
+    </footer>
 
 </main>
 
@@ -81,25 +255,61 @@ Created by <strong>Shrestha Smriti</strong> | Week 6 - Task 1
 "use strict";
 
 const jokes = [
- {setup:"Why did the computer go to the doctor?",punchline:"Because it caught a virus!"},
- {setup:"Why was the math book sad?",punchline:"Because it had too many problems."},
- {setup:"Why don't eggs tell jokes?",punchline:"They might crack each other up."},
- {setup:"What do you call a bear with no teeth?",punchline:"A gummy bear!"},
- {setup:"Why did the smartphone need glasses?",punchline:"It lost all its contacts!"},
- {setup:"What is a computer's favourite snack?",punchline:"Microchips!"},
- {setup:"Why did the student eat their homework?",punchline:"Because the teacher said it was a piece of cake!"},
- {setup:"What do you call fake spaghetti?",punchline:"An impasta!"},
- {setup:"Why did the bicycle fall over?",punchline:"Because it was two-tired!"},
- {setup:"What do clouds wear under their clothes?",punchline:"Thunderwear!"},
- {setup:"Why can't your nose be 12 inches long?",punchline:"Because then it would be a foot!"},
- {setup:"What did one wall say to the other wall?",punchline:"I'll meet you at the corner!"}
+    {
+        setup: "Why did the computer go to the doctor?",
+        punchline: "Because it caught a virus!"
+    },
+    {
+        setup: "Why was the math book sad?",
+        punchline: "Because it had too many problems."
+    },
+    {
+        setup: "Why don't eggs tell jokes?",
+        punchline: "They might crack each other up."
+    },
+    {
+        setup: "What do you call a bear with no teeth?",
+        punchline: "A gummy bear!"
+    },
+    {
+        setup: "Why did the smartphone need glasses?",
+        punchline: "It lost all its contacts!"
+    },
+    {
+        setup: "What is a computer's favourite snack?",
+        punchline: "Microchips!"
+    },
+    {
+        setup: "Why did the student eat their homework?",
+        punchline: "Because the teacher said it was a piece of cake!"
+    },
+    {
+        setup: "What do you call fake spaghetti?",
+        punchline: "An impasta!"
+    },
+    {
+        setup: "Why did the bicycle fall over?",
+        punchline: "Because it was two-tired!"
+    },
+    {
+        setup: "What do clouds wear under their clothes?",
+        punchline: "Thunderwear!"
+    },
+    {
+        setup: "Why can't your nose be 12 inches long?",
+        punchline: "Because then it would be a foot!"
+    },
+    {
+        setup: "What did one wall say to the other wall?",
+        punchline: "I'll meet you at the corner!"
+    }
 ];
 
 const loadBtn = document.getElementById("loadBtn");
 const saveBtn = document.getElementById("saveBtn");
 const jokeSetup = document.getElementById("jokeSetup");
 const jokePunch = document.getElementById("jokePunch");
-const status = document.getElementById("status");
+const statusMessage = document.getElementById("status");
 const favouritesList = document.getElementById("favouritesList");
 const favCount = document.getElementById("favCount");
 
@@ -107,75 +317,103 @@ let currentJoke = null;
 let lastIndex = -1;
 
 function loadJoke() {
- let index;
+    let index = Math.floor(Math.random() * jokes.length);
 
- do {
-  index = Math.floor(Math.random() * jokes.length);
- } while (jokes.length > 1 && index === lastIndex);
+    if (jokes.length > 1 && index === lastIndex) {
+        index = (index + 1) % jokes.length;
+    }
 
- lastIndex = index;
- currentJoke = jokes[index];
+    lastIndex = index;
+    currentJoke = jokes[index];
 
- jokeSetup.textContent = currentJoke.setup;
- jokePunch.textContent = currentJoke.punchline;
- saveBtn.style.display = "inline-block";
- status.textContent = "✨ Enjoy your joke!";
+    jokeSetup.textContent = currentJoke.setup;
+    jokePunch.textContent = currentJoke.punchline;
+
+    saveBtn.style.display = "inline-block";
+    statusMessage.textContent = "✨ Enjoy your joke!";
 }
 
 function getFavourites() {
- try {
-  const saved = JSON.parse(localStorage.getItem("favouriteJokes") || "[]");
-  return Array.isArray(saved) ? saved : [];
- } catch (error) {
-  return [];
- }
-}
+    try {
+        const saved = localStorage.getItem("favouriteJokes");
 
-function saveFavourite() {
- if (!currentJoke) return;
+        if (!saved) {
+            return [];
+        }
 
- const favourites = getFavourites();
+        const parsed = JSON.parse(saved);
 
- const alreadySaved = favourites.some(joke =>
-  joke.setup === currentJoke.setup &&
-  joke.punchline === currentJoke.punchline
- );
+        if (!Array.isArray(parsed)) {
+            return [];
+        }
 
- if (alreadySaved) {
-  status.textContent = "⭐ This joke is already in your favourites!";
-  return;
- }
-
- favourites.push(currentJoke);
-
- try {
-  localStorage.setItem("favouriteJokes", JSON.stringify(favourites));
-  displayFavourites();
-  status.textContent = "💜 Joke saved successfully!";
- } catch (error) {
-  status.textContent = "Your browser could not save this joke.";
- }
+        return parsed.filter(joke =>
+            joke &&
+            typeof joke.setup === "string" &&
+            typeof joke.punchline === "string"
+        );
+    } catch (error) {
+        return [];
+    }
 }
 
 function displayFavourites() {
- const favourites = getFavourites();
+    const favourites = getFavourites();
 
- favouritesList.replaceChildren();
- favCount.textContent = favourites.length + " saved";
+    while (favouritesList.firstChild) {
+        favouritesList.removeChild(favouritesList.firstChild);
+    }
 
- if (favourites.length === 0) {
-  const item = document.createElement("li");
-  item.className = "empty";
-  item.textContent = "No favourites saved yet.";
-  favouritesList.appendChild(item);
-  return;
- }
+    favCount.textContent = favourites.length + " saved";
 
- favourites.forEach(joke => {
-  const item = document.createElement("li");
-  item.textContent = "😂 " + joke.setup + " — " + joke.punchline;
-  favouritesList.appendChild(item);
- });
+    if (favourites.length === 0) {
+        const item = document.createElement("li");
+        item.className = "empty";
+        item.textContent = "No favourites saved yet.";
+        favouritesList.appendChild(item);
+        return;
+    }
+
+    favourites.forEach(joke => {
+        const item = document.createElement("li");
+        item.textContent = "😂 " + joke.setup + " — " + joke.punchline;
+        favouritesList.appendChild(item);
+    });
+}
+
+function saveFavourite() {
+    if (!currentJoke) {
+        statusMessage.textContent = "Please load a joke first!";
+        return;
+    }
+
+    const favourites = getFavourites();
+
+    const alreadySaved = favourites.some(joke =>
+        joke.setup === currentJoke.setup &&
+        joke.punchline === currentJoke.punchline
+    );
+
+    if (alreadySaved) {
+        statusMessage.textContent =
+            "⭐ This joke is already in your favourites!";
+        return;
+    }
+
+    favourites.push(currentJoke);
+
+    try {
+        localStorage.setItem(
+            "favouriteJokes",
+            JSON.stringify(favourites)
+        );
+
+        displayFavourites();
+        statusMessage.textContent = "💜 Joke saved successfully!";
+    } catch (error) {
+        statusMessage.textContent =
+            "Your browser could not save this joke.";
+    }
 }
 
 loadBtn.addEventListener("click", loadJoke);
@@ -183,5 +421,6 @@ saveBtn.addEventListener("click", saveFavourite);
 
 displayFavourites();
 </script>
+
 </body>
 </html>
