@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 12 | React State Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#17283e;--muted:#708198;--blue:#3478b9;--blue2:#1e5c96;--pale:#eaf4fc;--line:#dce7f1;--white:#fff;--bg:#f5f8fc;--navy:#10253e;--mint:#dff4ef;--orange:#f0a15c}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif}
+    button{font:inherit;cursor:pointer}button:disabled{opacity:.42;cursor:not-allowed}
+    .wrap{max-width:1160px;margin:auto;padding:0 26px}
+    .top{display:flex;justify-content:space-between;align-items:center;padding:23px 0;gap:20px}
+    .brand{display:flex;align-items:center;gap:11px;font:800 13px Manrope;letter-spacing:1.5px}.brandmark{width:39px;height:39px;border-radius:13px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:16px;letter-spacing:0}
+    .brand small{display:block;color:#91a0b2;font:700 9px "DM Sans";letter-spacing:1.4px;margin-top:3px}
+    nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#60748a;text-decoration:none;font-size:12px;font-weight:700;padding:10px 13px;border-radius:30px}nav a:hover{background:#e7f1fa;color:var(--blue2)}
+    .hero{background:var(--navy);border-radius:25px;padding:45px 48px;color:white;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;width:330px;height:330px;border:1px solid #31506d;border-radius:50%;right:-90px;top:-125px;box-shadow:0 0 0 35px #1a3550,0 0 0 70px #162f49}
+    .eyebrow,.kicker{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:800;color:#7fc4df}
+    h1{font:800 clamp(34px,5vw,57px)/1.08 Manrope;margin:14px 0 14px;letter-spacing:-2px;max-width:690px}
+    h1 span{color:#71c6dc}.hero p{color:#c2d0df;max-width:620px;line-height:1.7;font-size:14px;margin:0}
+    .hero-foot{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-top:31px;position:relative;z-index:1}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}.tags span{font-size:10px;color:#d7e6f2;border:1px solid #3b5670;border-radius:30px;padding:7px 11px}.hero-note{font-size:10px;color:#9db0c3;letter-spacing:1px}
+    main{padding:36px 0 55px}.section{margin-top:38px;scroll-margin-top:18px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:17px}
+    .kicker{color:#4f91bd}.section h2{font:800 26px Manrope;margin:6px 0 6px;letter-spacing:-.7px}.desc{font-size:13px;color:var(--muted);margin:0;line-height:1.6}
+    .pill{font-size:10px;font-weight:800;color:#3976a7;background:#e6f2fb;border-radius:30px;padding:9px 12px;white-space:nowrap}
+    .card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 22px rgba(30,61,91,.045)}
+    .counter{padding:22px;display:grid;grid-template-columns:.9fr 1.1fr;gap:23px}
+    .countbox{background:linear-gradient(145deg,#edf6fd,#f9fcff);border:1px solid #dfebf5;border-radius:15px;padding:22px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between}
+    .smallcap{font-size:10px;color:#7b91a8;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+    .number{font:800 74px/1 Manrope;color:#2d6598;letter-spacing:-4px;margin:13px 0}
+    .status{font-size:11px;color:#8194a8}
+    .controls h3,.cart h3{font:800 16px Manrope;margin:0 0 7px}.hint{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 15px}
+    .btnrow{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{border:0;border-radius:10px;padding:11px 14px;background:var(--blue);color:white;font-size:11px;font-weight:800;box-shadow:0 4px 10px #3478b925}
+    .btn:hover{background:var(--blue2)}.btn.soft{background:#edf4fa;color:#426887;box-shadow:none}.btn.dark{background:var(--navy)}.btn.warn{background:#f4e9df;color:#9a5c2e;box-shadow:none}
+    .history{border-top:1px solid var(--line);margin-top:20px;padding-top:14px}.historytop{display:flex;justify-content:space-between;color:#7d8ea1;font-size:10px;font-weight:800;margin-bottom:9px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{background:#edf4fa;color:#58728c;border-radius:8px;padding:7px 10px;font-size:11px;font-weight:800}.chip.last{background:#dff2fa;color:#236a9a}
+    .shopbar{display:flex;justify-content:space-between;align-items:center;margin:20px 0 12px;color:#8494a6;font-size:10px;font-weight:800;letter-spacing:1px}
+    .shoplayout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}
+    .products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .product{overflow:hidden}.photo{height:190px;background:#edf3f8;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.product:hover .photo img{transform:scale(1.035)}
+    .pinfo{padding:14px}.category{font-size:9px;color:#8b9bad;font-weight:800;text-transform:uppercase;letter-spacing:1.2px}.pinfo h3{font:800 14px Manrope;margin:6px 0 13px}.pfoot{display:flex;justify-content:space-between;align-items:center;gap:8px}.price{font:800 13px Manrope;color:#315f89}.add{padding:9px 11px;font-size:10px}
+    .cart{padding:17px;position:sticky;top:15px}.carthead{display:flex;justify-content:space-between;align-items:center}.badge{background:#e7f2fb;color:#3478b9;border-radius:50%;width:27px;height:27px;display:grid;place-items:center;font-size:11px;font-weight:800}
+    .cartsub{font-size:11px;color:#8a9aab;margin:4px 0 15px}.empty{padding:25px 12px;border:1px dashed #d8e5ef;border-radius:12px;text-align:center;color:#8b9bac;font-size:11px;line-height:1.7;background:#f8fbfd}
+    .cartitems{display:flex;flex-direction:column;gap:12px}.cartitem{padding-bottom:12px;border-bottom:1px solid #edf1f5}.itemtop{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:800}.itemprice{color:#3979aa;white-space:nowrap}.unit{font-size:10px;color:#95a3b2;margin-top:3px}.qtyrow{display:flex;align-items:center;gap:8px;margin-top:9px}.qtybtn{width:25px;height:25px;border:1px solid #dce7f0;border-radius:7px;background:#f7fafc;color:#426887;font-weight:800}.qty{font-size:11px;font-weight:800;min-width:12px;text-align:center}.remove{margin-left:auto;border:0;background:none;color:#bb7952;font-size:9px;font-weight:800;letter-spacing:.7px}
+    .summary{border-top:1px solid var(--line);margin-top:15px;padding-top:13px}.sumrow,.totalrow{display:flex;justify-content:space-between;font-size:11px;color:#8392a2;margin:8px 0}.totalrow{font-size:13px;color:var(--ink);font-weight:800}.totalrow strong{font:800 17px Manrope;color:#2c6598}.footnote{font-size:9px;color:#9ba8b5;line-height:1.5;margin:12px 0 0}
+    .concepts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.concept{padding:17px}.conceptnum{width:28px;height:28px;border-radius:9px;background:#e8f3fb;color:#3478b9;display:grid;place-items:center;font-size:10px;font-weight:800}.concept h3{font:800 13px Manrope;margin:12px 0 6px}.concept p{font-size:11px;color:#7d8da0;line-height:1.6;margin:0}
+    .extra{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.practice{padding:17px}.practice h3{font:800 13px Manrope;margin:0 0 12px}.field{width:100%;border:1px solid #dce6ef;border-radius:9px;padding:10px 11px;margin:0 0 8px;font:12px "DM Sans";outline:none}.field:focus{border-color:#75a9d0;box-shadow:0 0 0 3px #e7f2fb}.preview{border-radius:9px;background:#f3f8fc;padding:10px;color:#75879a;font-size:10px;line-height:1.6}
+    .todoadd{display:flex;gap:7px}.todoadd .field{margin:0}.todoadd .btn{padding:9px 12px}.todos{margin-top:10px;display:grid;gap:6px}.todo{display:flex;align-items:center;gap:8px;font-size:11px;padding:7px 8px;background:#f7fafc;border-radius:8px}.todo span{flex:1}.todo.done span{text-decoration:line-through;color:#9aa8b5}.todo button{border:0;background:none;color:#b57c58;font-size:9px;font-weight:800}
+    .lift{margin-top:12px;padding:17px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.lift h3{font:800 14px Manrope;margin:0 0 5px}.lift p{font-size:11px;color:#8493a3;margin:0}.liftcontrols{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.liftvalue{font:800 24px Manrope;color:#2e6d9e;min-width:35px;text-align:center}
+    footer{text-align:center;color:#9aa8b7;font-size:10px;letter-spacing:1.4px;padding:24px 0 35px}
+    @media(max-width:850px){.shoplayout{grid-template-columns:1fr}.cart{position:static}.cart{max-width:none}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.wrap{padding:0 15px}.top{align-items:flex-start;flex-direction:column}.hero{padding:31px 24px}.hero:after{opacity:.35}.hero-foot{align-items:flex-start;flex-direction:column}.counter{grid-template-columns:1fr;padding:14px}.section-head{align-items:flex-start;flex-direction:column}.products,.concepts,.extra{grid-template-columns:1fr}.photo{height:210px}.number{font-size:65px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="brandmark">S.</div><div>REACT STATE STUDIO<small>WEB PROGRAMMING · WEEK 12</small></div></div>
+    <nav><a href="#counter">Counter challenge</a><a href="#shopping">Shopping cart</a><a href="#practice">State practice</a></nav>
+  </header>
+  <section class="hero">
+    <div class="eyebrow">Week 12 · React State & useState</div>
+    <h1>Small actions.<br><span>Real interaction.</span></h1>
+    <p>A practical React state project featuring the Counter with History challenge, the Interactive Shopping Cart homework, and a few relevant state examples.</p>
+    <div class="hero-foot"><div class="tags"><span>useState</span><span>Array state</span><span>Object state</span><span>Shared state</span></div><div class="hero-note">SMRITI SHRESTHA · GACHON UNIVERSITY</div></div>
+  </section>
+  <main><div id="react-root"></div></main>
+  <footer>WEEK 12 · WEB PROGRAMMING K0126_002 · REACT STATE STUDIO</footer>
+</div>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+const {useState} = React;
+const money = value => "₩" + value.toLocaleString("en-US");
+const products = [
+ {id:1,name:"Studio headphones",category:"Audio",price:45000,image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700"},
+ {id:2,name:"Everyday watch",category:"Accessories",price:65000,image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700"},
+ {id:3,name:"Compact camera",category:"Technology",price:120000,image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700"},
+ {id:4,name:"Classic sneakers",category:"Style",price:55000,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
+ {id:5,name:"Daily backpack",category:"Essentials",price:38000,image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700"}
+];
+
+function ShoppingCart({cart,onIncrease,onDecrease,onRemove}){
+ const itemCount=cart.reduce((sum,item)=>sum+item.quantity,0);
+ const total=cart.reduce((sum,item)=>sum+item.price*item.quantity,0);
+ return <aside className="card cart">
+  <div className="carthead"><h3>Your cart</h3><span className="badge">{itemCount}</span></div>
+  <p className="cartsub">Products you have added</p>
+  <div className="cartitems">{cart.length?cart.map(item=><div className="cartitem" key={item.id}>
+   <div className="itemtop"><span>{item.name}</span><span className="itemprice">{money(item.price*item.quantity)}</span></div>
+   <div className="unit">{money(item.price)} each</div>
+   <div className="qtyrow"><button className="qtybtn" onClick={()=>onDecrease(item.id)} aria-label={"Decrease "+item.name}>−</button><span className="qty">{item.quantity}</span><button className="qtybtn" onClick={()=>onIncrease(item.id)} aria-label={"Increase "+item.name}>+</button><button className="remove" onClick={()=>onRemove(item.id)}>REMOVE</button></div>
+  </div>):<div className="empty">Your cart is empty.<br/>Add a product to get started.</div>}</div>
+  <div className="summary"><div className="sumrow"><span>Items</span><span>{itemCount}</span></div><div className="totalrow"><span>Total</span><strong>{money(total)}</strong></div><p className="footnote">Interactive assignment demo only. No payment is collected.</p></div>
+ </aside>;
+}
+
+function Page(){
+ const [counter,setCounter]=useState(0);
+ const [history,setHistory]=useState([0]);
+ const [cart,setCart]=useState([]);
+ const [profile,setProfile]=useState({name:"",email:"",bio:""});
+ const [todos,setTodos]=useState([]);
+ const [task,setTask]=useState("");
+ const [shared,setShared]=useState(0);
+ const changeCount=value=>{setCounter(value);setHistory(prev=>[...prev,value].slice(-5));};
+ const undo=()=>{if(history.length>1){setCounter(history[history.length-2]);setHistory(prev=>prev.slice(0,-1));}};
+ const add=product=>setCart(prev=>{const existing=prev.find(p=>p.id===product.id);return existing?prev.map(p=>p.id===product.id?{...p,quantity:p.quantity+1}:p):[...prev,{...product,quantity:1}];});
+ const inc=id=>setCart(prev=>prev.map(p=>p.id===id?{...p,quantity:p.quantity+1}:p));
+ const dec=id=>setCart(prev=>prev.map(p=>p.id===id?{...p,quantity:Math.max(1,p.quantity-1)}:p));
+ const remove=id=>setCart(prev=>prev.filter(p=>p.id!==id));
+ const itemCount=cart.reduce((sum,p)=>sum+p.quantity,0);
+ const total=cart.reduce((sum,p)=>sum+p.price*p.quantity,0);
+ const addTask=()=>{if(task.trim()){setTodos(prev=>[...prev,{id:Date.now(),text:task.trim(),done:false}]);setTask("");}};
+ const updateProfile=(field,value)=>setProfile(prev=>({...prev,[field]:value}));
+ return <React.Fragment>
+  <section className="section" id="counter">
+   <div className="section-head"><div><div className="kicker">01 / Code challenge · PDF page 33</div><h2>Counter with History</h2><p className="desc">Start at zero, change the count, keep the latest five values, and undo the previous action.</p></div><span className="pill">Two state variables</span></div>
+   <div className="card counter"><div className="countbox"><div className="smallcap">Current count</div><div className="number">{counter}</div><div className="status">{history.length>1?"Updated · Undo is available":"Ready · starting value is 0"}</div></div>
+    <div className="controls"><h3>Try the counter</h3><p className="hint">Each count change is saved in the history. Undo returns to the previous value.</p>
+     <div className="btnrow"><button className="btn" onClick={()=>changeCount(counter+1)}>＋ Add one</button><button className="btn soft" onClick={()=>changeCount(counter-1)}>− Subtract one</button><button className="btn soft" onClick={()=>changeCount(0)}>Reset</button><button className="btn dark" onClick={undo} disabled={history.length<2}>↶ Undo</button></div>
+     <div className="history"><div className="historytop"><span>Recent history</span><span>{history.length} / 5 values</span></div><div className="chips">{history.map((v,i)=><span key={i} className={"chip "+(i===history.length-1?"last":"")}>{v}</span>)}</div></div>
+    </div></div>
+  </section>
+  <section className="section" id="shopping">
+   <div className="section-head"><div><div className="kicker">02 / Homework · PDF page 34</div><h2>Interactive Shopping Cart</h2><p className="desc">At least five products, add/remove actions, quantity controls, and a cart total computed from state.</p></div><span className="pill">5 products · Live cart</span></div>
+   <div className="shopbar"><span>THE EVERYDAY EDIT · PRICES IN KRW</span><span>{itemCount} item{itemCount===1?"":"s"} in your cart</span></div>
+   <div className="shoplayout"><div className="products">{products.map(p=><article className="card product" key={p.id}><div className="photo"><img src={p.image} alt={p.name}/></div><div className="pinfo"><div className="category">{p.category}</div><h3>{p.name}</h3><div className="pfoot"><span className="price">{money(p.price)}</span><button className="btn add" onClick={()=>add(p)}>Add to cart +</button></div></div></article>)}</div>
+    <ShoppingCart cart={cart} onIncrease={inc} onDecrease={dec} onRemove={remove}/></div>
+  </section>
+  <section className="section" id="practice">
+   <div className="section-head"><div><div className="kicker">03 / Relevant lecture concepts</div><h2>State in practice</h2><p className="desc">Extra examples for the personal page: object updates, array updates and lifting state up.</p></div><span className="pill">Practice examples</span></div>
+   <div className="concepts"><article className="card concept"><div className="conceptnum">01</div><h3>State vs. props</h3><p>State is data owned by a component. Props are read-only values passed from a parent component.</p></article><article className="card concept"><div className="conceptnum">02</div><h3>Functional updates</h3><p>Use an updater such as <code>prev =&gt; prev + 1</code> when the next value depends on the previous state.</p></article><article className="card concept"><div className="conceptnum">03</div><h3>Immutable updates</h3><p>Use spread, <code>map()</code> and <code>filter()</code> to create new arrays and objects instead of mutating state.</p></article></div>
+   <div className="extra">
+    <article className="card practice"><h3>Object state · Profile preview</h3><input className="field" value={profile.name} onChange={e=>updateProfile("name",e.target.value)} placeholder="Your name"/><input className="field" value={profile.email} onChange={e=>updateProfile("email",e.target.value)} placeholder="Your email"/><textarea className="field" rows="2" value={profile.bio} onChange={e=>updateProfile("bio",e.target.value)} placeholder="A short bio"/><div className="preview">{[profile.name||"Your name",profile.email||"Your email",profile.bio||"A short bio"].join(" · ")}</div></article>
+    <article className="card practice"><h3>Array state · Mini task list</h3><div className="todoadd"><input className="field" value={task} onChange={e=>setTask(e.target.value)} onKeyDown={e=>e.key==="Enter"&&addTask()} placeholder="Add a small task"/><button className="btn" onClick={addTask}>Add</button></div><div className="todos">{todos.length?todos.map(t=><div className={"todo "+(t.done?"done":"")} key={t.id}><input type="checkbox" checked={t.done} onChange={()=>setTodos(prev=>prev.map(x=>x.id===t.id?{...x,done:!x.done}:x))}/><span>{t.text}</span><button onClick={()=>setTodos(prev=>prev.filter(x=>x.id!==t.id))}>DELETE</button></div>):<div className="preview">No tasks yet.</div>}</div></article>
+   </div>
+   <div className="card lift"><div><h3>Lifting state up · Shared counter</h3><p>The parent owns one value and passes update callbacks to both child controls.</p></div><div className="liftcontrols"><button className="btn soft" onClick={()=>setShared(v=>v+1)}>Child A +1</button><button className="btn soft" onClick={()=>setShared(v=>v+1)}>Child B +1</button><button className="btn warn" onClick={()=>setShared(0)}>Reset</button><span className="liftvalue">{shared}</span></div></div>
+  </section>
+ </React.Fragment>;
+}
+ReactDOM.createRoot(document.getElementById("react-root")).render(<Page/>);
+</script>
+</body>
+</html>
