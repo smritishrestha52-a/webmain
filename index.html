@@ -1,56 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smriti Shrestha | Web Programming Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-:root {
-    --blue: #668bb8;
-    --dark: #3e6088;
-    --light: #edf5ff;
-    --pink: #fcecf3;
-    --purple: #f1edff;
-    --text: #526984;
-    --muted: #8799ae;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
-* { box-sizing: border-box; scroll-behavior: smooth; }
+
 body {
     margin: 0;
-    font-family: 'Nunito', sans-serif;
-    color: var(--text);
-    background: linear-gradient(180deg, #edf6ff, #fbfcff 55%, #f7f3ff);
+    font-family: 'DM Sans', sans-serif;
+    color: #35483b;
+    background: #f6f4ec;
 }
+
+/* HERO */
 header {
-    padding: 85px 20px 75px;
+    position: relative;
+    overflow: hidden;
+    padding: 100px 20px 90px;
     text-align: center;
-    background: linear-gradient(135deg, #cce4ff, #e9f2ff 65%, #fcecf4);
-    border-radius: 0 0 45px 45px;
+    background:
+        radial-gradient(circle at 12% 20%, #ffffff 0 3%, transparent 25%),
+        radial-gradient(circle at 90% 80%, #cbd8c2 0 4%, transparent 24%),
+        linear-gradient(130deg, #d8e3d1, #f1eddf 60%, #e7d9c9);
+    border-radius: 0 0 55px 55px;
 }
+
+header::before {
+    content: "✳";
+    position: absolute;
+    left: 9%;
+    top: 35px;
+    color: #9aaa8c;
+    font-size: 65px;
+}
+
+header::after {
+    content: "✳";
+    position: absolute;
+    right: 10%;
+    bottom: 20px;
+    color: #bd9272;
+    font-size: 55px;
+}
+
 .tag {
     display: inline-block;
-    padding: 8px 18px;
+    padding: 9px 19px;
     border-radius: 30px;
-    background: white;
-    color: #7898bd;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
+    background: #fffdf6;
+    color: #718568;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
 }
+
 header h1 {
-    margin: 18px 0 5px;
-    color: #3e6088;
-    font-size: clamp(36px, 6vw, 55px);
-    font-weight: 900;
+    margin: 22px 0 8px;
+    color: #294b39;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 68px);
+    letter-spacing: -1px;
 }
+
 header h2 {
     margin: 8px 0;
-    color: #6786ad;
+    color: #718568;
     font-size: clamp(19px, 3vw, 25px);
+    font-weight: 600;
 }
-header p { color: #8198b3; }
+
+header p {
+    color: #7c8977;
+    font-size: 14px;
+}
+
+/* NAVIGATION */
 nav {
     position: sticky;
     top: 8px;
@@ -58,38 +83,71 @@ nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 6px;
+    gap: 7px;
     max-width: 1100px;
     margin: 22px auto 38px;
-    padding: 12px;
-    background: rgba(255,255,255,.96);
-    border: 1px solid #dfebf8;
-    border-radius: 20px;
-    box-shadow: 0 7px 24px #5279a318;
+    padding: 13px;
+    background: #fffdf7ed;
+    border: 1px solid #e4e3d8;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px #334b3512;
+    backdrop-filter: blur(12px);
 }
+
 nav a {
-    padding: 8px 12px;
-    border-radius: 12px;
-    color: #6684a7;
+    padding: 8px 13px;
+    border-radius: 20px;
+    color: #61745d;
     text-decoration: none;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 800;
+    transition: .2s;
 }
-nav a:hover { background: #e7f1ff; color: #3e6088; }
-main { width: 92%; max-width: 1080px; margin: auto; }
-.intro { text-align: center; margin-bottom: 38px; }
-.intro h2 { color: var(--dark); font-size: 29px; }
-.intro p { color: var(--muted); line-height: 1.7; }
-.week {
-    margin-bottom: 25px;
-    padding: 27px;
-    background: white;
-    border: 1px solid #dfebf8;
-    border-top: 4px solid #b9d7f7;
+
+nav a:hover {
+    background: #dce7d5;
+    color: #294b39;
+}
+
+/* MAIN CONTENT */
+main {
+    width: 92%;
+    max-width: 1080px;
+    margin: auto;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 12px 15px;
+}
+
+.intro h2 {
+    color: #294b39;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+
+.intro p {
+    color: #879184;
+    line-height: 1.8;
+    max-width: 620px;
+    margin: auto;
+}
+
+/* WEEK SECTIONS */
+.week,
+.week-section {
+    margin-bottom: 26px;
+    padding: 29px;
+    background: #fffdf8;
+    border: 1px solid #e7e4d9;
+    border-top: 4px solid #9eaf91;
     border-radius: 23px;
-    box-shadow: 0 8px 25px #5279a30d;
+    box-shadow: 0 9px 25px #344a3510;
     scroll-margin-top: 100px;
 }
+
 .week-heading {
     display: flex;
     justify-content: space-between;
@@ -98,426 +156,262 @@ main { width: 92%; max-width: 1080px; margin: auto; }
     gap: 10px;
     margin-bottom: 18px;
 }
-.week-heading h2 { margin: 0; color: var(--dark); font-size: 23px; }
+
+.week-heading h2 {
+    margin: 0;
+    color: #294b39;
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+}
+
 .week-label {
     padding: 7px 13px;
     border-radius: 25px;
-    background: #edf5ff;
-    color: #7796b9;
+    background: #e9eee2;
+    color: #718568;
     font-size: 11px;
-    font-weight: 900;
+    font-weight: 800;
 }
+
 .week-description {
-    color: var(--muted);
+    color: #879184;
     font-size: 13px;
     line-height: 1.7;
 }
+
+/* TASK LINKS */
 .tasks {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 12px;
 }
+
 .tasks a {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-    padding: 15px;
-    min-height: 52px;
-    background: #f1f7ff;
-    border: 1px solid #dfebf8;
+    padding: 16px;
+    min-height: 54px;
+    background: #f1f3e9;
+    border: 1px solid #e1e7d9;
     border-radius: 14px;
-    color: #55779e;
+    color: #526b50;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 900;
-    transition: .2s;
+    font-weight: 800;
+    transition: .22s;
 }
+
 .tasks a:hover {
-    transform: translateY(-3px);
-    background: #fff0f6;
-    border-color: #f0d1df;
-    color: #a87898;
+    transform: translateY(-4px);
+    background: #e4ecdc;
+    border-color: #b9c9ad;
+    box-shadow: 0 7px 15px #344a3510;
 }
-.tasks a span { color: #91afd1; }
+
+.tasks a span {
+    color: #b98260;
+}
+
 .week-page {
     display: inline-block;
     margin-top: 17px;
     padding: 10px 16px;
-    background: #e5f1ff;
+    background: #e7ecdf;
     border-radius: 12px;
-    color: #496f98;
+    color: #456348;
     text-decoration: none;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 800;
 }
-.week-page:hover { background: #fcecf3; }
+
+/* PROJECT CARDS */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 14px;
 }
+
 .project-card {
     display: flex;
     flex-direction: column;
     min-height: 165px;
-    padding: 20px;
-    background: #f7faff;
-    border: 1px solid #dfebf8;
-    border-radius: 17px;
-    color: var(--text);
+    padding: 21px;
+    background: #f7f6ef;
+    border: 1px solid #e6e4d9;
+    border-radius: 18px;
+    color: #46564b;
     text-decoration: none;
-    transition: .2s;
+    transition: .22s;
 }
+
 .project-card:hover {
-    transform: translateY(-4px);
-    background: #fff5f9;
-    border-color: #edccdc;
+    transform: translateY(-5px);
+    background: #edf1e7;
+    border-color: #b7c8aa;
+    box-shadow: 0 10px 20px #344a3512;
 }
-.project-card strong { color: var(--dark); }
-.project-card p { color: var(--muted); font-size: 13px; line-height: 1.6; }
-.project-card small { margin-top: auto; color: #7899bd; font-weight: 900; }
+
+.project-card strong,
+.project-card h4 {
+    color: #294b39;
+}
+
+.project-card p {
+    color: #879184;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.project-card small {
+    margin-top: auto;
+    color: #a87555;
+    font-weight: 800;
+}
+
+/* WEEK 11 AND WEEK 12 */
+.section-heading {
+    text-align: left;
+    margin-bottom: 22px;
+}
+
+.section-label {
+    color: #a87555;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.section-heading h2 {
+    color: #294b39;
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    margin: 7px 0;
+}
+
+.section-heading p {
+    color: #879184;
+    font-size: 13px;
+}
+
+.week-part {
+    padding: 19px;
+    margin-top: 15px;
+    background: #f4f4eb;
+    border: 1px solid #e4e6d9;
+    border-radius: 17px;
+}
+
+.week-part h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: #294b39;
+    font-size: 17px;
+    margin: 0 0 15px;
+}
+
+.week-part h3 span,
+.project-number {
+    color: #718568;
+    background: #e5ebdd;
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.project-card h4 {
+    color: #294b39;
+    margin: 8px 0 3px;
+}
+
+.project-link {
+    margin-top: auto;
+    color: #a87555;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.week12-highlight {
+    border: 1px solid #c4d2b8;
+    background: linear-gradient(135deg, #edf2e7, #fffdf8);
+}
+
+.week12-highlight strong {
+    font-size: 16px;
+}
+
+.week12-note {
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #f0e3d8;
+    color: #9b6d50;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* FOOTER */
 footer {
     margin-top: 55px;
-    padding: 38px 15px;
+    padding: 42px 15px;
     text-align: center;
-    background: linear-gradient(110deg, #e3f0ff, #fcecf3);
-    color: #7893b4;
+    background: linear-gradient(120deg, #dce5d4, #eee7d9);
+    color: #71806e;
     border-radius: 35px 35px 0 0;
     font-size: 13px;
     line-height: 1.8;
 }
-footer strong { color: #416d98; }
 
+footer strong {
+    color: #294b39;
+}
+
+/* MOBILE */
 @media(max-width:650px) {
-    header { padding: 60px 16px; }
-    nav { margin: 14px 9px 28px; }
-    nav a { padding: 7px 9px; font-size: 11px; }
-    main { width: 94%; }
-    .week { padding: 20px; }
-    .week-heading h2 { font-size: 20px; }
-    .tasks, .project-grid { grid-template-columns: 1fr; }
+    header {
+        padding: 65px 16px;
+    }
+
+    header::before {
+        left: 3%;
+        font-size: 40px;
+    }
+
+    header::after {
+        right: 4%;
+        font-size: 38px;
+    }
+
+    nav {
+        margin: 14px 9px 28px;
+    }
+
+    nav a {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    main {
+        width: 94%;
+    }
+
+    .week,
+    .week-section {
+        padding: 20px;
+    }
+
+    .week-heading h2 {
+        font-size: 20px;
+    }
+
+    .tasks,
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
-</head>
-
-<body>
-
-<header>
-    <div class="tag">✦ MY LEARNING JOURNEY ✦</div>
-    <h1>Smriti Shrestha</h1>
-    <h2>Web Programming Portfolio</h2>
-    <p>Computer Engineering Student | Gachon University</p>
-</header>
-
-<nav>
-    <a href="#week2">Week 2</a>
-    <a href="#week3">Week 3</a>
-    <a href="#week3-2">Week 3-2</a>
-    <a href="#week4">Week 4</a>
-    <a href="#week5">Week 5</a>
-    <a href="#week6">Week 6</a>
-    <a href="#week7">Week 7</a>
-    <a href="#week8">Week 8</a>
-    <a href="#week9">Week 9-1</a>
-    <a href="#week9-part2">Week 9-2</a>
-    <a href="#week10">Week 10</a>
-    <a href="#week11">Week 11</a>
-    <a href="#week12">Week 12</a>
-    <a href="#final-project">Final Project</a>
-</nav>
-
-<main>
-
-<section class="intro">
-    <h2>My Weekly Activities ♡</h2>
-    <p>
-        Welcome to my Web Programming portfolio.
-        Here you can explore my weekly assignments,
-        coding exercises, and projects completed throughout the course.
-    </p>
-</section>
-
-<section class="week" id="week2">
-    <div class="week-heading">
-        <h2>Week 2</h2>
-        <span class="week-label">HTML Practice</span>
-    </div>
-    <div class="tasks">
-        <a href="week2/t1.html">Task 1 <span>↗</span></a>
-        <a href="week2/t2.html">Task 2 <span>↗</span></a>
-        <a href="week2/t3.html">Task 3 <span>↗</span></a>
-        <a href="week2/t4.html">Task 4 <span>↗</span></a>
-        <a href="week2/t5.html">Task 5 <span>↗</span></a>
-        <a href="week2/t6.html">Task 6 <span>↗</span></a>
-        <a href="week2/t7.html">Task 7 <span>↗</span></a>
-        <a href="week2/t8.html">Task 8 <span>↗</span></a>
-    </div>
-</section>
-
-<section class="week" id="week3">
-    <div class="week-heading">
-        <h2>Week 3</h2>
-        <span class="week-label">HTML and CSS</span>
-    </div>
-    <div class="tasks">
-        <a href="week3/t1.html">Task 1 <span>↗</span></a>
-        <a href="week3/t2.html">Task 2 <span>↗</span></a>
-        <a href="week3/t3.html">Task 3 <span>↗</span></a>
-        <a href="week3/t4.html">Task 4 <span>↗</span></a>
-        <a href="week3/t5.html">Task 5 <span>↗</span></a>
-        <a href="week3/t6.html">Task 6 <span>↗</span></a>
-        <a href="week3/t7.html">Task 7 <span>↗</span></a>
-    </div>
-</section>
-
-<section class="week" id="week3-2">
-    <div class="week-heading">
-        <h2>Week 3-2</h2>
-        <span class="week-label">Extra Practice</span>
-    </div>
-    <div class="tasks">
-        <a href="week3-2/task1.html">Task 1 <span>↗</span></a>
-        <a href="week3-2/task2.html">Task 2 <span>↗</span></a>
-        <a href="week3-2/task3.html">Task 3 <span>↗</span></a>
-        <a href="week3-2/task4.html">Task 4 <span>↗</span></a>
-        <a href="week3-2/task5.html">Task 5 <span>↗</span></a>
-        <a href="week3-2/task6.html">Task 6 <span>↗</span></a>
-        <a href="week3-2/task7.html">Task 7 <span>↗</span></a>
-    </div>
-</section>
-
-<section class="week" id="week4">
-    <div class="week-heading">
-        <h2>Week 4</h2>
-        <span class="week-label">Web Programming</span>
-    </div>
-    <div class="tasks">
-        <a href="week4/task1.html">Task 1 <span>↗</span></a>
-        <a href="week4/task2.html">Task 2 <span>↗</span></a>
-        <a href="week4/task3.html">Task 3 <span>↗</span></a>
-        <a href="week4/task4.html">Task 4 <span>↗</span></a>
-    </div>
-</section>
-
-<section class="week" id="week5">
-    <div class="week-heading">
-        <h2>Week 5</h2>
-        <span class="week-label">JavaScript Practice</span>
-    </div>
-    <div class="tasks">
-        <a href="week5%20index.html/task1.html">Task 1 <span>↗</span></a>
-        <a href="week5%20index.html/task2.html">Task 2 <span>↗</span></a>
-        <a href="week5%20index.html/task3.html">Task 3 <span>↗</span></a>
-    </div>
-</section>
-
-<section class="week" id="week6">
-    <div class="week-heading">
-        <h2>Week 6</h2>
-        <span class="week-label">JavaScript and API Projects</span>
-    </div>
-    <p class="week-description">
-        Random jokes, API data, weather information, user profiles,
-        Pokémon search, country statistics, and cryptocurrency prices.
-    </p>
-    <div class="tasks">
-        <a href="week6/task1.html">Task 1 – Joke Corner <span>↗</span></a>
-        <a href="week6/task2.html">Task 2 – JSONPlaceholder Posts <span>↗</span></a>
-        <a href="week6/task3.html">Task 3 – Seoul Weather <span>↗</span></a>
-        <a href="week6/task4.html">Task 4 – Random User Profiles <span>↗</span></a>
-        <a href="week6/task5.html">Task 5 – Pokédex <span>↗</span></a>
-        <a href="week6/task6.html">Task 6 – GlobePulse <span>↗</span></a>
-        <a href="week6/task7.html">Task 7 – CryptoPulse <span>↗</span></a>
-    </div>
-    <a class="week-page" href="week6/index.html">Open Week 6 Task List →</a>
-</section>
-
-<section class="week" id="week7">
-    <div class="week-heading">
-        <h2>Week 7</h2>
-        <span class="week-label">Book Search Project</span>
-    </div>
-    <div class="tasks">
-        <a href="week7/t1.html">Task 1 <span>↗</span></a>
-        <a href="week7/t2.html">Task 2 <span>↗</span></a>
-        <a href="week7/t3.html">Task 3 <span>↗</span></a>
-    </div>
-    <a class="week-page" href="week7/index.html">Open Week 7 Task List →</a>
-</section>
-
-<section class="week" id="week8">
-    <div class="week-heading">
-        <h2>Week 8</h2>
-        <span class="week-label">Forms and Validation</span>
-    </div>
-    <div class="project-grid">
-        <a class="project-card" href="week8/index.html">
-            <strong>Week 8 Form Project</strong>
-            <p>Form validation and interactive form practice.</p>
-            <small>Open project ↗</small>
-        </a>
-    </div>
-    <a class="week-page" href="week8/index.html">Open Week 8 Task List →</a>
-</section>
-
-<section class="week" id="week9">
-    <div class="week-heading">
-        <h2>Week 9 – Part 1: Accessibility</h2>
-        <span class="week-label">Accessibility Practice</span>
-    </div>
-    <p class="week-description">Accessible HTML, semantic elements, keyboard navigation, and website accessibility testing.</p>
-    <div class="project-grid">
-        <a class="project-card" href="week9%20part1/add%20alt%20text.html"><strong>01 · Add Alt Text</strong><p>Improving image accessibility with descriptive alternative text.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week9%20part1/fix%20div%20-button.html"><strong>02 · Fix Div and Button</strong><p>Using accessible interactive elements and button behavior.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week9%20part1/skip%20link.html"><strong>03 · Skip Link</strong><p>Creating keyboard-friendly website navigation.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week9%20part1/lighthouse%20audit.html"><strong>04 · Lighthouse Audit</strong><p>Checking website accessibility and performance.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week9%20part1/signup%20audit%20demo"><strong>05 · Signup Audit Demo</strong><p>Demonstrating accessibility improvements in a signup form.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week9%20part1/Week_9-1_Accessibility_Report.pdf"><strong>Accessibility Report</strong><p>My Week 9 Part 1 accessibility audit report.</p><small>View PDF ↗</small></a>
-    </div>
-</section>
-
-<section class="week" id="week9-part2">
-    <div class="week-heading">
-        <h2>Week 9 – Part 2: Performance</h2>
-        <span class="week-label">Website Optimization</span>
-    </div>
-    <div class="project-grid">
-        <a class="project-card" href="week%209%20part2/add%20defer.html"><strong>01 · Add Defer</strong><p>Understanding deferred JavaScript loading.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week%209%20part2/lighthouse%20fixes.html"><strong>02 · Lighthouse Fixes</strong><p>Applying website performance improvements.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week%209%20part2/lighthouse%20perfomance.html"><strong>03 · Lighthouse Audit</strong><p>Reviewing performance results.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week%209%20part2/lighthouse_performance_updated.html"><strong>04 · Updated Performance</strong><p>Viewing the updated optimization assignment.</p><small>View assignment ↗</small></a>
-        <a class="project-card" href="week%209%20part2/web%20p%20picture.html"><strong>05 · WebP Picture</strong><p>Comparing image formats using the picture element.</p><small>View assignment ↗</small></a>
-    </div>
-</section>
-
-<section class="week" id="week10">
-    <div class="week-heading">
-        <h2>Week 10 – Web Programming</h2>
-        <span class="week-label">Weekly Exercises</span>
-    </div>
-    <div class="project-grid">
-        <a class="project-card" href="week%2010/exercise1.html"><strong>Exercise 1</strong><p>Week 10 practical programming exercise.</p><small>View exercise ↗</small></a>
-        <a class="project-card" href="week%2010/exercise%202.html"><strong>Exercise 2</strong><p>Week 10 practical programming exercise.</p><small>View exercise ↗</small></a>
-        <a class="project-card" href="week%2010/exercise%203.html"><strong>Exercise 3</strong><p>Week 10 practical programming exercise.</p><small>View exercise ↗</small></a>
-        <a class="project-card" href="week%2010/exercise%205.html"><strong>Exercise 5</strong><p>Week 10 practical programming exercise.</p><small>View exercise ↗</small></a>
-        <a class="project-card" href="week%2010/exercise6.html"><strong>Exercise 6</strong><p>Week 10 practical programming exercise.</p><small>View exercise ↗</small></a>
-        <a class="project-card" href="week%2010/portfolio%20imdex.html"><strong>Portfolio Exercise</strong><p>My additional Week 10 portfolio practice page.</p><small>View exercise ↗</small></a>
-    </div>
-</section>
-
-<!-- WEEK 11 -->
-<section class="week-section" id="week11">
-    <div class="section-heading">
-        <p class="section-label">REACT COMPONENTS</p>
-        <h2>Week 11</h2>
-        <p>React components, props and conditional rendering.</p>
-    </div>
-
-    <div class="week-part">
-        <h3>Week 11 · Part 1 <span>4 Projects</span></h3>
-        <div class="project-grid">
-            <a class="project-card" href="https://smritishrestha52-a.github.io/webmain/week%2011/Greeting.html" target="_blank" rel="noopener">
-                <span class="project-number">01</span>
-                <h4>Greeting</h4>
-                <p>React greeting component</p>
-                <span class="project-link">View Project ↗</span>
-            </a>
-            <a class="project-card" href="https://smritishrestha52-a.github.io/webmain/week%2011/card.html" target="_blank" rel="noopener">
-                <span class="project-number">02</span>
-                <h4>Card Component</h4>
-                <p>Reusable card component</p>
-                <span class="project-link">View Project ↗</span>
-            </a>
-            <a class="project-card" href="https://smritishrestha52-a.github.io/webmain/week%2011/profile%20card.html" target="_blank" rel="noopener">
-                <span class="project-number">03</span>
-                <h4>Profile Card</h4>
-                <p>Profile card component</p>
-                <span class="project-link">View Project ↗</span>
-            </a>
-            <a class="project-card" href="https://smritishrestha52-a.github.io/webmain/week%2011/student%20list.html" target="_blank" rel="noopener">
-                <span class="project-number">04</span>
-                <h4>Student List</h4>
-                <p>Student information display</p>
-                <span class="project-link">View Project ↗</span>
-            </a>
-        </div>
-    </div>
-
-    <div class="week-part">
-        <h3>Week 11 · Part 2 <span>3 Projects</span></h3>
-        <div class="project-grid">
-            <a class="project-card" href="https://smritishrestha52-a.github.io/webmain/week%2011/conditional%20rendering.html" target="_blank" rel="noopener">
-                <span class="project-number">05</span>
-                <h4>Conditional Rendering</h4>
-                <p>Rendering UI based on conditions</p>
-                <span class="project-link">View Project ↗</span>
-            </a>
-            <a class="project-card" href="https://smritishrestha52-a.github.io/webmain/week%2011/product%20card.html" target="_blank" rel="noopener">
-                <span class="project-number">06</span>
-                <h4>Product Card</h4>
-                <p>Product information component</p>
-                <span class="project-link">View Project ↗</span>
-            </a>
-            <a class="project-card" href="https://smritishrestha52-a.github.io/webmain/week%2011/usercard.html" target="_blank" rel="noopener">
-                <span class="project-number">07</span>
-                <h4>User Card</h4>
-                <p>User information card component</p>
-                <span class="project-link">View Project ↗</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- WEEK 12: BOTH CLASS PROJECTS -->
-<section class="week" id="week12">
-    <div class="week-heading">
-        <h2>Week 12 – React State & Effects</h2>
-        <span class="week-label">Interactive React Projects</span>
-    </div>
-    <p class="week-description">
-        This week includes two separate React projects: a shopping cart
-        practicing state and a weather dashboard practicing useEffect and API fetching.
-    </p>
-    <div class="project-grid">
-        <a class="project-card"
-           href="week12/index.html"
-           target="_blank" rel="noopener">
-            <strong>Week 12 · Class 1 – Shopping Cart</strong>
-            <p>Practice React state with product selection, quantity controls, cart updates, and live total calculation.</p>
-            <small>Open Shopping Cart ↗</small>
-        </a>
-
-        <a class="project-card"
-           href="week12%20monday%20clss/weather.html"
-           target="_blank" rel="noopener">
-            <strong>Week 12 · Class 2 – Weather Dashboard</strong>
-            <p>Search cities, view current weather and a seven-day forecast, and practice useEffect with the Open-Meteo API.</p>
-            <small>Open Weather Dashboard ↗</small>
-        </a>
-    </div>
-</section>
-
-<section class="week" id="final-project">
-    <div class="week-heading">
-        <h2>Final Project</h2>
-        <span class="week-label">Web Programming Final Project</span>
-    </div>
-    <div class="project-grid">
-        <a class="project-card" href="final%20project/index.html"><strong>Project Home</strong><p>Open the main page of my final project.</p><small>View project ↗</small></a>
-        <a class="project-card" href="final%20project/part1%20index.html"><strong>Project Part 1</strong><p>View the first part of the project proposal.</p><small>View part 1 ↗</small></a>
-        <a class="project-card" href="final%20project/part2%20index.html"><strong>Project Part 2</strong><p>View the second part of the project proposal.</p><small>View part 2 ↗</small></a>
-    </div>
-</section>
-
-</main>
-
-<footer>
-    <strong>Made with care by Shrestha Smriti ♡</strong>
-    <p>Web Programming | Gachon University</p>
-    <p>Learning, creating, and improving one project at a time.</p>
-    <p>© 2026 My Learning Portfolio</p>
-</footer>
-
-</body>
-</html>
