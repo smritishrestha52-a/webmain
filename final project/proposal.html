@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BiHE.COM | Project Proposal</title>
+
+<style>
+:root {
+    --ink: #25243a;
+    --muted: #6f6b83;
+    --pink: #ef8eaa;
+    --rose: #fff0f4;
+    --lav: #f0edff;
+    --purple: #7566b4;
+    --line: #eee8f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #fffafd;
+    color: var(--ink);
+    font-family: Inter, Arial, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fffdfbf0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 6%;
+}
+
+.brand {
+    font-weight: 900;
+    font-size: 1.3rem;
+}
+
+.brand span,
+.hero h1 span {
+    color: var(--pink);
+}
+
+.navlinks {
+    display: flex;
+    gap: 22px;
+    font-size: .9rem;
+    color: var(--muted);
+}
+
+.navlinks a:hover {
+    color: var(--purple);
+}
+
+.hero {
+    padding: 90px 6% 75px;
+    background:
+        radial-gradient(circle at 85% 15%, #f9dce7 0, transparent 28%),
+        linear-gradient(135deg, #fff5f7, #f4f1ff 70%, #fff);
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    border: 1px solid #f2c9d6;
+    background: white;
+    border-radius: 99px;
+    padding: 7px 15px;
+    color: #a75c78;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 6.4rem);
+    line-height: 1;
+    letter-spacing: -5px;
+    margin: 24px 0 12px;
+}
+
+.tagline {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--purple);
+}
+
+.intro {
+    max-width: 690px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 21px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: white;
+    font-weight: 750;
+    display: inline-block;
+}
+
+.btn.secondary {
+    background: white;
+    color: var(--ink);
+    border: 1px solid var(--line);
+}
+
+.wrap {
+    width: min(1080px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 76px 0;
+}
+
+.kicker {
+    color: #c16d8b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 850;
+    font-size: .75rem;
+}
+
+.section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin: 10px 0 12px;
+}
+
+.lead {
+    color: var(--muted);
+    max-width: 690px;
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 23px;
+    box-shadow: 0 10px 30px #39204408;
+}
+
+.num {
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
+    background: var(--rose);
+    display: grid;
+    place-items: center;
+    color: #ba6484;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin: 0 0 7px;
+    font-size: 1.08rem;
+}
+
+.card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: .92rem;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.panel {
+    border-radius: 24px;
+    padding: 28px;
+    background: linear-gradient(145deg, #fff1f5, #f5f2ff);
+    border: 1px solid #f1e6ee;
+}
+
+.panel h3 {
+    margin-top: 0;
+}
+
+.panel ul {
+    padding-left: 20px;
+    color: var(--muted);
+}
+
+.panel li {
+    margin: 9px 0;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.step {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.step b {
+    display: block;
+    color: var(--pink);
+    font-size: 1.7rem;
+}
+
+.step h3 {
+    margin: 6px 0;
+}
+
+.step p {
+    margin: 0;
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.pill {
+    background: white;
+    border: 1px solid var(--line);
+    padding: 9px 15px;
+    border-radius: 99px;
+    font-weight: 750;
+    color: var(--purple);
+}
+
+.note {
+    margin-top: 20px;
+    padding: 14px 17px;
+    border-left: 4px solid var(--pink);
+    background: #fff5f8;
+    border-radius: 0 12px 12px 0;
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.footer {
+    background: #29263d;
+    color: white;
+    padding: 36px 6%;
+    text-align: center;
+}
+
+.footer p {
+    color: #d2cede;
+    margin: 5px;
+}
+
+.footer strong {
+    color: #ffc1d2;
+}
+
+.top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--purple);
+    color: white;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+}
+
+@media(max-width:760px) {
+    .nav {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .navlinks {
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    .grid,
+    .split {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width:480px) {
+    .grid,
+    .split,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+    <a class="brand" href="#home">BiHE<span>.</span>COM</a>
+
+    <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#journey">User Journey</a>
+        <a href="#development">Development</a>
+    </div>
+</nav>
+
+<header class="hero" id="home">
+    <span class="eyebrow">WEB PROGRAMMING · PROJECT PROPOSAL</span>
+
+    <h1>BiHE<span>.</span>COM</h1>
+
+    <p class="tagline">Two hearts. One Wi-Fi password.</p>
+
+    <p class="intro">
+        A proposed matrimonial website that helps people explore
+        compatible partners through a simple, friendly and
+        easy-to-use experience.
+    </p>
+
+    <div class="actions">
+        <a class="btn" href="#features">Explore the Proposal ↓</a>
+        <a class="btn secondary" href="#about">Discover the Idea</a>
+    </div>
+</header>
+
+<main>
+
+<section class="section" id="about">
+    <div class="wrap">
+        <span class="kicker">01 · Project Background</span>
+
+        <h2>Finding a meaningful connection<br>should feel simple.</h2>
+
+        <p class="lead">
+            BiHE.COM is designed to make the first steps of partner
+            discovery feel clear, comfortable and approachable.
+        </p>
+
+        <div class="split">
+
+            <article class="panel">
+                <h3>The Challenge</h3>
+                <ul>
+                    <li>Some matrimonial services can feel formal or complicated for new users.</li>
+                    <li>Users need a clear way to search and understand profiles.</li>
+                    <li>Family expectations can also be part of the experience.</li>
+                </ul>
+            </article>
+
+            <article class="panel">
+                <h3>Our Project Goal</h3>
+                <ul>
+                    <li>Create a simple and friendly matrimonial website.</li>
+                    <li>Make the main search options easy to find.</li>
+                    <li>Present profiles in a clean, readable format.</li>
+                    <li>Use light humour while keeping the experience respectful.</li>
+                </ul>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="section" id="features" style="background:#fff5f8">
+    <div class="wrap">
+
+        <span class="kicker">02 · Proposed Features</span>
+
+        <h2>More than just a profile page.</h2>
+
+        <p class="lead">
+            The website combines practical matrimonial features
+            with a few light interactive elements.
+        </p>
+
+        <div class="grid">
+
+            <article class="card">
+                <div class="num">01</div>
+                <h3>Search for Matches</h3>
+                <p>Choose who you are looking for, an age range, religion and location.</p>
+            </article>
+
+            <article class="card">
+                <div class="num">02</div>
+                <h3>Browse Sample Profiles</h3>
+                <p>View profile cards with basic details, short bios and Like / Pass actions.</p>
+            </article>
+
+            <article class="card">
+                <div class="num">03</div>
+                <h3>Interactive Tools</h3>
+                <p>Try the compatibility calculator, spouse quiz and Dealbreaker Bingo.</p>
+            </article>
+
+            <article class="card">
+                <div class="num">04</div>
+                <h3>Understand the Service</h3>
+                <p>Explore how it works, compare plans and open common questions in the FAQ.</p>
+            </article>
+
+            <article class="card">
+                <div class="num">05</div>
+                <h3>Parents’ Mode</h3>
+                <p>Change selected text into a humorous parent-style voice.</p>
+            </article>
+
+            <article class="card">
+                <div class="num">06</div>
+                <h3>Join the Platform</h3>
+                <p>Complete a sign-up form with basic information and simple input validation.</p>
+            </article>
+
+        </div>
+
+        <p class="note">
+            Note: Profiles and matches in the current demo use sample data.
+            They are not real users.
+        </p>
+
+    </div>
+</section>
+
+<section class="section" id="journey">
+    <div class="wrap">
+
+        <span class="kicker">03 · User Experience</span>
+
+        <h2>A simple journey from search to sign-up.</h2>
+
+        <p class="lead">
+            Visitors can move through the main sections in a few clear steps.
+        </p>
+
+        <div class="steps">
+
+            <article class="step">
+                <b>01</b>
+                <h3>Search</h3>
+                <p>Select basic match preferences.</p>
+            </article>
+
+            <article class="step">
+                <b>02</b>
+                <h3>Explore</h3>
+                <p>Browse profile cards and bios.</p>
+            </article>
+
+            <article class="step">
+                <b>03</b>
+                <h3>Interact</h3>
+                <p>Like a profile or try a fun tool.</p>
+            </article>
+
+            <article class="step">
+                <b>04</b>
+                <h3>Join</h3>
+                <p>Complete the sign-up form.</p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="section" id="development" style="background:#f5f2ff">
+    <div class="wrap">
+
+        <span class="kicker">04 · Development Plan</span>
+
+        <h2>Start with a prototype.<br>Expand in stages.</h2>
+
+        <p class="lead">
+            The current version focuses on front-end functionality,
+            with room for future development.
+        </p>
+
+        <div class="split">
+
+            <article class="card">
+                <h3>Technology</h3>
+
+                <div class="tech">
+                    <span class="pill">HTML</span>
+                    <span class="pill">CSS</span>
+                    <span class="pill">Vanilla JavaScript</span>
+                </div>
+
+                <p style="margin-top:16px">
+                    HTML builds the page structure, CSS controls the
+                    visual layout, and JavaScript adds interactions
+                    such as buttons, quiz logic and form validation.
+                </p>
+            </article>
+
+            <article class="card">
+                <h3>Current Prototype</h3>
+
+                <p>
+                    Responsive single-page website, sample profiles,
+                    interactive features and front-end form validation.
+                    No real accounts or data storage.
+                </p>
+
+                <h3 style="margin-top:22px">Future Development</h3>
+
+                <p>
+                    Backend and database, secure registration and login,
+                    real matching and messaging, profile verification,
+                    privacy, safety and moderation.
+                </p>
+            </article>
+
+        </div>
+
+        <p class="note">
+            Expected result: a clear, approachable prototype that
+            demonstrates core web programming skills and can be
+            developed further.
+        </p>
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <strong>BiHE.COM</strong>
+    <p>Two hearts. One Wi-Fi password.</p>
+    <p>Web Programming · Project Proposal</p>
+    <p>Prepared for Web Programming Class</p>
+</footer>
+
+<a class="top" href="#home" aria-label="Back to top">↑</a>
+
+</body>
+</html>
