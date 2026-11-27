@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>03 Fetch User Data | Smriti Shrestha</title><link rel="stylesheet" href="style.css"><script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script></head>
+<body><div class="wrap"><header class="top"><div class="brand">SMRITI SHRESTHA · WEB PROGRAMMING</div><nav class="nav"><a href="index.html">← All six demos</a></nav></header>
+<section class="hero"><div class="eyebrow">Week 12 Friday · React Effects · Professor example 03</div><h1>Fetch User Data</h1><p class="lead">Fetch sample user data on mount, with loading and error states.</p><div class="stats"><span class="pill">Gachon University</span><span class="pill">Computer Engineering</span><span class="pill">React · useEffect</span></div></section>
+<section class="panel"><div id="root"><p>Loading interactive React demo…</p></div></section>
+<section class="panel"><h2>What to notice</h2><p>Load a sample user from the JSONPlaceholder API with loading and error states.</p><p class="complete">Fetch sample user data on mount, with loading and error states.</p></section>
+<footer class="footer">Smriti Shrestha · Week 12 Friday · <a href="index.html">Back to task archive</a> · <a href="https://smritishrestha52-a.github.io/webmain/">Main portfolio</a></footer></div>
+<script type="text/babel">const {useState,useEffect,useRef}=React;
+function Demo(){const [id,setId]=useState(1),[user,setUser]=useState(null),[loading,setLoading]=useState(false),[error,setError]=useState("");
+useEffect(()=>{let alive=true;setLoading(true);setError("");fetch("https://jsonplaceholder.typicode.com/users/"+id).then(r=>{if(!r.ok)throw Error("User not found");return r.json()}).then(d=>{if(alive)setUser(d)}).catch(e=>{if(alive)setError(e.message)}).finally(()=>{if(alive)setLoading(false)});return()=>{alive=false}},[id]);
+return <><label>User ID (1–10): </label><input type="number" min="1" max="10" value={id} onChange={e=>setId(Math.min(10,Math.max(1,Number(e.target.value)||1)))}/>{loading&&<p>Loading user…</p>}{error&&<p style={{color:"crimson"}}>{error}</p>}{user&&<div className="result"><b>{user.name}</b><br/>{user.email}<br/>{user.company.name}</div>}</>}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);</script></body></html>

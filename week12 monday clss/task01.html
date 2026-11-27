@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>01 Effect Syntax | Smriti Shrestha</title><link rel="stylesheet" href="style.css"><script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script></head>
+<body><div class="wrap"><header class="top"><div class="brand">SMRITI SHRESTHA · WEB PROGRAMMING</div><nav class="nav"><a href="index.html">← All six demos</a></nav></header>
+<section class="hero"><div class="eyebrow">Week 12 Friday · React Effects · Professor example 01</div><h1>Effect Syntax</h1><p class="lead">Run an effect after React renders.</p><div class="stats"><span class="pill">Gachon University</span><span class="pill">Computer Engineering</span><span class="pill">React · useEffect</span></div></section>
+<section class="panel"><div id="root"><p>Loading interactive React demo…</p></div></section>
+<section class="panel"><h2>What to notice</h2><p>Run an effect after React renders. See the effect message update after the first paint.</p><p class="complete">Run an effect after React renders.</p></section>
+<footer class="footer">Smriti Shrestha · Week 12 Friday · <a href="index.html">Back to task archive</a> · <a href="https://smritishrestha52-a.github.io/webmain/">Main portfolio</a></footer></div>
+<script type="text/babel">const {useState,useEffect,useRef}=React;
+function Demo(){const [n,setN]=useState(0);const [message,setMessage]=useState("Waiting for the first effect…");
+useEffect(()=>{setMessage("Effect ran after render. Current count: "+n)},[n]);
+return <><p>Click the button. React renders first, then the effect updates this message.</p><div className="big">{n}</div><button className="action" onClick={()=>setN(n+1)}>Increase count</button><div className="result">{message}</div></>}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);</script></body></html>

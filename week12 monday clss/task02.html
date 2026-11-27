@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>02 Three Dependency Patterns | Smriti Shrestha</title><link rel="stylesheet" href="style.css"><script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script></head>
+<body><div class="wrap"><header class="top"><div class="brand">SMRITI SHRESTHA · WEB PROGRAMMING</div><nav class="nav"><a href="index.html">← All six demos</a></nav></header>
+<section class="hero"><div class="eyebrow">Week 12 Friday · React Effects · Professor example 02</div><h1>Three Dependency Patterns</h1><p class="lead">Compare an empty dependency array, a value dependency, and no dependency array.</p><div class="stats"><span class="pill">Gachon University</span><span class="pill">Computer Engineering</span><span class="pill">React · useEffect</span></div></section>
+<section class="panel"><div id="root"><p>Loading interactive React demo…</p></div></section>
+<section class="panel"><h2>What to notice</h2><p>Compare an empty dependency array, a value dependency, and no dependency array.</p><p class="complete">Compare an empty dependency array, a value dependency, and no dependency array.</p></section>
+<footer class="footer">Smriti Shrestha · Week 12 Friday · <a href="index.html">Back to task archive</a> · <a href="https://smritishrestha52-a.github.io/webmain/">Main portfolio</a></footer></div>
+<script type="text/babel">const {useState,useEffect,useRef}=React;
+function Demo(){const [name,setName]=useState("Smriti");const [tick,setTick]=useState(0);const [once,setOnce]=useState(0);const [changed,setChanged]=useState(0);const everyRef=React.useRef(0);
+useEffect(()=>{setOnce(v=>v+1)},[]);useEffect(()=>{setChanged(v=>v+1)},[name]);useEffect(()=>{everyRef.current+=1;console.log("Effect without dependency array ran")});
+return <><label>Change the name: </label><input value={name} onChange={e=>setName(e.target.value)}/><button className="action" onClick={()=>setTick(t=>t+1)}>Force another render</button><p>Other render trigger: {tick}</p><div className="result">Effect with []: {once} run(s) (mount only)<br/>Effect with [name]: {changed} run(s) (when name changes)<br/>Effect with no array: runs after every render (see console)</div></>}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);</script></body></html>

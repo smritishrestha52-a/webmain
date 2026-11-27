@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>07 Race Condition | Smriti Shrestha</title><link rel="stylesheet" href="style.css"><script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script></head>
+<body><div class="wrap"><header class="top"><div class="brand">SMRITI SHRESTHA · WEB PROGRAMMING</div><nav class="nav"><a href="index.html">← All six demos</a></nav></header>
+<section class="hero"><div class="eyebrow">Week 12 Friday · React Effects · Professor example 12</div><h1>Race Condition & Fix</h1><p class="lead">See how a slower old response can overwrite a newer response, and prevent it.</p><div class="stats"><span class="pill">Gachon University</span><span class="pill">Computer Engineering</span><span class="pill">React · useEffect</span></div></section>
+<section class="panel"><div id="root"><p>Loading interactive React demo…</p></div></section>
+<section class="panel"><h2>What to notice</h2><p>Start a slow request and then a fast request. Compare the unsafe result with the guarded result.</p><p class="complete">See how a slower old response can overwrite a newer response, and prevent it.</p></section>
+<footer class="footer">Smriti Shrestha · Week 12 Friday · <a href="index.html">Back to task archive</a> · <a href="https://smritishrestha52-a.github.io/webmain/">Main portfolio</a></footer></div>
+<script type="text/babel">const {useState,useEffect,useRef}=React;
+function Demo(){const [result,setResult]=useState("No request yet"),[safe,setSafe]=useState(true);const latest=React.useRef(0);
+function send(label,delay){const request=++latest.current;setResult("Waiting for "+label+" response…");setTimeout(()=>{if(!safe||request===latest.current)setResult("Displayed response: "+label);},delay)}
+return <><div className="actions"><button onClick={()=>send("SLOW (2.5 seconds)",2500)}>Send slow request</button><button className="secondary" onClick={()=>send("FAST (0.7 seconds)",700)}>Send fast request</button></div><label><input type="checkbox" checked={safe} onChange={e=>setSafe(e.target.checked)}/> Ignore older responses (fix)</label><div className="result">{result}</div><p className="small">Test: click SLOW, then quickly click FAST. With the fix enabled, the older slow response is ignored. Turn the fix off to see the stale response overwrite the newer one.</p></>}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);</script></body></html>
