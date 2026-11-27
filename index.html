@@ -525,6 +525,176 @@ footer strong { color: #416d98; }
         </a>
     </div>
 </section>
+    
+<!-- WEEK 12: REACT EFFECTS -->
+<section id="week12" class="week12-section">
+  <style>
+    .week12-section {
+      padding: 65px 22px;
+      margin: 35px auto;
+      max-width: 1050px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #edf6ff, #f5f4ff);
+      color: #263653;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .week12-section .week-label {
+      color: #6497c5;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .week12-section h2 {
+      font-size: 32px;
+      margin: 12px 0;
+    }
+
+    .week12-section .week-desc {
+      color: #71809b;
+      line-height: 1.7;
+    }
+
+    .week12-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .week12-card {
+      background: white;
+      border: 1px solid #e0eafa;
+      border-radius: 19px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(75, 111, 160, .07);
+    }
+
+    .week12-card h3 {
+      margin-top: 0;
+      color: #345a83;
+    }
+
+    .week12-card p {
+      color: #78869d;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .week12-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      background: #76a9d8;
+      color: white !important;
+      text-decoration: none;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .week12-btn:hover {
+      background: #578fca;
+    }
+
+    #react-counter {
+      font-size: 38px;
+      font-weight: 800;
+      color: #669bd0;
+      margin: 15px 0;
+    }
+  </style>
+
+  <div class="week-label">Week 12 · Friday</div>
+  <h2>React Effects & useEffect ✨</h2>
+
+  <p class="week-desc">
+    Learning how React handles side effects, state changes,
+    API requests and cleanup functions.
+  </p>
+
+  <div class="week12-grid">
+
+    <!-- Weather Dashboard -->
+    <div class="week12-card">
+      <h3>☁️ Weather Dashboard</h3>
+      <p>
+        A live weather application using React, useEffect
+        and the Open-Meteo API. Search by city or coordinates.
+      </p>
+      <a class="week12-btn" href="week12/">
+        Open Weather App →
+      </a>
+    </div>
+
+    <!-- React State Demo -->
+    <div class="week12-card">
+      <h3>⚛️ React State Demo</h3>
+      <p>
+        An interactive React component demonstrating
+        how useState updates the interface.
+      </p>
+
+      <div id="week12-react-demo"></div>
+    </div>
+
+    <!-- useEffect Learning -->
+    <div class="week12-card">
+      <h3>💻 What I Learned</h3>
+      <p>
+        • useEffect and dependency arrays<br>
+        • Data fetching with APIs<br>
+        • Loading and error states<br>
+        • Cleanup with AbortController<br>
+        • React state management
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- React CDN (add only if React is not already loaded) -->
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<!-- Interactive React Component -->
+<script type="text/babel">
+  const { useState } = React;
+
+  function Week12ReactDemo() {
+    const [count, setCount] = useState(0);
+
+    return (
+      <div>
+        <div id="react-counter">{count}</div>
+
+        <button
+          className="week12-btn"
+          onClick={() => setCount(count + 1)}
+        >
+          Increase +
+        </button>
+
+        <button
+          className="week12-btn"
+          style={{background: "#a0a9d8", marginLeft: "7px"}}
+          onClick={() => setCount(0)}
+        >
+          Reset
+        </button>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(
+    document.getElementById("week12-react-demo")
+  ).render(<Week12ReactDemo />);
+</script>
+
 
 <section class="week" id="final-project">
     <div class="week-heading">
