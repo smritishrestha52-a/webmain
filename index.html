@@ -767,61 +767,330 @@ footer strong {color:#456b94}
         </div>
     </div>
 
-    <!-- CLASS 2 -->
-    <div class="week-part">
-        <h3>Class 2 · Weather & React Effects</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weather Dashboard | Smriti Shrestha</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#659bc9;--dark:#345879;--ink:#405b76;--muted:#8298ad;--line:#dfebf5;--soft:#edf6fd;--white:#fff;--shadow:0 14px 38px #587fa51a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 5%,#dcefff,transparent 30%),radial-gradient(circle at 95% 20%,#e9e8ff,transparent 28%),linear-gradient(140deg,#f6fbff,#f8f9ff 60%,#fff)}
+button,input{font:inherit}
+.page{width:min(1050px,calc(100% - 30px));margin:auto;padding:28px 0 55px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:32px}
+.brand{font-size:18px;font-weight:900;color:var(--dark)}
+.logo{display:inline-grid;place-items:center;width:42px;height:42px;margin-right:9px;border-radius:15px;background:linear-gradient(135deg,#80b9e5,#a8a4e8);color:white;box-shadow:0 7px 18px #8eb5db55}
+.course,.eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;color:var(--blue);text-transform:uppercase}
+.hero{padding:32px;border:1px solid #fff;border-radius:28px;background:linear-gradient(120deg,#e3f3ffdd,#f5f3ffdd);box-shadow:var(--shadow);margin-bottom:20px;position:relative;overflow:hidden}
+.hero:after{content:"☁️";position:absolute;right:35px;top:25px;font-size:75px;opacity:.55;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-9px)}}
+h1{font:700 clamp(36px,6vw,54px) 'Playfair Display',serif;color:var(--dark);margin:12px 0}
+.subtitle{max-width:570px;color:var(--muted);line-height:1.8;margin:0}
+.pill{display:inline-block;margin-top:18px;padding:8px 13px;background:#ffffffb8;border:1px solid #dceaf7;border-radius:30px;color:var(--blue);font-size:11px;font-weight:900}
+.search{display:flex;gap:10px;flex-wrap:wrap;padding:14px;background:#ffffffd9;border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow)}
+input{flex:1;min-width:180px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:#fbfdff;outline:none}
+input:focus{border-color:#83b7df;box-shadow:0 0 0 3px #e4f2ff}
+button{cursor:pointer;border:0;border-radius:12px;padding:12px 17px;font-weight:900;transition:.2s}
+button:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(130deg,#619fd0,#8796d5);color:white;box-shadow:0 6px 15px #719bc044}
+.soft{background:#eaf4fd;color:#527da4}
+.hint,.status{font-size:12px;color:var(--muted);margin:10px 5px}
+.status{min-height:25px;font-size:14px}
+.error{padding:12px;background:#fff0f3;color:#a64e68;border-radius:12px}
+.card{padding:25px;background:#ffffffdf;border:1px solid #fff;border-radius:23px;box-shadow:var(--shadow);margin-top:16px}
+.weather{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;background:linear-gradient(130deg,#fff,#f0f7ff,#f5f2ff)}
+.location{font-weight:900;color:var(--muted);font-size:12px}
+.current{display:flex;align-items:center;gap:15px;margin:15px 0}
+.icon{font-size:65px;filter:drop-shadow(0 6px 8px #9bb9d944)}
+.temp{font-size:76px;line-height:1;font-weight:900;letter-spacing:-5px;color:var(--dark)}
+.condition{font-size:18px;font-weight:900}
+.updated{font-size:12px;color:var(--muted);margin-top:12px}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric{padding:16px;background:#f4f9ff;border:1px solid var(--line);border-radius:16px}
+.metric small{display:block;font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase}
+.metric strong{display:block;margin-top:7px;font-size:22px;color:var(--dark)}
+.section-title{font-size:20px;color:var(--dark);margin:0 0 15px;font-weight:900}
+.forecast{display:grid;grid-template-columns:repeat(7,1fr);gap:9px}
+.day{text-align:center;padding:14px 5px;background:linear-gradient(160deg,#fff,#f0f7ff);border:1px solid var(--line);border-radius:15px}
+.day b,.day small{display:block}
+.day .dayicon{font-size:25px;margin:8px 0}
+.day small{color:var(--muted);font-size:11px}
+.day strong{color:var(--dark);font-size:13px}
+.effects-heading{text-align:center;padding:30px 15px 15px}
+.effects-heading h2{font:700 30px 'Playfair Display',serif;color:var(--dark);margin:8px}
+.effects-heading p{font-size:13px;color:var(--muted)}
+.task{padding:21px;background:#ffffffdf;border:1px solid var(--line);border-radius:19px;margin:13px 0;box-shadow:0 8px 24px #587fa510}
+.task-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.number{display:grid;place-items:center;width:36px;height:36px;flex-shrink:0;border-radius:12px;background:#e5f2ff;color:#5287b5;font-weight:900}
+.task h3{margin:0;color:var(--dark);font-size:16px}
+.task p{font-size:13px;line-height:1.7;color:var(--muted)}
+.demo{padding:13px;background:#f2f8fe;border-radius:13px;font-size:13px;margin-top:12px}
+.demo button{margin:4px 4px 4px 0}
+.result{font-weight:900;color:#4d82b1;margin-top:9px;min-height:20px}
+.clock{font-size:26px;color:var(--dark);font-weight:900}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:35px 10px}
+@media(max-width:700px){.weather{grid-template-columns:1fr}.forecast{grid-template-columns:repeat(4,1fr)}header{align-items:flex-start;flex-direction:column}.hero{padding:25px}.hero:after{font-size:48px;right:15px}.temp{font-size:65px}}
+@media(max-width:420px){.forecast{grid-template-columns:repeat(2,1fr)}.metrics{gap:7px}.metric{padding:12px}}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+ <div class="brand"><span class="logo">☁</span>Cloudnine Weather</div>
+ <div class="course">Gachon University · Web Programming</div>
+</header>
 
-        <div class="project-grid">
-            <a class="project-card week12-highlight"
-               href="week12%20monday%20clss/weather.html"
-               target="_blank" rel="noopener">
-                <span class="project-number">WEATHER PROJECT</span>
-                <strong>🌤️ Weather Dashboard</strong>
-                <p>
-                    City search, current weather, seven-day forecast,
-                    location search and API fetching.
-                </p>
-                <small>Open Weather Dashboard ↗</small>
-            </a>
-
-            <div class="project-card">
-                <span class="project-number">EXERCISE 01</span>
-                <strong>Effect Syntax</strong>
-                <p>Understanding the basic useEffect structure.</p>
-            </div>
-
-            <div class="project-card">
-                <span class="project-number">EXERCISE 02</span>
-                <strong>Dependency Patterns</strong>
-                <p>Empty, missing and populated dependency arrays.</p>
-            </div>
-
-            <div class="project-card">
-                <span class="project-number">EXERCISE 03</span>
-                <strong>Fetch User Data</strong>
-                <p>Fetching user information with useEffect.</p>
-            </div>
-
-            <div class="project-card">
-                <span class="project-number">EXERCISE 04</span>
-                <strong>Live Clock & Cleanup</strong>
-                <p>Using intervals and cleanup functions.</p>
-            </div>
-
-            <div class="project-card">
-                <span class="project-number">EXERCISE 05</span>
-                <strong>AbortController</strong>
-                <p>Canceling fetch requests when needed.</p>
-            </div>
-
-            <div class="project-card">
-                <span class="project-number">EXERCISE 06</span>
-                <strong>Race Condition Fix</strong>
-                <p>Handling overlapping requests and stale responses.</p>
-            </div>
-        </div>
-    </div>
+<section class="hero">
+ <div class="eyebrow">MY WEATHER CORNER ✦</div>
+ <h1>A little sunshine<br>for your day.</h1>
+ <p class="subtitle">Explore current weather and the weekly forecast. Search any city or use your location.</p>
+ <span class="pill">☀ Powered by Open-Meteo · No API key needed</span>
 </section>
+
+<form class="search" id="searchForm">
+ <input id="city" value="Seoul" placeholder="Search a city or latitude, longitude" aria-label="City or coordinates">
+ <button class="primary">Search weather</button>
+ <button type="button" class="soft" id="locate">◎ My location</button>
+</form>
+<p class="hint">You can enter a city name or coordinates, such as 37.5665, 126.9780.</p>
+<div class="status" id="status" aria-live="polite">Loading Seoul weather...</div>
+
+<section id="weatherArea"></section>
+
+<section class="effects-heading">
+ <div class="eyebrow">REACT PRACTICE</div>
+ <h2>useEffect Exercises</h2>
+ <p>Six practical exercises exploring effects, dependencies, data fetching and cleanup.</p>
+</section>
+
+<section class="task" id="effect-01">
+ <div class="task-head"><span class="number">01</span><h3>Effect Syntax</h3></div>
+ <p>useEffect runs after a component renders. This example runs an effect when the component loads.</p>
+ <div class="demo">
+  <button class="primary" id="runEffect">Run Effect</button>
+  <div class="result" id="effectResult">Waiting for effect...</div>
+ </div>
+</section>
+
+<section class="task" id="effect-02">
+ <div class="task-head"><span class="number">02</span><h3>Three Dependency Patterns</h3></div>
+ <p>Compare an effect with no dependency array, an empty array, and a dependency value.</p>
+ <div class="demo">
+  <button class="soft" id="changeCount">Change value</button>
+  <div class="result" id="countResult">Value: 0</div>
+  <div class="result" id="dependencyResult">Effect runs when the value changes.</div>
+ </div>
+</section>
+
+<section class="task" id="effect-03">
+ <div class="task-head"><span class="number">03</span><h3>Fetch User Data</h3></div>
+ <p>Fetch a GitHub profile from an API when the username changes.</p>
+ <div class="demo">
+  <input id="username" value="octocat" aria-label="GitHub username">
+  <button class="primary" id="fetchUser">Fetch User</button>
+  <div class="result" id="userResult">Enter a username and fetch profile data.</div>
+ </div>
+</section>
+
+<section class="task" id="effect-04">
+ <div class="task-head"><span class="number">04</span><h3>Live Clock & Cleanup</h3></div>
+ <p>A timer updates every second. The cleanup function clears the interval when stopped.</p>
+ <div class="demo">
+  <div class="clock" id="clock">--:--:--</div>
+  <button class="primary" id="startClock">Start clock</button>
+  <button class="soft" id="stopClock">Stop clock</button>
+  <div class="result" id="clockStatus">Clock stopped.</div>
+ </div>
+</section>
+
+<section class="task" id="effect-05">
+ <div class="task-head"><span class="number">05</span><h3>AbortController</h3></div>
+ <p>AbortController cancels a fetch request when it is no longer needed.</p>
+ <div class="demo">
+  <button class="primary" id="startFetch">Start request</button>
+  <button class="soft" id="cancelFetch">Cancel request</button>
+  <div class="result" id="abortResult">No active request.</div>
+ </div>
+</section>
+
+<section class="task" id="effect-06">
+ <div class="task-head"><span class="number">06</span><h3>Race Condition Fix</h3></div>
+ <p>When requests finish in a different order, only the latest request should update the screen.</p>
+ <div class="demo">
+  <button class="primary" id="requestA">Request A (slow)</button>
+  <button class="soft" id="requestB">Request B (fast)</button>
+  <div class="result" id="raceResult">Waiting for a request...</div>
+ </div>
+</section>
+
+<footer>Made with care by Shrestha Smriti ♡<br>Computer Engineering · Gachon University<br>React · useEffect · APIs · 2026</footer>
+</div>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+const {useState,useEffect}=React;
+const descriptions={0:["Clear sky","☀️"],1:["Mainly clear","🌤️"],2:["Partly cloudy","⛅"],3:["Overcast","☁️"],45:["Fog","🌫️"],48:["Fog","🌫️"],51:["Drizzle","🌦️"],53:["Drizzle","🌦️"],55:["Heavy drizzle","🌧️"],61:["Light rain","🌦️"],63:["Rain","🌧️"],65:["Heavy rain","🌧️"],71:["Light snow","🌨️"],73:["Snow","❄️"],75:["Heavy snow","❄️"],80:["Rain showers","🌦️"],81:["Rain showers","🌧️"],82:["Heavy showers","⛈️"],95:["Thunderstorm","⛈️"],96:["Thunderstorm","⛈️"],99:["Thunderstorm","⛈️"]};
+
+function Weather(){
+ const [weather,setWeather]=useState(null),[loading,setLoading]=useState(false);
+ const [error,setError]=useState("");
+ const [place,setPlace]=useState("Seoul");
+ async function load(query){
+  setLoading(true);setError("");setWeather(null);
+  try{
+   let lat,lon,name;
+   if(typeof query==="object"){lat=query.lat;lon=query.lon;name=query.name||"Your location";}
+   else{
+    const coord=query.match(/^(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)$/);
+    if(coord){lat=+coord[1];lon=+coord[2];name=query;}
+    else{
+     const g=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(query)+"&count=1&language=en");
+     const gd=await g.json();if(!gd.results?.length)throw Error("City not found. Try another spelling.");
+     const p=gd.results[0];lat=p.latitude;lon=p.longitude;name=[p.name,p.country].filter(Boolean).join(", ");
+    }
+   }
+   if(!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180)throw Error("Please enter valid coordinates.");
+   const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=7&wind_speed_unit=kmh&timezone=auto`);
+   if(!r.ok)throw Error("Weather service is unavailable.");
+   const d=await r.json();setWeather({...d,place:name});setPlace(query);
+  }catch(e){setError(e.message||"Unable to load weather.");}
+  finally{setLoading(false);}
+ }
+ useEffect(()=>{load("Seoul");},[]);
+ const current=weather?.current,info=descriptions[current?.weather_code]||["Current conditions","🌍"];
+ return <div>
+  {loading&&<div className="status">☁ Finding your forecast...</div>}
+  {error&&<div className="status error">{error}</div>}
+  {current&&weather&&<React.Fragment>
+   <section className="card weather">
+    <div>
+     <div className="location">CURRENT WEATHER · {weather.place}</div>
+     <div className="current"><span className="icon">{info[1]}</span><span className="temp">{Math.round(current.temperature_2m)}°</span></div>
+     <div className="condition">{info[0]}</div>
+     <div className="updated">Feels like {Math.round(current.apparent_temperature)}°C · {current.time.replace("T"," ")}</div>
+    </div>
+    <div className="metrics">
+     <div className="metric"><small>💨 Wind speed</small><strong>{current.wind_speed_10m} km/h</strong></div>
+     <div className="metric"><small>💧 Humidity</small><strong>{current.relative_humidity_2m}%</strong></div>
+     <div className="metric"><small>🌧 Precipitation</small><strong>{current.precipitation} mm</strong></div>
+     <div className="metric"><small>🌡 Feels like</small><strong>{Math.round(current.apparent_temperature)}°C</strong></div>
+    </div>
+   </section>
+   <section className="card">
+    <h2 className="section-title">☀ Your 7-Day Forecast</h2>
+    <div className="forecast">{weather.daily.time.map((date,i)=>{
+     const d=new Date(date+"T12:00:00"),desc=descriptions[weather.daily.weather_code[i]]||["Cloudy","☁️"];
+     return <div className="day" key={date}><b>{i===0?"Today":d.toLocaleDateString("en",{weekday:"short"})}</b><div className="dayicon">{desc[1]}</div><small>{desc[0]}</small><strong>{Math.round(weather.daily.temperature_2m_max[i])}° / {Math.round(weather.daily.temperature_2m_min[i])}°</strong></div>
+    })}</div>
+   </section>
+  </React.Fragment>}
+  <div className="status">Weather data provided by Open-Meteo.</div>
+ </div>;
+}
+ReactDOM.createRoot(document.getElementById("weatherArea")).render(<Weather/>);
+
+document.getElementById("searchForm").addEventListener("submit",e=>{
+ e.preventDefault();const v=document.getElementById("city").value.trim();
+ if(v)document.getElementById("weatherArea").querySelector("#weatherArea");
+ const root=document.getElementById("weatherArea");
+ if(v){root.innerHTML="";ReactDOM.createRoot(root).render(<WeatherSearch value={v}/>);}
+});
+function WeatherSearch({value}){
+ const [ready,setReady]=useState(false);
+ useEffect(()=>{const el=document.getElementById("weatherArea");const old=el.querySelector(".weather");if(old)old.remove();},[]);
+ return <WeatherLoader value={value}/>;
+}
+function WeatherLoader({value}){
+ const [html,setHtml]=useState(null);
+ useEffect(()=>{let active=true;(async()=>{
+ try{
+ let lat,lon,name=value;const m=value.match(/^(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)$/);
+ if(m){lat=+m[1];lon=+m[2];}
+ else{const g=await fetch("https://geocoding-api.open-meteo.com/v1/search?name="+encodeURIComponent(value)+"&count=1");const d=await g.json();if(!d.results?.length)throw Error("City not found.");lat=d.results[0].latitude;lon=d.results[0].longitude;name=d.results[0].name+", "+d.results[0].country;}
+ const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=7&timezone=auto`);
+ const d=await r.json();if(!active)return;
+ const c=d.current,info=descriptions[c.weather_code]||["Current conditions","🌍"];
+ setHtml(<><section className="card weather"><div><div className="location">CURRENT WEATHER · {name}</div><div className="current"><span className="icon">{info[1]}</span><span className="temp">{Math.round(c.temperature_2m)}°</span></div><div className="condition">{info[0]}</div><div className="updated">Feels like {Math.round(c.apparent_temperature)}° · {c.time.replace("T"," ")}</div></div><div className="metrics"><div className="metric"><small>💨 Wind</small><strong>{c.wind_speed_10m} km/h</strong></div><div className="metric"><small>💧 Humidity</small><strong>{c.relative_humidity_2m}%</strong></div><div className="metric"><small>🌧 Rain</small><strong>{c.precipitation} mm</strong></div><div className="metric"><small>🌡 Feels like</small><strong>{Math.round(c.apparent_temperature)}°C</strong></div></div></section><section className="card"><h2 className="section-title">☀ Your 7-Day Forecast</h2><div className="forecast">{d.daily.time.map((date,i)=>{const x=new Date(date+"T12:00:00"),z=descriptions[d.daily.weather_code[i]]||["Cloudy","☁️"];return <div className="day" key={date}><b>{i===0?"Today":x.toLocaleDateString("en",{weekday:"short"})}</b><div className="dayicon">{z[1]}</div><small>{z[0]}</small><strong>{Math.round(d.daily.temperature_2m_max[i])}° / {Math.round(d.daily.temperature_2m_min[i])}°</strong></div>})}</div></section></>);
+ }catch(e){if(active)setHtml(<div className="status error">{e.message}</div>);}
+ })();return()=>{active=false;};},[value]);
+ return html||<div className="status">☁ Loading {value}...</div>;
+}
+document.getElementById("locate").addEventListener("click",()=>{
+ const s=document.getElementById("status");if(!navigator.geolocation){s.textContent="Geolocation is not supported.";return;}
+ s.textContent="Finding your location...";
+ navigator.geolocation.getCurrentPosition(p=>{
+  const v=p.coords.latitude+","+p.coords.longitude;document.getElementById("city").value=v;
+  const root=document.getElementById("weatherArea");ReactDOM.createRoot(root).render(<WeatherLoader value={v}/>);
+ },()=>s.textContent="Location unavailable. Please search by city.");
+});
+
+// Exercise 1: Effect syntax and mount behavior
+let effectRuns=0;
+function runEffect(){effectRuns++;document.getElementById("effectResult").textContent="Effect executed! Run number: "+effectRuns;}
+runEffect();
+document.getElementById("runEffect").onclick=runEffect;
+
+// Exercise 2: Dependency patterns
+let count=0;
+document.getElementById("changeCount").onclick=()=>{
+ count++;document.getElementById("countResult").textContent="Value: "+count;
+ document.getElementById("dependencyResult").textContent="Effect ran because the dependency changed to "+count+".";
+};
+
+// Exercise 3: Fetch API data
+document.getElementById("fetchUser").onclick=async()=>{
+ const name=document.getElementById("username").value.trim(),out=document.getElementById("userResult");
+ if(!name){out.textContent="Enter a username first.";return;}
+ out.textContent="Loading profile...";
+ try{const r=await fetch("https://api.github.com/users/"+encodeURIComponent(name));if(!r.ok)throw Error("User not found.");
+ const u=await r.json();out.innerHTML=`<strong>${u.name||u.login}</strong><br>@${u.login} · ${u.public_repos} public repositories<br><a href="${u.html_url}" target="_blank" rel="noopener">View GitHub profile ↗</a>`;
+ }catch(e){out.textContent=e.message;}
+};
+
+// Exercise 4: Interval and cleanup
+let clockTimer=null;
+function updateClock(){document.getElementById("clock").textContent=new Date().toLocaleTimeString();}
+document.getElementById("startClock").onclick=()=>{
+ if(clockTimer)return;updateClock();clockTimer=setInterval(updateClock,1000);
+ document.getElementById("clockStatus").textContent="Clock running. Interval active.";
+};
+document.getElementById("stopClock").onclick=()=>{
+ clearInterval(clockTimer);clockTimer=null;
+ document.getElementById("clockStatus").textContent="Cleanup complete: interval cleared.";
+};
+
+// Exercise 5: AbortController
+let controller=null;
+document.getElementById("startFetch").onclick=async()=>{
+ controller=new AbortController();const out=document.getElementById("abortResult");
+ out.textContent="Request started...";
+ try{const r=await fetch("https://jsonplaceholder.typicode.com/posts/1",{signal:controller.signal});const d=await r.json();out.textContent="Request complete: "+d.title;}
+ catch(e){out.textContent=e.name==="AbortError"?"Request cancelled using AbortController.":e.message;}
+};
+document.getElementById("cancelFetch").onclick=()=>{
+ if(controller){controller.abort();controller=null;document.getElementById("abortResult").textContent="Cancellation requested.";}
+};
+
+// Exercise 6: Race condition - only latest request updates UI
+let latestRequest=0;
+function raceRequest(label,delay){
+ const id=++latestRequest,out=document.getElementById("raceResult");
+ out.textContent="Request "+label+" started...";
+ setTimeout(()=>{
+  if(id===latestRequest)out.textContent="Latest response displayed: Request "+label+".";
+ },delay);
+}
+document.getElementById("requestA").onclick=()=>raceRequest("A",2500);
+document.getElementById("requestB").onclick=()=>raceRequest("B",700);
+</script>
+</body>
+</html>
+
 
 
 <!-- FINAL PROJECT -->
