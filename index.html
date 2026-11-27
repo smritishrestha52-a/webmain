@@ -4,90 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smriti Shrestha | Web Programming Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --green: #52745d;
-    --dark: #294b39;
-    --sage: #dce7d8;
-    --cream: #f8f5ed;
-    --paper: #fffdf8;
-    --terracotta: #b77c5b;
-    --text: #56675a;
-    --muted: #899489;
+    --blue: #668bb8;
+    --dark: #3e6088;
+    --light: #edf5ff;
+    --pink: #fcecf3;
+    --purple: #f1edff;
+    --text: #526984;
+    --muted: #8799ae;
 }
-
-* {
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
+* { box-sizing: border-box; scroll-behavior: smooth; }
 body {
     margin: 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: var(--text);
-    background: var(--cream);
+    background: linear-gradient(180deg, #edf6ff, #fbfcff 55%, #f7f3ff);
 }
-
-/* HERO */
 header {
-    position: relative;
-    overflow: hidden;
-    padding: 95px 20px 85px;
+    padding: 85px 20px 75px;
     text-align: center;
-    background: linear-gradient(130deg, #d6e2d0, #f2eddf 65%, #e9d9c8);
-    border-radius: 0 0 50px 50px;
+    background: linear-gradient(135deg, #cce4ff, #e9f2ff 65%, #fcecf4);
+    border-radius: 0 0 45px 45px;
 }
-
-header::before {
-    content: "✳";
-    position: absolute;
-    top: 25px;
-    left: 9%;
-    font-size: 65px;
-    color: #9bad91;
-}
-
-header::after {
-    content: "✳";
-    position: absolute;
-    right: 10%;
-    bottom: 20px;
-    font-size: 55px;
-    color: #b98260;
-}
-
 .tag {
     display: inline-block;
-    padding: 9px 19px;
+    padding: 8px 18px;
     border-radius: 30px;
-    background: #fffdf7;
-    color: var(--green);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    background: white;
+    color: #7898bd;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
 }
-
 header h1 {
-    margin: 22px 0 8px;
-    color: var(--dark);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 7vw, 68px);
+    margin: 18px 0 5px;
+    color: #3e6088;
+    font-size: clamp(36px, 6vw, 55px);
+    font-weight: 900;
 }
-
 header h2 {
     margin: 8px 0;
-    color: #718568;
+    color: #6786ad;
     font-size: clamp(19px, 3vw, 25px);
-    font-weight: 600;
 }
-
-header p {
-    color: #788575;
-}
-
-/* NAVIGATION */
+header p { color: #8198b3; }
 nav {
     position: sticky;
     top: 8px;
@@ -95,69 +58,38 @@ nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 7px;
+    gap: 6px;
     max-width: 1100px;
     margin: 22px auto 38px;
-    padding: 13px;
-    background: #fffdf7ed;
-    border: 1px solid #e5e4d9;
+    padding: 12px;
+    background: rgba(255,255,255,.96);
+    border: 1px solid #dfebf8;
     border-radius: 20px;
-    box-shadow: 0 8px 24px #344a3512;
-    backdrop-filter: blur(12px);
+    box-shadow: 0 7px 24px #5279a318;
 }
-
 nav a {
     padding: 8px 12px;
-    border-radius: 20px;
-    color: #61745d;
+    border-radius: 12px;
+    color: #6684a7;
     text-decoration: none;
     font-size: 12px;
-    font-weight: 800;
-    transition: .2s;
+    font-weight: 900;
 }
-
-nav a:hover {
-    background: #dce7d8;
-    color: var(--dark);
-}
-
-/* MAIN */
-main {
-    width: 92%;
-    max-width: 1080px;
-    margin: auto;
-}
-
-.intro {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 10px;
-}
-
-.intro h2 {
-    color: var(--dark);
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-}
-
-.intro p {
-    color: var(--muted);
-    line-height: 1.8;
-}
-
-/* WEEK SECTIONS */
-.week,
-.week-section {
-    margin-bottom: 26px;
-    padding: 29px;
-    background: var(--paper);
-    border: 1px solid #e7e4d9;
-    border-top: 4px solid #9eaf91;
+nav a:hover { background: #e7f1ff; color: #3e6088; }
+main { width: 92%; max-width: 1080px; margin: auto; }
+.intro { text-align: center; margin-bottom: 38px; }
+.intro h2 { color: var(--dark); font-size: 29px; }
+.intro p { color: var(--muted); line-height: 1.7; }
+.week {
+    margin-bottom: 25px;
+    padding: 27px;
+    background: white;
+    border: 1px solid #dfebf8;
+    border-top: 4px solid #b9d7f7;
     border-radius: 23px;
-    box-shadow: 0 9px 25px #344a3510;
+    box-shadow: 0 8px 25px #5279a30d;
     scroll-margin-top: 100px;
 }
-
 .week-heading {
     display: flex;
     justify-content: space-between;
@@ -166,36 +98,25 @@ main {
     gap: 10px;
     margin-bottom: 18px;
 }
-
-.week-heading h2 {
-    margin: 0;
-    color: var(--dark);
-    font-family: 'Playfair Display', serif;
-    font-size: 23px;
-}
-
+.week-heading h2 { margin: 0; color: var(--dark); font-size: 23px; }
 .week-label {
     padding: 7px 13px;
     border-radius: 25px;
-    background: #e9eee2;
-    color: #718568;
+    background: #edf5ff;
+    color: #7796b9;
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 900;
 }
-
 .week-description {
     color: var(--muted);
     font-size: 13px;
     line-height: 1.7;
 }
-
-/* TASK GRID */
 .tasks {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 12px;
 }
-
 .tasks a {
     display: flex;
     justify-content: space-between;
@@ -203,218 +124,79 @@ main {
     gap: 8px;
     padding: 15px;
     min-height: 52px;
-    background: #f1f3e9;
-    border: 1px solid #e2e7da;
+    background: #f1f7ff;
+    border: 1px solid #dfebf8;
     border-radius: 14px;
-    color: #526b50;
+    color: #55779e;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 800;
-    transition: .22s;
+    font-weight: 900;
+    transition: .2s;
 }
-
 .tasks a:hover {
-    transform: translateY(-4px);
-    background: #e4ecdc;
-    border-color: #b9c9ad;
+    transform: translateY(-3px);
+    background: #fff0f6;
+    border-color: #f0d1df;
+    color: #a87898;
 }
-
-.tasks a span {
-    color: var(--terracotta);
-}
-
+.tasks a span { color: #91afd1; }
 .week-page {
     display: inline-block;
     margin-top: 17px;
     padding: 10px 16px;
-    background: #e7ecdf;
+    background: #e5f1ff;
     border-radius: 12px;
-    color: #456348;
+    color: #496f98;
     text-decoration: none;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 900;
 }
-
-/* PROJECT CARDS */
+.week-page:hover { background: #fcecf3; }
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 14px;
 }
-
 .project-card {
     display: flex;
     flex-direction: column;
     min-height: 165px;
-    padding: 21px;
-    background: #f5f5ed;
-    border: 1px solid #e5e5d9;
-    border-radius: 18px;
+    padding: 20px;
+    background: #f7faff;
+    border: 1px solid #dfebf8;
+    border-radius: 17px;
     color: var(--text);
     text-decoration: none;
-    transition: .22s;
+    transition: .2s;
 }
-
 .project-card:hover {
-    transform: translateY(-5px);
-    background: #edf1e7;
-    border-color: #b7c8aa;
-    box-shadow: 0 10px 20px #344a3512;
+    transform: translateY(-4px);
+    background: #fff5f9;
+    border-color: #edccdc;
 }
-
-.project-card strong,
-.project-card h4 {
-    color: var(--dark);
-}
-
-.project-card p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.65;
-}
-
-.project-card small {
-    margin-top: auto;
-    color: var(--terracotta);
-    font-weight: 800;
-}
-
-/* WEEK 11 */
-.section-heading {
-    margin-bottom: 22px;
-}
-
-.section-label {
-    color: var(--terracotta);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
-
-.section-heading h2 {
-    color: var(--dark);
-    font-family: 'Playfair Display', serif;
-    font-size: 29px;
-    margin: 7px 0;
-}
-
-.section-heading p {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-.week-part {
-    padding: 20px;
-    margin-top: 15px;
-    background: #f4f4eb;
-    border: 1px solid #e4e6d9;
-    border-radius: 17px;
-}
-
-.week-part h3 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    color: var(--dark);
-    font-size: 17px;
-    margin: 0 0 15px;
-}
-
-.week-part h3 span,
-.project-number {
-    color: #718568;
-    background: #e5ebdd;
-    border-radius: 20px;
-    padding: 6px 10px;
-    font-size: 11px;
-    font-weight: 800;
-}
-
-.project-card h4 {
-    color: var(--dark);
-    margin: 8px 0 3px;
-}
-
-.project-link {
-    margin-top: auto;
-    color: var(--terracotta);
-    font-size: 12px;
-    font-weight: 800;
-}
-
-/* WEEK 12 */
-#week12 {
-    border-top-color: #b98260;
-}
-
-#week12 .project-card {
-    background: linear-gradient(145deg, #edf2e7, #fffdf8);
-    border-color: #dce4d5;
-}
-
-#week12 .project-card:hover {
-    background: #e4ecdc;
-}
-
-/* FOOTER */
+.project-card strong { color: var(--dark); }
+.project-card p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.project-card small { margin-top: auto; color: #7899bd; font-weight: 900; }
 footer {
     margin-top: 55px;
-    padding: 42px 15px;
+    padding: 38px 15px;
     text-align: center;
-    background: linear-gradient(120deg, #dce5d4, #eee7d9);
-    color: #71806e;
+    background: linear-gradient(110deg, #e3f0ff, #fcecf3);
+    color: #7893b4;
     border-radius: 35px 35px 0 0;
     font-size: 13px;
     line-height: 1.8;
 }
+footer strong { color: #416d98; }
 
-footer strong {
-    color: var(--dark);
-}
-
-/* MOBILE */
 @media(max-width:650px) {
-    header {
-        padding: 65px 16px;
-    }
-
-    header::before {
-        left: 3%;
-        font-size: 40px;
-    }
-
-    header::after {
-        right: 4%;
-        font-size: 38px;
-    }
-
-    nav {
-        margin: 14px 9px 28px;
-    }
-
-    nav a {
-        padding: 7px 9px;
-        font-size: 11px;
-    }
-
-    main {
-        width: 94%;
-    }
-
-    .week,
-    .week-section {
-        padding: 20px;
-    }
-
-    .week-heading h2 {
-        font-size: 20px;
-    }
-
-    .tasks,
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
+    header { padding: 60px 16px; }
+    nav { margin: 14px 9px 28px; }
+    nav a { padding: 7px 9px; font-size: 11px; }
+    main { width: 94%; }
+    .week { padding: 20px; }
+    .week-heading h2 { font-size: 20px; }
+    .tasks, .project-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -448,7 +230,7 @@ footer strong {
 <main>
 
 <section class="intro">
-    <h2>My Weekly Activities ✦</h2>
+    <h2>My Weekly Activities ♡</h2>
     <p>
         Welcome to my Web Programming portfolio.
         Here you can explore my weekly assignments,
@@ -687,7 +469,7 @@ footer strong {
     </div>
 </section>
 
-<!-- WEEK 12 -->
+<!-- WEEK 12: BOTH CLASS PROJECTS -->
 <section class="week" id="week12">
     <div class="week-heading">
         <h2>Week 12 – React State & Effects</h2>
@@ -698,13 +480,17 @@ footer strong {
         practicing state and a weather dashboard practicing useEffect and API fetching.
     </p>
     <div class="project-grid">
-        <a class="project-card" href="week12/index.html" target="_blank" rel="noopener">
+        <a class="project-card"
+           href="week12/index.html"
+           target="_blank" rel="noopener">
             <strong>Week 12 · Class 1 – Shopping Cart</strong>
             <p>Practice React state with product selection, quantity controls, cart updates, and live total calculation.</p>
             <small>Open Shopping Cart ↗</small>
         </a>
 
-        <a class="project-card" href="week12%20monday%20clss/weather.html" target="_blank" rel="noopener">
+        <a class="project-card"
+           href="week12%20monday%20clss/weather.html"
+           target="_blank" rel="noopener">
             <strong>Week 12 · Class 2 – Weather Dashboard</strong>
             <p>Search cities, view current weather and a seven-day forecast, and practice useEffect with the Open-Meteo API.</p>
             <small>Open Weather Dashboard ↗</small>
@@ -718,28 +504,16 @@ footer strong {
         <span class="week-label">Web Programming Final Project</span>
     </div>
     <div class="project-grid">
-        <a class="project-card" href="final%20project/index.html">
-            <strong>Project Home</strong>
-            <p>Open the main page of my final project.</p>
-            <small>View project ↗</small>
-        </a>
-        <a class="project-card" href="final%20project/part1%20index.html">
-            <strong>Project Part 1</strong>
-            <p>View the first part of the project proposal.</p>
-            <small>View part 1 ↗</small>
-        </a>
-        <a class="project-card" href="final%20project/part2%20index.html">
-            <strong>Project Part 2</strong>
-            <p>View the second part of the project proposal.</p>
-            <small>View part 2 ↗</small>
-        </a>
+        <a class="project-card" href="final%20project/index.html"><strong>Project Home</strong><p>Open the main page of my final project.</p><small>View project ↗</small></a>
+        <a class="project-card" href="final%20project/part1%20index.html"><strong>Project Part 1</strong><p>View the first part of the project proposal.</p><small>View part 1 ↗</small></a>
+        <a class="project-card" href="final%20project/part2%20index.html"><strong>Project Part 2</strong><p>View the second part of the project proposal.</p><small>View part 2 ↗</small></a>
     </div>
 </section>
 
 </main>
 
 <footer>
-    <strong>Made with care by Shrestha Smriti ✦</strong>
+    <strong>Made with care by Shrestha Smriti ♡</strong>
     <p>Web Programming | Gachon University</p>
     <p>Learning, creating, and improving one project at a time.</p>
     <p>© 2026 My Learning Portfolio</p>
